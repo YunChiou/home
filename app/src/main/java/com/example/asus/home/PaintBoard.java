@@ -1,6 +1,5 @@
 package com.example.asus.home;
 
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -42,33 +41,68 @@ public class PaintBoard extends View {
         }
     }
 
-    public void addRectangleTable(int left, int top)
-    {
+    public void addRectangleTable(int left, int top) {
         allTables.add(new RectangleTable(left, top, left + 250, top + 250));
     }
 
-    public void addRoundTable(int left, int top)
-    {
+    public void addRoundTable(int left, int top) {
         allTables.add(new CircleTable(left, top, 150));
     }
 
+    int selectedIndex = -1;
     public boolean onTouchEvent(MotionEvent ev) {
+        int index = ev.getActionIndex();
+        int action = ev.getActionMasked();
         int left = (int) ev.getX();
         int top = (int) ev.getY();
-        if (tableType == TableType.NONE)
-            return true;
-        if (tableType == TableType.RECTANGE)
-            addRectangleTable(left, top);
-        else if (tableType == TableType.ROUND)
-            addRoundTable(left, top);
-        tableLayout.clearAllSelections();
-        invalidate();
-        tableType = TableType.NONE;
+
+        switch(action) {
+            case MotionEvent.ACTION_DOWN:
+                clearSelectedTable();
+                if (tableType == TableType.NONE) {
+                    for (int i = allTables.size() - 1; i >= 0; i--) {
+                        if (allTables.get(i).isInside(left, top)) {
+                            allTables.get(i).setIsSelected(true);
+                            selectedIndex = i;
+                            break;
+                        }
+                    }
+                    invalidate();
+                    return true;
+                }
+                if (tableType == TableType.RECTANGE) {
+                    addRectangleTable(left, top);
+                }
+                else if (tableType == TableType.ROUND) {
+                    addRoundTable(left, top);
+                }
+                tableLayout.clearAllSelections();
+                invalidate();
+                tableType = TableType.NONE;
+                return true;
+
+            case MotionEvent.ACTION_MOVE:
+                if (selectedIndex >= 0) {
+                    allTables.get(selectedIndex).moveTable(left, top);
+                    invalidate();
+                }
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_CANCEL:
+        }
         return true;
+    }
+
+    public void clearSelectedTable() {
+        for (int i = 0; i < allTables.size(); i++) {
+            allTables.get(i).setIsSelected(false);
+        }
     }
 
     public void setTableType(TableType tableType) {
         this.tableType = tableType;
+        selectedIndex = -1;
+        clearSelectedTable();
+        invalidate();
     }
 
 }
