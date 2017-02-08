@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TableLayout"></activity>
+        <activity android:name=".TableLayout" />
+        <activity android:name=".Base" />
     </application>
 
 </manifest>
