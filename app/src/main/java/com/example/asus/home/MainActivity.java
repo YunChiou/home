@@ -1,4 +1,4 @@
-package com.example.asus.home;
+﻿package com.example.asus.home;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +17,7 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     //測試
+    //測試github
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
