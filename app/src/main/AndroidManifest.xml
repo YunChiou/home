@@ -18,7 +18,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TableLayout"></activity>
+        <activity android:name=".TableLayout" />
+        <activity android:name=".BaseActivity" />
+        <activity android:name=".Registration_Boss" />
+        <activity
+            android:name=".Registration_Customer"
+            android:label="@string/title_activity_registration__customer"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".OneFragment"
+            android:label="@string/title_activity_one_fragment"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Registration"
+            android:label="@string/title_activity_registration"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
