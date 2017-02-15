@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-public class Registration extends AppCompatActivity {
+public class Registration extends ToolbarActivity {
     Button boss;
     Button cus;
     @Override
@@ -33,7 +33,13 @@ public class Registration extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // close this activity and return to preview activity (if there is any)
+        }
 
+        return super.onOptionsItemSelected(item);
+    }
 }

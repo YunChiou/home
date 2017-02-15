@@ -3,11 +3,14 @@ package com.example.asus.home;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.*;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
 
 public class HomePage extends AppCompatActivity {
-Button layoutsettings;
+    Button layoutsettings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,5 +24,6 @@ Button layoutsettings;
                 startActivity(intent);
             }
         });
+
     }
 }
