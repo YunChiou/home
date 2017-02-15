@@ -19,7 +19,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".TableLayout" />
-        <activity android:name=".Base" />
+        <activity android:name=".Registration" />
+        <activity android:name=".HomePage" />
+        <activity android:name=".Registration_boss" />
+        <activity android:name=".Registration_customer"></activity>
     </application>
 
 </manifest>
