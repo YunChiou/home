@@ -19,24 +19,28 @@
             </intent-filter>
         </activity>
         <activity android:name=".TableLayout" />
-        <activity android:name=".Registration"
-            android:theme="@style/AppTheme.NoActionBar"
+        <activity
+            android:name=".Registration"
             android:label=""
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".HomePage"
-            android:theme="@style/AppTheme.NoActionBar"
             android:label=""
-            />
-        <activity android:name=".Registration_boss"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".Registration_boss"
             android:label=""
-            />
-        <activity android:name=".Registration_customer"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Registration_customer"
             android:label=""
-            />
-        <activity android:name=".ToolbarActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ToolbarActivity" />
+        <activity android:name=".NavigationbarActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>

@@ -1,29 +1,27 @@
 package com.example.asus.home;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.*;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
 
-public class HomePage extends AppCompatActivity {
+public class HomePage extends NavigationbarActivity {
     Button layoutsettings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
-        layoutsettings=(Button)findViewById(R.id.button_layoutsettings);
-        layoutsettings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(HomePage.this, android.widget.TableLayout.class);
-                startActivity(intent);
-            }
-        });
+        //產生sliding menu
+        LayoutInflater inflater = (LayoutInflater) this
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View contentView = inflater.inflate(R.layout.activity_home_page, null, false);
+        drawer.addView(contentView, 0);
 
     }
 }
