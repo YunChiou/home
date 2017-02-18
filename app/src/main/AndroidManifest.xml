@@ -14,10 +14,12 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TableLayout"
+        <activity
+            android:name=".TableLayout"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -28,7 +30,6 @@
             android:name=".HomePage"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".Registration_boss"
             android:label=""
@@ -38,10 +39,10 @@
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ToolbarActivity" />
-        <activity android:name=".NavigationbarActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+        <activity
+            android:name=".NavigationbarActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".StorePage"></activity>
     </application>
 
 </manifest>
