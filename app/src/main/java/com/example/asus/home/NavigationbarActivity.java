@@ -57,7 +57,9 @@ public class NavigationbarActivity extends AppCompatActivity implements Navigati
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.first) {
-
+            Intent intent = new Intent();
+            intent.setClass(NavigationbarActivity.this, StorePage.class);
+            startActivity(intent);
         }
         else if(id == R.id.second){}
         else if(id == R.id.third){
@@ -66,7 +68,14 @@ public class NavigationbarActivity extends AppCompatActivity implements Navigati
             startActivity(intent);
         }
         else if(id == R.id.fourth){
-
+            Intent intent = new Intent();
+            intent.setClass(NavigationbarActivity.this, QRcode_generator.class);
+            startActivity(intent);
+        }
+        else if(id == R.id.fifth){
+            Intent intent = new Intent();
+            intent.setClass(NavigationbarActivity.this, QRcode_Scanner.class);
+            startActivity(intent);
         }
         else if(id == R.id.logout){
             Intent intent = new Intent();

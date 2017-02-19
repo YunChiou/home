@@ -23,6 +23,10 @@
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".StorePage"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".Registration"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
@@ -41,8 +45,14 @@
         <activity android:name=".ToolbarActivity" />
         <activity
             android:name=".NavigationbarActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".StorePage"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".QRcode_generator"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".QRcode_Scanner"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

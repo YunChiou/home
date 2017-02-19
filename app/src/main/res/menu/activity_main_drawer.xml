@@ -5,7 +5,7 @@
         <item
             android:id="@+id/first"
             android:icon="@drawable/ic_menu_camera"
-            android:title="怡廷" />
+            android:title="怡廷 店家" />
         <item
             android:id="@+id/second"
             android:icon="@drawable/ic_menu_gallery"
@@ -13,11 +13,15 @@
         <item
             android:id="@+id/third"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="宜謙" />
+            android:title="宜謙 店家布局" />
         <item
             android:id="@+id/fourth"
             android:icon="@drawable/ic_menu_manage"
-            android:title="忻妤" />
+            android:title="忻妤 顧客產生qr code" />
+        <item
+            android:id="@+id/fifth"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="忻妤 顧客掃描qr code" />
         <item
             android:id="@+id/logout"
             android:icon="@drawable/ic_menu_manage"
