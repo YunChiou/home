@@ -16,9 +16,14 @@ public class PaintBoard extends View {
         ROUND, RECTANGE, NONE
     }
 
+    public enum PressPoint {
+        SHAPE, CONTROL_POINT, NONE
+    }
+
     private Paint paint;
     ArrayList<Table> allTables = new ArrayList<Table>();
     TableType tableType = TableType.NONE;
+    PressPoint pressPoint = PressPoint.NONE;
     TableLayout tableLayout;
 
     public PaintBoard(TableLayout tableLayout) {
@@ -46,27 +51,26 @@ public class PaintBoard extends View {
     }
 
     public void addRoundTable(int left, int top) {
-        allTables.add(new CircleTable(left, top, 150));
+        allTables.add(new OvalTable(left, top, left + 250, top + 250));
     }
 
     int selectedIndex = -1;
+    int xOffSet = 0;
+    int yOffSet = 0;
+    int widthOffSet = 0;
+    int heightOffset = 0;
+    int originalWidth;
+    int originalHeight;
     public boolean onTouchEvent(MotionEvent ev) {
         int index = ev.getActionIndex();
         int action = ev.getActionMasked();
         int left = (int) ev.getX();
         int top = (int) ev.getY();
-
         switch(action) {
             case MotionEvent.ACTION_DOWN:
                 clearSelectedTable();
                 if (tableType == TableType.NONE) {
-                    for (int i = allTables.size() - 1; i >= 0; i--) {
-                        if (allTables.get(i).isInside(left, top)) {
-                            allTables.get(i).setIsSelected(true);
-                            selectedIndex = i;
-                            break;
-                        }
-                    }
+                    actionDownWithNone(left, top);
                     invalidate();
                     return true;
                 }
@@ -79,17 +83,49 @@ public class PaintBoard extends View {
                 tableLayout.clearAllSelections();
                 invalidate();
                 tableType = TableType.NONE;
+                selectedIndex = -1;
+                pressPoint = PressPoint.NONE;
                 return true;
 
             case MotionEvent.ACTION_MOVE:
-                if (selectedIndex >= 0) {
-                    allTables.get(selectedIndex).moveTable(left, top);
+                if (pressPoint == PressPoint.CONTROL_POINT) {
+                    allTables.get(selectedIndex).setSize(left - originalWidth + widthOffSet, top - originalHeight + heightOffset);
                     invalidate();
                 }
+                else if (pressPoint == PressPoint.SHAPE) {
+                   allTables.get(selectedIndex).setTable(left - xOffSet, top - yOffSet);
+                   invalidate();
+                }
+                break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
         }
         return true;
+    }
+
+    public void actionDownWithNone(int left, int top) {
+        selectedIndex = -1;
+        pressPoint = PressPoint.NONE;
+        for (int i = allTables.size() - 1; i >= 0; i--) {
+            if (allTables.get(i).isInsideControlPoint(left, top)) {
+                allTables.get(i).setIsSelected(true);
+                originalWidth = allTables.get(i).getWidth();
+                originalHeight = allTables.get(i).getHeight();
+                widthOffSet = left - allTables.get(i).getLeft() - originalWidth;
+                heightOffset = top - allTables.get(i).getTop() - originalHeight;
+                selectedIndex = i;
+                pressPoint = PressPoint.CONTROL_POINT;
+                break;
+            }
+            if (allTables.get(i).isInside(left, top)) {
+                allTables.get(i).setIsSelected(true);
+                xOffSet = left - allTables.get(i).getLeft();
+                yOffSet = top - allTables.get(i).getTop();
+                selectedIndex = i;
+                pressPoint = PressPoint.SHAPE;
+                break;
+            }
+        }
     }
 
     public void clearSelectedTable() {
@@ -100,7 +136,6 @@ public class PaintBoard extends View {
 
     public void setTableType(TableType tableType) {
         this.tableType = tableType;
-        selectedIndex = -1;
         clearSelectedTable();
         invalidate();
     }

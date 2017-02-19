@@ -9,7 +9,7 @@
     android:paddingBottom="@dimen/activity_horizontal_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="100dp"
+    android:paddingTop="80dp"
     tools:context="com.example.asus.home.TableLayout">
 
     <LinearLayout

@@ -3,10 +3,11 @@ package com.example.asus.home;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 
-public class RectangleTable extends Table {
+public class OvalTable extends Table {
 
-    public RectangleTable(int left, int top, int right, int bottom) {
+    public OvalTable(int left, int top, int right, int bottom) {
         this.boundingBoxLeft = left;
         this.boundingBoxTop = top;
         this.boundingBoxRight = left + width;
@@ -18,11 +19,13 @@ public class RectangleTable extends Table {
         //內圍
         paint.setColor(Color.BLACK);
         paint.setStrokeWidth(3);
-        canvas.drawRect(boundingBoxLeft, boundingBoxTop, boundingBoxLeft + width, boundingBoxTop + height, paint);
+        RectF oval = new RectF(boundingBoxLeft, boundingBoxTop, boundingBoxLeft + width, boundingBoxTop + height);
+        canvas.drawOval(oval, paint);
         super.draw(canvas, paint);
         paint.setStrokeWidth(0);
         paint.setColor(Color.YELLOW);
-        canvas.drawRect(boundingBoxLeft + BORDER_WIDTH, boundingBoxTop + BORDER_WIDTH, boundingBoxLeft + width - BORDER_WIDTH, boundingBoxTop + height - BORDER_WIDTH, paint);
+        RectF ovalBox = new RectF(boundingBoxLeft + BORDER_WIDTH, boundingBoxTop + BORDER_WIDTH, boundingBoxLeft + width - BORDER_WIDTH, boundingBoxTop + height - BORDER_WIDTH);
+        canvas.drawOval(ovalBox, paint);
     }
 
     @Override
