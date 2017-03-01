@@ -50,9 +50,11 @@
             android:name=".QRcode_generator"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".QRcode_Scanner"
+        <activity
+            android:name=".QRcode_Scanner"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Main2Activity"></activity>
     </application>
 
 </manifest>
