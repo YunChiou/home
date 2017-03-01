@@ -62,6 +62,7 @@ public class NavigationbarActivity extends AppCompatActivity implements Navigati
             startActivity(intent);
         }
         else if(id == R.id.second){}
+
         else if(id == R.id.third){
             Intent intent = new Intent();
             intent.setClass(NavigationbarActivity.this, TableLayout.class);

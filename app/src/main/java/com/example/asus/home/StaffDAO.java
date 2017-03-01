@@ -19,6 +19,7 @@ public class StaffDAO {
     public static final String PASSWORD = "password";
     public static final String NAME = "name";
     public static final String RESTAURANTNAME = "restaurantName";
+    public static final String RESTAURANTADD = "restaurantAdd";
 
     // 使用上面宣告的變數建立表格的SQL指令
     public static final String CREATE_TABLE =
@@ -27,7 +28,8 @@ public class StaffDAO {
                     ACCOUNT + " STRING, " +
                     PASSWORD + " STRING, " +
                     NAME + " STRING, " +
-                    RESTAURANTNAME + " STRING)";
+                    RESTAURANTNAME + " STRING, " +
+                    RESTAURANTADD + "STRING)";
 
     // 資料庫物件
     private static SQLiteDatabase db;
@@ -52,6 +54,7 @@ public class StaffDAO {
         cv.put(PASSWORD, staff.getPassword());
         cv.put(NAME, staff.getName());
         cv.put(RESTAURANTNAME, staff.getRestaurantName());
+        cv.put(RESTAURANTADD, staff.getrestaurantAdd());
 
         // 新增一筆資料並取得編號
         // 第一個參數是表格名稱
@@ -71,6 +74,7 @@ public class StaffDAO {
         cv.put(KEY_ID, staff.getStaffID());
         cv.put(NAME, staff.getName());
         cv.put(RESTAURANTNAME, staff.getRestaurantName());
+        cv.put(RESTAURANTADD, staff.getrestaurantAdd());
         // 設定修改資料的條件為編號
         // 格式為「欄位名稱＝資料」
         String where = KEY_ID + "=" + staff.getStaffID();
