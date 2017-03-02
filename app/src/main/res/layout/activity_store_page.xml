@@ -13,16 +13,17 @@
 
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView1"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="horizontal" >
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/ONE">
 
 
         <ImageView
@@ -37,17 +38,26 @@
 
         <ImageView
             android:layout_width="200dp"
-            android:layout_height="166dp"
+            android:layout_height="173dp"
             app:srcCompat="@drawable/one"
             android:gravity="center_horizontal"
-            android:id="@+id/imageView3"
-            android:layout_weight="0.67"/>
-
+            android:id="@+id/imageView3" />
 
     </LinearLayout>
         </HorizontalScrollView>
 
-    <TextView
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/horizontalScrollView1"
+        android:layout_alignParentBottom="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
             android:text="新漢城韓式料理店"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,7 +69,7 @@
 
         <TextView
             android:text="Tel : (02)2381-7396"
-            android:layout_width="wrap_content"
+            android:layout_width="347dp"
             android:layout_height="wrap_content"
             android:textSize = "30sp"
             android:layout_marginTop="19dp"
@@ -90,4 +100,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
+
+</LinearLayout>
+
+    </ScrollView>
 </RelativeLayout>
