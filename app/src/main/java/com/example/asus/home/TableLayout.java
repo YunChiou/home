@@ -16,6 +16,7 @@ public class TableLayout extends NavigationbarActivity {
     PaintBoard drawingView;
     LinearLayout rect;
     LinearLayout circle;
+    LinearLayout circleBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,7 @@ public class TableLayout extends NavigationbarActivity {
         layout.addView(drawingView);
         rect = (LinearLayout) findViewById(R.id.rect);
         circle = (LinearLayout) findViewById(R.id.circle);
+        circleBack = (LinearLayout) findViewById(R.id.circleBack);
         chooseTable();
     }
 
@@ -42,6 +44,7 @@ public class TableLayout extends NavigationbarActivity {
             public void onClick(View v) {
                 rect.setBackgroundResource(R.drawable.rectangle_table_selected);
                 circle.setBackgroundResource(R.drawable.circle_table);
+                circleBack.setBackgroundResource(R.drawable.circle_table);
                 drawingView.setTableType(PaintBoard.TableType.RECTANGE);
             }
         });
@@ -50,7 +53,17 @@ public class TableLayout extends NavigationbarActivity {
             public void onClick(View v) {
                 circle.setBackgroundResource(R.drawable.circle_table_selected);
                 rect.setBackgroundResource(R.drawable.rectangle_table);
+                circleBack.setBackgroundResource(R.drawable.circle_table);
                 drawingView.setTableType(PaintBoard.TableType.ROUND);
+            }
+        });
+        circleBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                circleBack.setBackgroundResource(R.drawable.circle_table_selected);
+                circle.setBackgroundResource(R.drawable.circle_table);
+                rect.setBackgroundResource(R.drawable.rectangle_table);
+                drawingView.setTableType(PaintBoard.TableType.TEXT);
             }
         });
     }
@@ -58,6 +71,7 @@ public class TableLayout extends NavigationbarActivity {
     public void clearAllSelections() {
         circle.setBackgroundResource(R.drawable.circle_table);
         rect.setBackgroundResource(R.drawable.rectangle_table);
+        circleBack.setBackgroundResource(R.drawable.circle_table);
     }
 }
 

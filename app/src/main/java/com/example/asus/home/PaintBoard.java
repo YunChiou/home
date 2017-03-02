@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class PaintBoard extends View {
 
     public enum TableType {
-        ROUND, RECTANGE, NONE
+        ROUND, RECTANGE, TEXT, NONE
     }
 
     public enum PressPoint {
@@ -54,6 +54,10 @@ public class PaintBoard extends View {
         allTables.add(new OvalTable(left, top, left + 250, top + 250));
     }
 
+    public void addTextOnTable(int left, int top) {
+        allTables.add(new TextOnTable(left, top, left + 250, top + 250));
+    }
+
     int selectedIndex = -1;
     int xOffSet = 0;
     int yOffSet = 0;
@@ -79,6 +83,9 @@ public class PaintBoard extends View {
                 }
                 else if (tableType == TableType.ROUND) {
                     addRoundTable(left, top);
+                }
+                else if (tableType == TableType.TEXT) {
+                    addTextOnTable(left, top);
                 }
                 tableLayout.clearAllSelections();
                 invalidate();

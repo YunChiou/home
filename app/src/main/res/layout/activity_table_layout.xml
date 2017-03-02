@@ -36,6 +36,30 @@
         android:layout_marginLeft="100dp"
         android:layout_marginStart="100dp">
     </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/circleBack"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/circle_table"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="175dp"
+        android:layout_marginStart="175dp">
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/text"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/text_icon"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="175dp"
+        android:layout_marginStart="175dp">
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
