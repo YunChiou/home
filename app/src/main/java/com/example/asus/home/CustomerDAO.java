@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerDAO {
-
+    // 表格名稱
     public static final String TABLE_NAME = "customer";
 
     // 編號表格欄位名稱，固定不變
