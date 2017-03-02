@@ -15,11 +15,10 @@ public class TextOnTable extends Table {
 
     @Override
     public void draw(Canvas canvas, Paint paint) {
-
         paint.setColor(Color.BLACK);
         paint.setTextSize(100);
-        canvas.drawText("1", boundingBoxLeft, boundingBoxTop, paint);
-        canvas.drawRect(boundingBoxLeft + BORDER_WIDTH, boundingBoxTop + BORDER_WIDTH, boundingBoxLeft + width - BORDER_WIDTH, boundingBoxTop + height - BORDER_WIDTH, paint);
+        canvas.drawText("1", boundingBoxLeft + width / 2, boundingBoxTop + height / 2, paint);
+        //canvas.drawRect(boundingBoxLeft + BORDER_WIDTH, boundingBoxTop + BORDER_WIDTH, boundingBoxLeft + width - BORDER_WIDTH, boundingBoxTop + height - BORDER_WIDTH, paint);
         super.draw(canvas, paint);
     }
 
