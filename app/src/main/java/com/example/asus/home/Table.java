@@ -42,6 +42,10 @@ public abstract class Table {
         return height;
     }
 
+    public String getText() {
+        return tableNumber;
+    }
+
     public void draw(Canvas canvas, Paint paint) {
         if (isSelected) {
             //邊框
