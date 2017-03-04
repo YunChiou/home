@@ -26,6 +26,10 @@ public class OvalTable extends Table {
         paint.setColor(Color.YELLOW);
         RectF ovalBox = new RectF(boundingBoxLeft + BORDER_WIDTH, boundingBoxTop + BORDER_WIDTH, boundingBoxLeft + width - BORDER_WIDTH, boundingBoxTop + height - BORDER_WIDTH);
         canvas.drawOval(ovalBox, paint);
+        //文字
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(50);
+        canvas.drawText(tableNumber, boundingBoxLeft + 10, boundingBoxTop + height / 2, paint);
     }
 
     @Override

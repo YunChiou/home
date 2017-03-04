@@ -16,9 +16,14 @@ public abstract class Table {
     boolean isSelected;
     final int CONTROL_POINT_SIZE = 30;
     final int BORDER_WIDTH = 3;
+    String tableNumber = "";
 
     public Table() {
         isSelected = false;
+    }
+
+    public void setTableNumber(String tableNumber) {
+        this.tableNumber = tableNumber;
     }
 
     public int getLeft() {
@@ -48,6 +53,7 @@ public abstract class Table {
             paint.setStyle(Paint.Style.FILL_AND_STROKE);
             paint.setColor(Color.RED);
             canvas.drawRect(boundingBoxLeft + width - CONTROL_POINT_SIZE, boundingBoxTop + height -CONTROL_POINT_SIZE, boundingBoxLeft + width + CONTROL_POINT_SIZE, boundingBoxTop + height + CONTROL_POINT_SIZE, paint);
+
         }
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
     }

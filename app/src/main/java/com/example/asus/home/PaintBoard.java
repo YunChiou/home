@@ -1,13 +1,21 @@
 package com.example.asus.home;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.support.v7.app.AlertDialog;
+import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -69,15 +77,16 @@ public class PaintBoard extends View {
     int heightOffset = 0;
     int originalWidth;
     int originalHeight;
+    int actionDownLeft = 0;
     public boolean onTouchEvent(MotionEvent ev) {
         int index = ev.getActionIndex();
         int action = ev.getActionMasked();
         int left = (int) ev.getX();
         int top = (int) ev.getY();
-        boolean longClick = false;
-        final int MIN_DISTANCE = 1;
+        final int MIN_DISTANCE = 10;
         switch(action) {
             case MotionEvent.ACTION_DOWN:
+                actionDownLeft = (int) ev.getX();
                 clearSelectedTable();
                 if (tableType == TableType.NONE) {
                     actionDownWithNone(left, top);
@@ -98,14 +107,9 @@ public class PaintBoard extends View {
                 tableType = TableType.NONE;
                 selectedIndex = -1;
                 pressPoint = PressPoint.NONE;
-
-                longClick = false;
                 return true;
 
             case MotionEvent.ACTION_MOVE:
-                if (ev.getEventTime() - ev.getDownTime() > 500 && Math.abs(ev.getX() - left) < MIN_DISTANCE) {
-                    longClick = true;
-                }
                 if (pressPoint == PressPoint.CONTROL_POINT) {
                     allTables.get(selectedIndex).setSize(left - originalWidth + widthOffSet, top - originalHeight + heightOffset);
                     invalidate();
@@ -116,13 +120,39 @@ public class PaintBoard extends View {
                 }
                 break;
             case MotionEvent.ACTION_UP:
-                if (longClick) {
-                    addRectangleTable(left, top);
+                if (ev.getEventTime() - ev.getDownTime() > 500 && Math.abs(ev.getX() - actionDownLeft) < MIN_DISTANCE) {
+                    if (selectedIndex != -1)
+                        showDialog();
                 }
                 break;
             case MotionEvent.ACTION_CANCEL:
         }
         return true;
+    }
+
+    AlertDialog alertDialog;
+    EditText tableNumber;
+    public void showDialog() {
+        alertDialog = new AlertDialog.Builder(tableLayout).create();
+        alertDialog.setTitle("請輸入桌號");
+        LinearLayout layout = new LinearLayout(tableLayout);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        tableNumber = new EditText(tableLayout);
+        tableNumber.setHint("");
+        layout.addView(tableNumber);
+        final Button enterText = new Button(tableLayout);
+        enterText.setText("確認");
+        layout.addView(enterText);
+        alertDialog.setView(layout);
+        alertDialog.show();
+        enterText.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                allTables.get(selectedIndex).setTableNumber(tableNumber.getText().toString());
+                alertDialog.dismiss();
+            }
+        });
+        invalidate();
     }
 
     public void actionDownWithNone(int left, int top) {

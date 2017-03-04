@@ -23,6 +23,10 @@ public class RectangleTable extends Table {
         paint.setStrokeWidth(0);
         paint.setColor(Color.YELLOW);
         canvas.drawRect(boundingBoxLeft + BORDER_WIDTH, boundingBoxTop + BORDER_WIDTH, boundingBoxLeft + width - BORDER_WIDTH, boundingBoxTop + height - BORDER_WIDTH, paint);
+        //文字
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(50);
+        canvas.drawText(tableNumber, boundingBoxLeft + 10, boundingBoxTop + 50, paint);
     }
 
     @Override
