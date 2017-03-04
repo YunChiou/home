@@ -5,9 +5,13 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
+
 import java.util.ArrayList;
+import java.util.logging.Handler;
 
 
 public class PaintBoard extends View {
@@ -70,6 +74,8 @@ public class PaintBoard extends View {
         int action = ev.getActionMasked();
         int left = (int) ev.getX();
         int top = (int) ev.getY();
+        boolean longClick = false;
+        final int MIN_DISTANCE = 1;
         switch(action) {
             case MotionEvent.ACTION_DOWN:
                 clearSelectedTable();
@@ -92,9 +98,14 @@ public class PaintBoard extends View {
                 tableType = TableType.NONE;
                 selectedIndex = -1;
                 pressPoint = PressPoint.NONE;
+
+                longClick = false;
                 return true;
 
             case MotionEvent.ACTION_MOVE:
+                if (ev.getEventTime() - ev.getDownTime() > 500 && Math.abs(ev.getX() - left) < MIN_DISTANCE) {
+                    longClick = true;
+                }
                 if (pressPoint == PressPoint.CONTROL_POINT) {
                     allTables.get(selectedIndex).setSize(left - originalWidth + widthOffSet, top - originalHeight + heightOffset);
                     invalidate();
@@ -105,6 +116,10 @@ public class PaintBoard extends View {
                 }
                 break;
             case MotionEvent.ACTION_UP:
+                if (longClick) {
+                    addRectangleTable(left, top);
+                }
+                break;
             case MotionEvent.ACTION_CANCEL:
         }
         return true;
