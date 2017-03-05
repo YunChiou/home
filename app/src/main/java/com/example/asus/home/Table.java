@@ -7,6 +7,7 @@ import android.graphics.Paint;
 
 public abstract class Table {
 
+    int id;
     int height = 250;
     int width = 250;
     int boundingBoxLeft;
@@ -22,6 +23,14 @@ public abstract class Table {
 
     public void setTableNumber(String tableNumber) {
         this.tableNumber = tableNumber;
+    }
+
+    public void setID (int id) {
+        this.id = id;
+    }
+
+    public int getID() {
+        return id;
     }
 
     public int getLeft() {
