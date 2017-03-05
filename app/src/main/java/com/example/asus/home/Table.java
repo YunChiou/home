@@ -11,8 +11,6 @@ public abstract class Table {
     int width = 250;
     int boundingBoxLeft;
     int boundingBoxTop;
-    int boundingBoxRight;
-    int boundingBoxBottom;
     boolean isSelected;
     final int CONTROL_POINT_SIZE = 30;
     final int BORDER_WIDTH = 3;

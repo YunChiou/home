@@ -79,16 +79,17 @@ public class PaintBoard extends View {
     }
 
     public void addRectangleTable(int left, int top) {
-        allTables.add(new RectangleTable(left, top, left + 250, top + 250));
+        allTables.add(new RectangleTable(left, top));
         new PaintBoard.CreateNewTable().execute();
     }
 
     public void addRoundTable(int left, int top) {
-        allTables.add(new OvalTable(left, top, left + 250, top + 250));
+        allTables.add(new OvalTable(left, top));
+        new PaintBoard.CreateNewTable().execute();
     }
 
     public void addTextOnTable(int left, int top) {
-        allTables.add(new TextOnTable(left, top, left + 250, top + 250));
+        allTables.add(new TextOnTable(left, top));
     }
 
     int selectedIndex = -1;
@@ -221,11 +222,11 @@ public class PaintBoard extends View {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            cDialog = new ProgressDialog(tableLayout);
-            cDialog.setMessage("saving tables...");
-            cDialog.setIndeterminate(false);
-            cDialog.setCancelable(true);
-            cDialog.show();
+            //cDialog = new ProgressDialog(tableLayout);
+            //cDialog.setMessage("saving tables...");
+            //cDialog.setIndeterminate(false);
+            //cDialog.setCancelable(true);
+            //cDialog.show();
         }
 
         /**
@@ -277,10 +278,10 @@ public class PaintBoard extends View {
         protected void onPostExecute(String file_url) {
             // dismiss the dialog once done
             //cDialog.dismiss();
-            cDialog.setMessage("儲存成功！");
-            cDialog.setIndeterminate(false);
-            cDialog.setCancelable(true);
-            cDialog.show();
+            //cDialog.setMessage("儲存成功！");
+            //cDialog.setIndeterminate(false);
+            //cDialog.setCancelable(true);
+            //cDialog.show();
         }
 
     }
