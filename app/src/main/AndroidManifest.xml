@@ -54,6 +54,10 @@
             android:name=".QRcode_Scanner"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CustomerData"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
     <!--  Internet Permissions -->

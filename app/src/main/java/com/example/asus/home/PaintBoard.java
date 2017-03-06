@@ -51,6 +51,7 @@ public class PaintBoard extends View {
     private static String url_create_table = "http://163.14.68.37/android_connect/create_table.php";
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
+    private static final String TAG_ID = "id";
 
     private Paint paint;
     ArrayList<Table> allTables = new ArrayList<Table>();
@@ -79,13 +80,15 @@ public class PaintBoard extends View {
     }
 
     public void addRectangleTable(int left, int top) {
-        allTables.add(new RectangleTable(left, top));
-        new PaintBoard.CreateNewTable().execute();
+        Table table = new RectangleTable(left, top);
+        allTables.add(table);
+        new PaintBoard.CreateNewTable(this, table).execute();
     }
 
     public void addRoundTable(int left, int top) {
-        allTables.add(new OvalTable(left, top));
-        new PaintBoard.CreateNewTable().execute();
+        Table table = new OvalTable(left, top);
+        allTables.add(table);
+        new PaintBoard.CreateNewTable(this, table).execute();
     }
 
     public void addTextOnTable(int left, int top) {
@@ -216,22 +219,21 @@ public class PaintBoard extends View {
 
         class CreateNewTable extends AsyncTask<String, String, String> {
 
-        /**
-         * Before starting background thread Show Progress Dialog
-         * */
+        PaintBoard paintBoard;
+        Table table;
+        int id = -1;
+
+        CreateNewTable(PaintBoard paintBoard, Table table) {
+            this.paintBoard = paintBoard;
+            this.table = table;
+        };
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            //cDialog = new ProgressDialog(tableLayout);
-            //cDialog.setMessage("saving tables...");
-            //cDialog.setIndeterminate(false);
-            //cDialog.setCancelable(true);
-            //cDialog.show();
         }
 
-        /**
-         * Creating table
-         * */
+        // Creating table
         protected String doInBackground(String... args) {
             int int_leftIndex = allTables.get(0).getLeft();
             int int_topIndex = allTables.get(0).getTop();
@@ -247,43 +249,31 @@ public class PaintBoard extends View {
             params.add(new BasicNameValuePair("height", Integer.toString(int_height)));
             params.add(new BasicNameValuePair("text", String_text));
 
-
-            // getting JSON Object
-            // Note that create product url accepts POST method
-            JSONObject json = jsonParser.makeHttpRequest(url_create_table,
-                    "POST", params);
-
-            // check log cat fro response
-            Log.d("Create Response", json.toString());
-
             // check for success tag
             try {
+                // getting JSON Object. Note that create product url accepts POST method
+                JSONObject json = jsonParser.makeHttpRequest(url_create_table, "POST", params);
                 int success = json.getInt(TAG_SUCCESS);
-
-                if (success == 1) {
-                    // successfully created product
-                } else {
-                    // failed to create product
-                }
-            } catch (JSONException e) {
+                if (success == 1)
+                    id = json.getInt(TAG_ID);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-
             return null;
         }
 
-        /**
-         * After completing background task Dismiss the progress dialog
-         * **/
+        // After completing background task Dismiss the progress dialog
         protected void onPostExecute(String file_url) {
-            // dismiss the dialog once done
-            //cDialog.dismiss();
-            //cDialog.setMessage("儲存成功！");
-            //cDialog.setIndeterminate(false);
-            //cDialog.setCancelable(true);
-            //cDialog.show();
+            if (id >= 0)
+                table.setID(id);
+            else {
+                cDialog = new ProgressDialog(tableLayout);
+                cDialog.setMessage("儲存失敗");
+                cDialog.setIndeterminate(false);
+                cDialog.setCancelable(true);
+                cDialog.show();
+            }
         }
-
     }
 
 }

@@ -23,11 +23,17 @@ import java.util.List;
 public class Registration_customer extends ToolbarActivity {
 
     // Progress Dialog
-    private ProgressDialog cDialog;
+
+    EditText account;private ProgressDialog cDialog;
     JSONParser jsonParser = new JSONParser();
+<<<<<<< HEAD
     EditText inputaccount;
     EditText inputpassword;
     EditText inputname;
+=======
+    EditText password;
+    EditText name;
+>>>>>>> d3c00799e2d31701f2dad22ab4a14c63415888d6
     Button confirm;
     // url to create new product
     private static String url_create_customer = "http://163.14.68.37/android_connect/create_customer.php";

@@ -2,6 +2,7 @@ package com.example.asus.home;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,39 +15,54 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 public class QRcode_generator extends NavigationbarActivity {
 
-    EditText text;
-    Button gen_btn;
-    ImageView image;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //setContentView(R.layout.activity_qrcode_generator);
         //setContentView(R.layout.activity_qrcode_generator);
         //產生sliding menu
         LayoutInflater inflater = (LayoutInflater) this
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.activity_qrcode_generator, null, false);
         drawer.addView(contentView, 0);
+        inputValue();
+    }
 
-        text =(EditText)findViewById(R.id.text);
-        gen_btn=(Button)findViewById(R.id.gen_btn);
-        image=(ImageView)findViewById(R.id.image);
-        gen_btn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
-                try {
-                    BitMatrix bitMatrix = multiFormatWriter.encode("text20r", BarcodeFormat.QR_CODE, 200, 200);
-                    BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-                    Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
-                    image.setImageBitmap(bitmap);
-                } catch (WriterException e) {
-                    e.printStackTrace();
+    private void qrcode(String value) {
+        QRCodeWriter writer = new QRCodeWriter();
+        try {
+            BitMatrix bitMatrix = writer.encode( value , BarcodeFormat.QR_CODE, 512, 512);
+            int width = bitMatrix.getWidth();
+            int height = bitMatrix.getHeight();
+            Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+            for (int x = 0; x < width; x++) {
+                for (int y = 0; y < height; y++) {
+                    bmp.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
                 }
+            }
+            ((ImageView) findViewById(R.id.image)).setImageBitmap(bmp);
+
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String getQRcodeValue() {
+        EditText valueText = (EditText) findViewById(R.id.text);
+        return valueText.getText().toString();
+    }
+
+    private void inputValue() {
+        Button button = (Button) findViewById(R.id.gen_btn);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                qrcode(getQRcodeValue());
             }
         });
     }
