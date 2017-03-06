@@ -214,7 +214,7 @@ public class PaintBoard extends View {
         invalidate();
     }
 
-    class CreateNewTable extends AsyncTask<String, String, String> {
+        class CreateNewTable extends AsyncTask<String, String, String> {
 
         /**
          * Before starting background thread Show Progress Dialog

@@ -25,9 +25,9 @@ public class Registration_customer extends ToolbarActivity {
     // Progress Dialog
     private ProgressDialog cDialog;
     JSONParser jsonParser = new JSONParser();
-    EditText account;
-    EditText password;
-    EditText name;
+    EditText inputaccount;
+    EditText inputpassword;
+    EditText inputname;
     Button confirm;
     // url to create new product
     private static String url_create_customer = "http://163.14.68.37/android_connect/create_customer.php";
@@ -39,16 +39,20 @@ public class Registration_customer extends ToolbarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_customer);
         // Edit Text
-        account = (EditText) findViewById(R.id.cus_act);
-        password = (EditText) findViewById(R.id.cus_pwd);
-        name = (EditText) findViewById(R.id.cus_name);
+        inputaccount = (EditText) findViewById(R.id.cus_act);
+        inputpassword = (EditText) findViewById(R.id.cus_pwd);
+        inputname = (EditText) findViewById(R.id.cus_name);
         // Create button
         confirm=(Button)findViewById(R.id.cus_confirm_button);
         // button click event
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Registration_customer.CreateNewCustomer().execute();
+
+                String account = inputaccount.getText().toString();
+                String password = inputpassword.getText().toString();
+                String name = inputname.getText().toString();
+                new Registration_customer.CreateNewCustomer().execute(name,account,password);
 
                 Intent intent = new Intent();
                 intent.setClass(Registration_customer.this, HomePage.class);
@@ -84,15 +88,17 @@ public class Registration_customer extends ToolbarActivity {
          * Creating product
          * */
         protected String doInBackground(String... args) {
-            String string_account = account.getText().toString();
-            String string_password = password.getText().toString();
-            String string_name = name.getText().toString();
+
+            String name=args[0];
+            String account=args[1];
+            String password=args[2];
+
 
             // Building Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("account", string_account));
-            params.add(new BasicNameValuePair("password", string_password));
-            params.add(new BasicNameValuePair("name", string_name));
+            params.add(new BasicNameValuePair("account", account));
+            params.add(new BasicNameValuePair("password", password));
+            params.add(new BasicNameValuePair("name", name));
 
             // getting JSON Object
             // Note that create product url accepts POST method

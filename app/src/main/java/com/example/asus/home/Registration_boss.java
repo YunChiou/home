@@ -1,22 +1,54 @@
 package com.example.asus.home;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Registration_boss extends ToolbarActivity {
-Button confirm;
+
+    // Progress Dialog
+    private ProgressDialog cDialog;
+    JSONParser jsonParser = new JSONParser();
+    EditText account;
+    EditText phone;
+    EditText address;
+    EditText storename;
+    EditText password;
+    EditText name;
+    Button confirm;
+    private static String url_create_boss = "http://163.14.68.37/android_connect/create_boss.php";
+    // JSON Node names
+    private static final String TAG_SUCCESS = "success";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_boss);
+        account = (EditText) findViewById(R.id.boss_act);
+        password = (EditText) findViewById(R.id.boss_pwd);
+        name = (EditText) findViewById(R.id.boss_name);
+        address = (EditText) findViewById(R.id.boss_storeadd);
+        phone = (EditText) findViewById(R.id.boss_storephone);
+        storename = (EditText) findViewById(R.id.boss_storename);
         confirm=(Button)findViewById(R.id.boss_confirm_button);
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                new Registration_boss.CreateNewBoss().execute();
                 Intent intent = new Intent();
                 intent.setClass(Registration_boss.this, HomePage.class);
                 startActivity(intent);
@@ -30,5 +62,79 @@ Button confirm;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    class CreateNewBoss extends AsyncTask<String, String, String> {
+
+        /**
+         * Before starting background thread Show Progress Dialog
+         * */
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            cDialog = new ProgressDialog(Registration_boss.this);
+            cDialog.setMessage("Creating Account..");
+            cDialog.setIndeterminate(false);
+            cDialog.setCancelable(true);
+            cDialog.show();
+        }
+
+        /**
+         * Creating product
+         * */
+        protected String doInBackground(String... args) {
+            String string_account = account.getText().toString();
+            String string_password = password.getText().toString();
+            String string_name = name.getText().toString();
+            String string_phone = phone.getText().toString();
+            String string_address = address.getText().toString();
+            String string_storename = storename.getText().toString();
+
+            // Building Parameters
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("account", string_account));
+            params.add(new BasicNameValuePair("password", string_password));
+            params.add(new BasicNameValuePair("name", string_name));
+            params.add(new BasicNameValuePair("phone", string_phone));
+            params.add(new BasicNameValuePair("address", string_address));
+            params.add(new BasicNameValuePair("storename", string_storename));
+
+            // getting JSON Object
+            // Note that create product url accepts POST method
+            JSONObject json = jsonParser.makeHttpRequest(url_create_boss,
+                    "POST", params);
+
+            // check log cat fro response
+            Log.d("Create Response", json.toString());
+
+            // check for success tag
+            try {
+                int success = json.getInt(TAG_SUCCESS);
+
+                if (success == 1) {
+
+                    // successfully created product
+
+                } else {
+                    // failed to create product
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        /**
+         * After completing background task Dismiss the progress dialog
+         * **/
+        protected void onPostExecute(String file_url) {
+            // dismiss the dialog once done
+            //cDialog.dismiss();
+            cDialog.setMessage("註冊成功！");
+            cDialog.setIndeterminate(false);
+            cDialog.setCancelable(true);
+            cDialog.show();
+        }
+
     }
 }
