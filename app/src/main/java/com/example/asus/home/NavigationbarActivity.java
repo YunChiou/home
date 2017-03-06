@@ -61,7 +61,12 @@ public class NavigationbarActivity extends AppCompatActivity implements Navigati
             intent.setClass(NavigationbarActivity.this, StorePage.class);
             startActivity(intent);
         }
-        else if(id == R.id.second){}
+        else if(id == R.id.second){
+            Intent intent = new Intent();
+            intent.setClass(NavigationbarActivity.this, CustomerData.class);
+            startActivity(intent);
+
+        }
 
         else if(id == R.id.third){
             Intent intent = new Intent();

@@ -6,11 +6,9 @@ import android.graphics.Paint;
 
 public class RectangleTable extends Table {
 
-    public RectangleTable(int left, int top, int right, int bottom) {
+    public RectangleTable(int left, int top) {
         this.boundingBoxLeft = left;
         this.boundingBoxTop = top;
-        this.boundingBoxRight = left + width;
-        this.boundingBoxBottom = top + height;
     }
 
     @Override
@@ -41,8 +39,6 @@ public class RectangleTable extends Table {
     public void setTable(int left, int top) {
         this.boundingBoxLeft = left;
         this.boundingBoxTop = top;
-        this.boundingBoxRight = left + width;
-        this.boundingBoxBottom = top  + height;
     }
 
 }

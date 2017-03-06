@@ -7,12 +7,11 @@ import android.graphics.Paint;
 
 public abstract class Table {
 
+    int id;
     int height = 250;
     int width = 250;
     int boundingBoxLeft;
     int boundingBoxTop;
-    int boundingBoxRight;
-    int boundingBoxBottom;
     boolean isSelected;
     final int CONTROL_POINT_SIZE = 30;
     final int BORDER_WIDTH = 3;
@@ -24,6 +23,14 @@ public abstract class Table {
 
     public void setTableNumber(String tableNumber) {
         this.tableNumber = tableNumber;
+    }
+
+    public void setID (int id) {
+        this.id = id;
+    }
+
+    public int getID() {
+        return id;
     }
 
     public int getLeft() {

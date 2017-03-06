@@ -6,11 +6,9 @@ import android.graphics.Paint;
 
 public class TextOnTable extends Table {
 
-    public TextOnTable(int left, int top, int right, int bottom) {
+    public TextOnTable(int left, int top) {
         this.boundingBoxLeft = left;
         this.boundingBoxTop = top;
-        this.boundingBoxRight = left + width;
-        this.boundingBoxBottom = top + height;
     }
 
     @Override
@@ -33,7 +31,5 @@ public class TextOnTable extends Table {
     public void setTable(int left, int top) {
         this.boundingBoxLeft = left;
         this.boundingBoxTop = top;
-        this.boundingBoxRight = left + width;
-        this.boundingBoxBottom = top  + height;
     }
 }

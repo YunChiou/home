@@ -7,11 +7,9 @@ import android.graphics.RectF;
 
 public class OvalTable extends Table {
 
-    public OvalTable(int left, int top, int right, int bottom) {
+    public OvalTable(int left, int top) {
         this.boundingBoxLeft = left;
         this.boundingBoxTop = top;
-        this.boundingBoxRight = left + width;
-        this.boundingBoxBottom = top + height;
     }
 
     @Override
@@ -44,8 +42,6 @@ public class OvalTable extends Table {
     public void setTable(int left, int top) {
         this.boundingBoxLeft = left;
         this.boundingBoxTop = top;
-        this.boundingBoxRight = left + width;
-        this.boundingBoxBottom = top  + height;
     }
 
 }
