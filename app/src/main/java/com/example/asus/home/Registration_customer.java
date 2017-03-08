@@ -1,6 +1,7 @@
 package com.example.asus.home;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
@@ -17,6 +18,9 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +38,7 @@ public class Registration_customer extends ToolbarActivity {
     private static String url_create_customer = "http://163.14.68.37/android_connect/create_customer.php";
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
+    private static final String TAG_ID = "id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +55,11 @@ public class Registration_customer extends ToolbarActivity {
             @Override
             public void onClick(View v) {
 
-                String account = inputaccount.getText().toString();
-                String password = inputpassword.getText().toString();
-                String name = inputname.getText().toString();
-                new Registration_customer.CreateNewCustomer().execute(name,account,password);
+                Customer customer = new Customer();
+                customer.setAccount(inputaccount.getText().toString());
+                customer.setName(inputname.getText().toString());
+                customer.setPassword(inputpassword.getText().toString());
+                new Registration_customer.CreateNewCustomer(customer).execute();
 
                 Intent intent = new Intent();
                 intent.setClass(Registration_customer.this, HomePage.class);
@@ -72,9 +78,15 @@ public class Registration_customer extends ToolbarActivity {
 
     class CreateNewCustomer extends AsyncTask<String, String, String> {
 
+        int id = -1;
+        Customer customer;
         /**
          * Before starting background thread Show Progress Dialog
          * */
+        CreateNewCustomer (Customer customer) {
+            this.customer = customer;
+        }
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -90,11 +102,9 @@ public class Registration_customer extends ToolbarActivity {
          * */
         protected String doInBackground(String... args) {
 
-            String name=args[0];
-            String account=args[1];
-            String password=args[2];
-
-
+            String account = customer.getAccount();
+            String password = customer.getPassword();
+            String name = customer.getName();
             // Building Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("account", account));
@@ -105,39 +115,60 @@ public class Registration_customer extends ToolbarActivity {
             // Note that create product url accepts POST method
             JSONObject json = jsonParser.makeHttpRequest(url_create_customer,
                     "POST", params);
-
             // check log cat fro response
             Log.d("Create Response", json.toString());
-
             // check for success tag
             try {
                 int success = json.getInt(TAG_SUCCESS);
-
                 if (success == 1) {
-
+                    id = json.getInt(TAG_ID);
                     // successfully created product
-
                 } else {
                     // failed to create product
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
             return null;
         }
-
         /**
          * After completing background task Dismiss the progress dialog
          * **/
         protected void onPostExecute(String file_url) {
             // dismiss the dialog once done
             //cDialog.dismiss();
-            cDialog.setMessage("註冊成功！");
-            cDialog.setIndeterminate(false);
-            cDialog.setCancelable(true);
-            cDialog.show();
+            if (id > 0) {
+                customer.setCustomerID(id);
+                try{
+                    writeData();
+                }
+                catch (Exception e){
+                }
+                cDialog.setMessage("註冊成功！");
+                cDialog.setIndeterminate(false);
+                cDialog.setCancelable(true);
+                cDialog.show();
+            }
+            else {
+                cDialog.setMessage("註冊失敗！");
+                cDialog.setIndeterminate(false);
+                cDialog.setCancelable(true);
+                cDialog.show();
+            }
         }
 
+        protected void writeData() throws IOException{
+            String fileName = "MyFile";
+            String content = "hello world";
+
+            FileOutputStream outputStream = null;
+            try {
+                outputStream = openFileOutput(fileName, Context.MODE_PRIVATE);
+                outputStream.write(content.getBytes());
+                outputStream.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
