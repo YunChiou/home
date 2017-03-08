@@ -29,72 +29,103 @@ import java.util.List;
 
 public class CustomerData extends AppCompatActivity  {
 
+    // Progress Dialog
+    private ProgressDialog pDialog;
     private TextView textViewJSON;
-    private Button buttonGet;
+    // Creating JSON Parser object
+    JSONParser jParser = new JSONParser();
 
-    public static final String MY_JSON ="MY_JSON";
+    ArrayList<HashMap<String, String>> customersList;
 
-    private static final String JSON_URL = "http://163.14.68.37/android_connect/get_all_customers.php";
+    // url to get all products list
+    private static String url_all_customers = "http://163.14.68.37/android_connect/get_all_customers.php";
+
+    // JSON Node names
+    private static final String TAG_SUCCESS = "success";
+    private static final String TAG_CUSTOMERS = "customers";
+    private static final String TAG_CID = "cid";
+    private static final String TAG_NAME = "name";
+
+    // products JSONArray
+    JSONArray customers = null;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customerdata);
 
+        // Hashmap for ListView
+        customersList = new ArrayList<HashMap<String, String>>();
         textViewJSON = (TextView) findViewById(R.id.textViewJSON);
-        textViewJSON.setMovementMethod(new ScrollingMovementMethod());
-        buttonGet = (Button) findViewById(R.id.buttonGet);
-        buttonGet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getJSON(JSON_URL);
-            }
-        });
+        // Loading products in Background Thread
+        new LoadAllProducts().execute();
+
+
+
     }
-    private void getJSON(String url) {
-        class GetJSON extends AsyncTask<String, Void, String>{
-            ProgressDialog loading;
 
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                loading = ProgressDialog.show(CustomerData.this, "Please Wait...",null,true,true);
-            }
+    /**
+     * Background Async Task to Load all product by making HTTP Request
+     * */
+    class LoadAllProducts extends AsyncTask<String, String, String> {
 
-            @Override
-            protected String doInBackground(String... params) {
-
-                String uri = params[0];
-
-                BufferedReader bufferedReader = null;
-                try {
-                    URL url = new URL(uri);
-                    HttpURLConnection con = (HttpURLConnection) url.openConnection();
-                    StringBuilder sb = new StringBuilder();
-
-                    bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-                    String json;
-                    while((json = bufferedReader.readLine())!= null){
-                        sb.append(json+"\n");
-                    }
-
-                    return sb.toString().trim();
-
-                }catch(Exception e){
-                    return null;
-                }
-
-            }
-
-            @Override
-            protected void onPostExecute(String s) {
-                super.onPostExecute(s);
-                loading.dismiss();
-                textViewJSON.setText(s);
-            }
+        /**
+         * Before starting background thread Show Progress Dialog
+         * */
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(CustomerData.this);
+            pDialog.setMessage("Loading customer data. Please wait...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+            pDialog.show();
         }
-        GetJSON gj = new GetJSON();
-        gj.execute(url);
+
+        /**
+         * getting All products from url
+         * */
+        protected String doInBackground(String... args) {
+            // Building Parameters
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            // getting JSON string from URL
+            JSONObject json = jParser.makeHttpRequest(url_all_customers, "GET", params);
+
+            // Check your log cat for JSON reponse
+            Log.d("All Products: ", json.toString());
+
+            try {
+                // Checking for SUCCESS TAG
+                int success = json.getInt(TAG_SUCCESS);
+
+                if (success == 1) {
+                    // products found
+                    // Getting Array of Products
+                    customers = json.getJSONArray(TAG_CUSTOMERS);
+
+                    JSONObject c = customers.getJSONObject(3);
+
+                    // Storing each json item in variable
+                    String id = c.getString(TAG_CID);
+                    String name = c.getString(TAG_NAME);
+                    return id+" "+name;
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        /**
+         * After completing background task Dismiss the progress dialog
+         * **/
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            pDialog.dismiss();
+            textViewJSON.setText(s);
+        }
+
     }
 }
