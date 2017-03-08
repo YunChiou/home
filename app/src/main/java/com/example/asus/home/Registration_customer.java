@@ -24,7 +24,8 @@ public class Registration_customer extends ToolbarActivity {
 
     // Progress Dialog
 
-    EditText account;private ProgressDialog cDialog;
+    EditText account;
+    private ProgressDialog cDialog;
     JSONParser jsonParser = new JSONParser();
     EditText password;
     EditText name;
