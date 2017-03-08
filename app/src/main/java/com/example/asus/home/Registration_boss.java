@@ -24,12 +24,12 @@ public class Registration_boss extends ToolbarActivity {
     // Progress Dialog
     private ProgressDialog cDialog;
     JSONParser jsonParser = new JSONParser();
-    EditText account;
-    EditText phone;
-    EditText address;
-    EditText storename;
-    EditText password;
-    EditText name;
+    EditText inputaccount;
+    EditText inputphone;
+    EditText inputaddress;
+    EditText inputstorename;
+    EditText inputpassword;
+    EditText inputname;
     Button confirm;
     private static String url_create_boss = "http://163.14.68.37/android_connect/create_boss.php";
     // JSON Node names
@@ -38,17 +38,25 @@ public class Registration_boss extends ToolbarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_boss);
-        account = (EditText) findViewById(R.id.boss_act);
-        password = (EditText) findViewById(R.id.boss_pwd);
-        name = (EditText) findViewById(R.id.boss_name);
-        address = (EditText) findViewById(R.id.boss_storeadd);
-        phone = (EditText) findViewById(R.id.boss_storephone);
-        storename = (EditText) findViewById(R.id.boss_storename);
+        inputaccount = (EditText) findViewById(R.id.boss_act);
+        inputpassword = (EditText) findViewById(R.id.boss_pwd);
+        inputname = (EditText) findViewById(R.id.boss_name);
+        inputaddress = (EditText) findViewById(R.id.boss_storeadd);
+        inputphone = (EditText) findViewById(R.id.boss_storephone);
+        inputstorename = (EditText) findViewById(R.id.boss_storename);
         confirm=(Button)findViewById(R.id.boss_confirm_button);
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Registration_boss.CreateNewBoss().execute();
+
+                String account = inputaccount.getText().toString();
+                String password = inputpassword.getText().toString();
+                String name = inputname.getText().toString();
+                String phone = inputphone.getText().toString();
+                String address = inputaddress.getText().toString();
+                String storename = inputstorename.getText().toString();
+                new Registration_boss.CreateNewBoss().execute(account,password,name,phone,address,storename);
+
                 Intent intent = new Intent();
                 intent.setClass(Registration_boss.this, HomePage.class);
                 startActivity(intent);
@@ -82,21 +90,22 @@ public class Registration_boss extends ToolbarActivity {
          * Creating product
          * */
         protected String doInBackground(String... args) {
-            String string_account = account.getText().toString();
-            String string_password = password.getText().toString();
-            String string_name = name.getText().toString();
-            String string_phone = phone.getText().toString();
-            String string_address = address.getText().toString();
-            String string_storename = storename.getText().toString();
+
+            String name=args[0];
+            String account=args[1];
+            String password=args[2];
+            String phone=args[3];
+            String address=args[4];
+            String storename=args[5];
 
             // Building Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("account", string_account));
-            params.add(new BasicNameValuePair("password", string_password));
-            params.add(new BasicNameValuePair("name", string_name));
-            params.add(new BasicNameValuePair("phone", string_phone));
-            params.add(new BasicNameValuePair("address", string_address));
-            params.add(new BasicNameValuePair("storename", string_storename));
+            params.add(new BasicNameValuePair("account", account));
+            params.add(new BasicNameValuePair("password", password));
+            params.add(new BasicNameValuePair("name", name));
+            params.add(new BasicNameValuePair("phone", phone));
+            params.add(new BasicNameValuePair("address", address));
+            params.add(new BasicNameValuePair("storename", storename));
 
             // getting JSON Object
             // Note that create product url accepts POST method

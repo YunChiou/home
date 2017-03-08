@@ -29,8 +29,6 @@ public class Registration_customer extends ToolbarActivity {
     EditText inputaccount;
     EditText inputpassword;
     EditText inputname;
-    EditText password;
-    EditText name;
     Button confirm;
     // url to create new product
     private static String url_create_customer = "http://163.14.68.37/android_connect/create_customer.php";
