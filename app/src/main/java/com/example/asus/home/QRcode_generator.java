@@ -23,6 +23,8 @@ public class QRcode_generator extends NavigationbarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //setContentView(R.layout.activity_qrcode_generator);
+        //setContentView(R.layout.activity_qrcode_generator);
         //產生sliding menu
         LayoutInflater inflater = (LayoutInflater) this
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);

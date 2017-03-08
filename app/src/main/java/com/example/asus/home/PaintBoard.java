@@ -217,7 +217,7 @@ public class PaintBoard extends View {
         invalidate();
     }
 
-    class CreateNewTable extends AsyncTask<String, String, String> {
+        class CreateNewTable extends AsyncTask<String, String, String> {
 
         PaintBoard paintBoard;
         Table table;
