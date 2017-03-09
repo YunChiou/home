@@ -58,9 +58,9 @@ public class QRcode_generator extends NavigationbarActivity {
         EditText Check = (EditText) findViewById(R.id.check);
 
         StringBuffer buffer = new StringBuffer();
-        buffer.append("姓名:"+Name+"\n");
-        buffer.append("信箱:"+Email+"\n");
-        buffer.append("可否接受併桌:"+ Check);
+        buffer.append(Name.getText().toString() + "，");
+        buffer.append(Email.getText().toString() + "，");
+        buffer.append(Check.getText().toString());
         return buffer.toString();
     }
 
