@@ -45,6 +45,7 @@ public class CustomerData extends AppCompatActivity  {
     private static final String TAG_CUSTOMERS = "customers";
     private static final String TAG_CID = "cid";
     private static final String TAG_NAME = "name";
+    private static final String TAG_ACCOUNT = "account";
 
     // products JSONArray
     JSONArray customers = null;
@@ -108,7 +109,8 @@ public class CustomerData extends AppCompatActivity  {
                     // Storing each json item in variable
                     String id = c.getString(TAG_CID);
                     String name = c.getString(TAG_NAME);
-                    return id+" "+name;
+                    String account = c.getString(TAG_ACCOUNT);
+                    return id + "\n姓名" + name + "\n帳號" + account;
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
