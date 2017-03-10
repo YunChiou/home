@@ -45,8 +45,8 @@ public class QRcode_Scanner_Boss extends NavigationbarActivity {
     }
 
         @Override
-        protected void onActivityResult(int requestCode, int resultCode, Intent date){
-            IntentResult result = IntentIntegrator.parseActivityResult(requestCode,resultCode,date);
+        protected void onActivityResult(int requestCode, int resultCode, Intent data){
+            IntentResult result = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
             if(result != null){
                 if(result.getContents()==null)
                     Toast.makeText(this,"You cancelled the scanning",Toast.LENGTH_LONG).show();
@@ -54,7 +54,7 @@ public class QRcode_Scanner_Boss extends NavigationbarActivity {
                     Toast.makeText(this,result.getContents(),Toast.LENGTH_LONG).show();
             }
             else {
-                //MainActivity.super.onActivityResult(requestCode, resultCode, date);
+                super.onActivityResult(requestCode,resultCode,data);
             }
-
+            }
 }

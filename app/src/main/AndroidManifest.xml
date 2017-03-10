@@ -61,7 +61,9 @@
             android:name=".CustomerData"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".QRcode_Scanner_Boss">
+        <activity android:name=".QRcode_Scanner_Boss"
+                 android:label=""
+                 android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
     </application>
