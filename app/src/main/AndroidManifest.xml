@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.asus.home">
 
+    <!-- Internet Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -58,9 +61,9 @@
             android:name=".CustomerData"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
-    </application>
+        <activity android:name=".QRcode_Scanner_Boss">
 
-    <!--  Internet Permissions -->
-    <uses-permission android:name="android.permission.INTERNET" />
+        </activity>
+    </application>
 
 </manifest>
