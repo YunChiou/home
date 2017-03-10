@@ -82,13 +82,15 @@ public class PaintBoard extends View {
     public void addRectangleTable(int left, int top) {
         Table table = new RectangleTable(left, top);
         allTables.add(table);
-        new PaintBoard.CreateNewTable(this, table).execute();
+        //new PaintBoard.CreateNewTable(this, table).execute();
+        new CreateNewTable(this, table).execute();
     }
 
     public void addRoundTable(int left, int top) {
         Table table = new OvalTable(left, top);
         allTables.add(table);
-        new PaintBoard.CreateNewTable(this, table).execute();
+        //new PaintBoard.CreateNewTable(this, table).execute();
+        new CreateNewTable(this, table).execute();
     }
 
     public void addTextOnTable(int left, int top) {
@@ -174,6 +176,7 @@ public class PaintBoard extends View {
             @Override
             public void onClick(View v) {
                 allTables.get(selectedIndex).setTableNumber(tableNumber.getText().toString());
+                new UpdateTable(allTables.get(selectedIndex)).execute();
                 alertDialog.dismiss();
             }
         });
@@ -215,65 +218,6 @@ public class PaintBoard extends View {
         this.tableType = tableType;
         clearSelectedTable();
         invalidate();
-    }
-
-        class CreateNewTable extends AsyncTask<String, String, String> {
-
-        PaintBoard paintBoard;
-        Table table;
-        int id = -1;
-
-        CreateNewTable(PaintBoard paintBoard, Table table) {
-            this.paintBoard = paintBoard;
-            this.table = table;
-        };
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        // Creating table
-        protected String doInBackground(String... args) {
-            int int_leftIndex = allTables.get(0).getLeft();
-            int int_topIndex = allTables.get(0).getTop();
-            int int_width = allTables.get(0).getWidth();
-            int int_height = allTables.get(0).getHeight();
-            String String_text = allTables.get(0).getText();
-
-            // Building Parameters
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("leftIndex", Integer.toString(int_leftIndex)));
-            params.add(new BasicNameValuePair("topIndex", Integer.toString(int_topIndex)));
-            params.add(new BasicNameValuePair("width", Integer.toString(int_width)));
-            params.add(new BasicNameValuePair("height", Integer.toString(int_height)));
-            params.add(new BasicNameValuePair("text", String_text));
-
-            // check for success tag
-            try {
-                // getting JSON Object. Note that create product url accepts POST method
-                JSONObject json = jsonParser.makeHttpRequest(url_create_table, "POST", params);
-                int success = json.getInt(TAG_SUCCESS);
-                if (success == 1)
-                    id = json.getInt(TAG_ID);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        // After completing background task Dismiss the progress dialog
-        protected void onPostExecute(String file_url) {
-            if (id >= 0)
-                table.setID(id);
-            else {
-                cDialog = new ProgressDialog(tableLayout);
-                cDialog.setMessage("儲存失敗");
-                cDialog.setIndeterminate(false);
-                cDialog.setCancelable(true);
-                cDialog.show();
-            }
-        }
     }
 
 }
