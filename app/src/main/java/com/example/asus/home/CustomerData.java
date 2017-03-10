@@ -2,6 +2,8 @@ package com.example.asus.home;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,10 +11,17 @@ import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 
 import org.apache.http.NameValuePair;
 import org.json.JSONArray;
@@ -50,6 +59,7 @@ public class CustomerData extends AppCompatActivity  {
     // products JSONArray
     JSONArray customers = null;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,10 +70,15 @@ public class CustomerData extends AppCompatActivity  {
         textViewJSON = (TextView) findViewById(R.id.textViewJSON);
         // Loading products in Background Thread
         new LoadAllProducts().execute();
-
-
+        //QRCode
+        inputValue();
 
     }
+    //宣告
+    JSONObject c;
+    String id ;
+    String name ;
+    String account ;
 
     /**
      * Background Async Task to Load all product by making HTTP Request
@@ -86,7 +101,10 @@ public class CustomerData extends AppCompatActivity  {
         /**
          * getting All products from url
          * */
+
+
         protected String doInBackground(String... args) {
+
             // Building Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             // getting JSON string from URL
@@ -111,6 +129,7 @@ public class CustomerData extends AppCompatActivity  {
                     String name = c.getString(TAG_NAME);
                     String account = c.getString(TAG_ACCOUNT);
                     return id + "\n姓名" + name + "\n帳號" + account;
+
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -128,6 +147,41 @@ public class CustomerData extends AppCompatActivity  {
             pDialog.dismiss();
             textViewJSON.setText(s);
         }
+    }
+    //創造QRCode創造QRCode
+    protected String getQRcodeValue() {
+        StringBuffer buffer = new StringBuffer();
+        buffer.append(id + "，");
+        buffer.append( name +"，");
+        buffer.append(account);
+        return buffer.toString();
+    }
+    void qrcode(String value) {
+        QRCodeWriter writer = new QRCodeWriter();
+        try {
+            BitMatrix bitMatrix = writer.encode( value , BarcodeFormat.QR_CODE, 512, 512);
+            int width = bitMatrix.getWidth();
+            int height = bitMatrix.getHeight();
+            Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+            for (int x = 0; x < width; x++) {
+                for (int y = 0; y < height; y++) {
+                    bmp.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
+                }
+            }
+            ((ImageView) findViewById(R.id.image)).setImageBitmap(bmp);
+
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
+    }
+    private void inputValue() {
+        Button button = (Button) findViewById(R.id.gen_btn);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                qrcode(getQRcodeValue());
+            }
+        });
 
     }
 }

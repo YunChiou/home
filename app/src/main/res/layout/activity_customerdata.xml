@@ -16,7 +16,28 @@
         android:scrollbars="vertical"
         android:id="@+id/textViewJSON" />
 
+    <Button
+        android:id="@+id/gen_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearLayout2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="12dp"
+        android:text="Generate" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout2">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="265dp"
+            android:id="@+id/image"/>
+    </LinearLayout>
 
 
 </LinearLayout>
