@@ -116,6 +116,7 @@ public class PaintBoard extends View {
                 }
                 else if (pressPoint == PressPoint.SHAPE) {
                    allTables.get(selectedIndex).setTable(left - xOffSet, top - yOffSet);
+                    new UpdateTable(allTables.get(selectedIndex)).execute();
                    invalidate();
                 }
                 break;
