@@ -18,13 +18,10 @@ public class CreateNewTable extends AsyncTask<String, String, String> {
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_ID = "id";
-
-    //PaintBoard paintBoard;
     Table table;
     int id = -1;
 
-    CreateNewTable(PaintBoard paintBoard, Table table) {
-        //this.paintBoard = paintBoard;
+    CreateNewTable(Table table) {
         this.table = table;
     };
 
@@ -54,7 +51,6 @@ public class CreateNewTable extends AsyncTask<String, String, String> {
 
         // check for success tag
         try {
-            // getting JSON Object. Note that create product url accepts POST method
             JSONObject json = jsonParser.makeHttpRequest(url_create_table, "POST", params);
             int success = json.getInt(TAG_SUCCESS);
             if (success == 1)
@@ -70,7 +66,6 @@ public class CreateNewTable extends AsyncTask<String, String, String> {
         if (id >= 0)
             table.setID(id);
         else {
-            //cDialog = new ProgressDialog(tableLayout);
             cDialog.setMessage("儲存失敗");
             cDialog.setIndeterminate(false);
             cDialog.setCancelable(true);

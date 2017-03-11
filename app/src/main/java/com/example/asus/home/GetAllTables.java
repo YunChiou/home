@@ -20,7 +20,6 @@ public class GetAllTables extends AsyncTask<String, String, String> {
     // url to get all products list
     private static String url_all_tables = "http://163.14.68.37/android_connect/get_all_tables.php";
     // JSON Node names
-    private static final String TAG_SUCCESS = "success";
     private static final String TAG_TABLES = "tables";
     private static final String TAG_TID = "tid";
     private static final String TAG_TABLETYPE = "tableType";
@@ -44,13 +43,6 @@ public class GetAllTables extends AsyncTask<String, String, String> {
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         try {
             json = jsonParser.makeHttpRequest(url_all_tables, "GET", params);
-            int success = json.getInt(TAG_SUCCESS);
-            if (success == 1) {
-                // successfully updated
-                // send result code 100 to notify about product update
-            } else {
-                // failed to update product
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -62,8 +54,6 @@ public class GetAllTables extends AsyncTask<String, String, String> {
             tables = json.getJSONArray(TAG_TABLES);
             for (int i = 0; i < tables.length(); i++) {
                 JSONObject c = tables.getJSONObject(i);
-
-                // Storing each json item in variable
                 int id = c.getInt(TAG_TID);
                 String tableType = c.getString(TAG_TABLETYPE);
                 int int_leftIndex = c.getInt(TAG_LEFTINDEX);

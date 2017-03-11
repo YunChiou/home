@@ -13,8 +13,6 @@ import java.util.List;
 
 public class UpdateTable extends AsyncTask<String, String, String> {
 
-    // Progress Dialog
-    private ProgressDialog pDialog;
     // JSON parser class
     JSONParser jsonParser = new JSONParser();
     // url to update product
@@ -52,18 +50,9 @@ public class UpdateTable extends AsyncTask<String, String, String> {
         params.add(new BasicNameValuePair("height", Integer.toString(int_height)));
         params.add(new BasicNameValuePair("text", String_text));
 
-        // sending modified data through http request
-        // Notice that update product url accepts POST method
-        // check json success tag
         try {
             JSONObject json = jsonParser.makeHttpRequest(url_update_table, "POST", params);
             int success = json.getInt(TAG_SUCCESS);
-            if (success == 1) {
-                // successfully updated
-                // send result code 100 to notify about product update
-            } else {
-                // failed to update product
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -71,7 +60,6 @@ public class UpdateTable extends AsyncTask<String, String, String> {
     }
 
     protected void onPostExecute(String file_url) {
-        // dismiss the dialog once product uupdated
-        //pDialog.dismiss();
+
     }
 }

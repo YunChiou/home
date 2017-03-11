@@ -55,14 +55,14 @@ public class PaintBoard extends View {
         Table table = new RectangleTable(left, top);
         table.setTableType("R");
         allTables.add(table);
-        new CreateNewTable(this, table).execute();
+        new CreateNewTable(table).execute();
     }
 
     public void addRoundTable(int left, int top) {
         Table table = new OvalTable(left, top);
         table.setTableType("O");
         allTables.add(table);
-        new CreateNewTable(this, table).execute();
+        new CreateNewTable(table).execute();
     }
 
     public void addTextOnTable(int left, int top) {
