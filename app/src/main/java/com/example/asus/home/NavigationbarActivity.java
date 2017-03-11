@@ -83,6 +83,11 @@ public class NavigationbarActivity extends AppCompatActivity implements Navigati
             intent.setClass(NavigationbarActivity.this, QRcode_Scanner.class);
             startActivity(intent);
         }
+        else if(id == R.id.sixth){
+            Intent intent = new Intent();
+            intent.setClass(NavigationbarActivity.this, QRcode_Scanner_Boss.class);
+            startActivity(intent);
+        }
         else if(id == R.id.logout){
             Intent intent = new Intent();
             intent.setClass(NavigationbarActivity.this, MainActivity.class);
