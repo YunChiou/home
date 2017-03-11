@@ -12,6 +12,7 @@ public abstract class Table {
     int width = 250;
     int boundingBoxLeft;
     int boundingBoxTop;
+    String tableType;
     boolean isSelected;
     final int CONTROL_POINT_SIZE = 30;
     final int BORDER_WIDTH = 3;
@@ -27,6 +28,10 @@ public abstract class Table {
 
     public void setID (int id) {
         this.id = id;
+    }
+
+    public void setTableType (String tableType) {
+        this.tableType = tableType;
     }
 
     public int getID() {
@@ -51,6 +56,10 @@ public abstract class Table {
 
     public String getText() {
         return tableNumber;
+    }
+
+    public String getTableType() {
+        return tableType;
     }
 
     public void draw(Canvas canvas, Paint paint) {
