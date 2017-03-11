@@ -9,11 +9,15 @@
         <item
             android:id="@+id/second"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="瀞文" />
+            android:title="顧客個人頁面" />
         <item
             android:id="@+id/third"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="宜謙 店家布局" />
+            android:title="店家佈局編輯" />
+        <item
+            android:id="@+id/tableScanner"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="店家佈局" />
         <item
             android:id="@+id/fourth"
             android:icon="@drawable/ic_menu_manage"
