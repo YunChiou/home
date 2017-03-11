@@ -34,6 +34,7 @@ public class Registration_boss extends ToolbarActivity {
     private static String url_create_boss = "http://163.14.68.37/android_connect/create_boss.php";
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
+    private static final String TAG_ID = "id";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,13 +50,14 @@ public class Registration_boss extends ToolbarActivity {
             @Override
             public void onClick(View v) {
 
-                String account = inputaccount.getText().toString();
-                String password = inputpassword.getText().toString();
-                String name = inputname.getText().toString();
-                String phone = inputphone.getText().toString();
-                String address = inputaddress.getText().toString();
-                String storename = inputstorename.getText().toString();
-                new Registration_boss.CreateNewBoss().execute(account,password,name,phone,address,storename);
+                Boss boss = new Boss();
+                boss.setAccount(inputaccount.getText().toString());
+                boss.setPassword(inputpassword.getText().toString());
+                boss.setName(inputname.getText().toString());
+                boss.setPhone(inputphone.getText().toString());
+                boss.setAddress(inputaddress.getText().toString());
+                boss.setStorename(inputstorename.getText().toString());
+                new Registration_boss.CreateNewBoss(boss).execute();
 
                 Intent intent = new Intent();
                 intent.setClass(Registration_boss.this, HomePage.class);
@@ -73,9 +75,11 @@ public class Registration_boss extends ToolbarActivity {
     }
     class CreateNewBoss extends AsyncTask<String, String, String> {
 
-        /**
-         * Before starting background thread Show Progress Dialog
-         * */
+        CreateNewBoss (Boss boss) {
+            this.boss = boss;
+        }
+        int id = -1;
+        Boss boss;
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -91,13 +95,12 @@ public class Registration_boss extends ToolbarActivity {
          * */
         protected String doInBackground(String... args) {
 
-            String name=args[0];
-            String account=args[1];
-            String password=args[2];
-            String phone=args[3];
-            String address=args[4];
-            String storename=args[5];
-
+            String name = boss.getName();
+            String account = boss.getAccount();
+            String password = boss.getPassword();
+            String phone = boss.getPhone();
+            String address = boss.getAddress();
+            String storename = boss.getStorename();
             // Building Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("account", account));
@@ -120,7 +123,7 @@ public class Registration_boss extends ToolbarActivity {
                 int success = json.getInt(TAG_SUCCESS);
 
                 if (success == 1) {
-
+                    id = json.getInt(TAG_ID);
                     // successfully created product
 
                 } else {
@@ -137,12 +140,21 @@ public class Registration_boss extends ToolbarActivity {
          * After completing background task Dismiss the progress dialog
          * **/
         protected void onPostExecute(String file_url) {
-            // dismiss the dialog once done
-            //cDialog.dismiss();
-            cDialog.setMessage("註冊成功！");
-            cDialog.setIndeterminate(false);
-            cDialog.setCancelable(true);
-            cDialog.show();
+
+            if (id > 0) {
+                boss.setBossID(id);
+
+                cDialog.setMessage("註冊成功！");
+                cDialog.setIndeterminate(false);
+                cDialog.setCancelable(true);
+                cDialog.show();
+            }
+            else {
+                cDialog.setMessage("註冊失敗！");
+                cDialog.setIndeterminate(false);
+                cDialog.setCancelable(true);
+                cDialog.show();
+            }
         }
 
     }
