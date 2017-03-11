@@ -1,36 +1,17 @@
 package com.example.asus.home;
 
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
-import android.text.InputType;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Handler;
-
-import static android.R.attr.name;
 
 
 public class PaintBoard extends View {
@@ -43,16 +24,6 @@ public class PaintBoard extends View {
         SHAPE, CONTROL_POINT, NONE
     }
 
-
-    // Progress Dialog
-    private ProgressDialog cDialog;
-    JSONParser jsonParser = new JSONParser();
-    // url to create new product
-    private static String url_create_table = "http://163.14.68.37/android_connect/create_table.php";
-    // JSON Node names
-    private static final String TAG_SUCCESS = "success";
-    private static final String TAG_ID = "id";
-
     private Paint paint;
     ArrayList<Table> allTables = new ArrayList<Table>();
     TableType tableType = TableType.NONE;
@@ -61,6 +32,7 @@ public class PaintBoard extends View {
 
     public PaintBoard(TableLayout tableLayout) {
         super(tableLayout);
+        new GetAllTables(allTables).execute();
         this.tableLayout = tableLayout;
         paint = new Paint();
         int tableColor = tableLayout.getResources().getColor(R.color.yello);
@@ -81,14 +53,16 @@ public class PaintBoard extends View {
 
     public void addRectangleTable(int left, int top) {
         Table table = new RectangleTable(left, top);
+        table.setTableType("R");
         allTables.add(table);
-        new PaintBoard.CreateNewTable(this, table).execute();
+        new CreateNewTable(table).execute();
     }
 
     public void addRoundTable(int left, int top) {
         Table table = new OvalTable(left, top);
+        table.setTableType("O");
         allTables.add(table);
-        new PaintBoard.CreateNewTable(this, table).execute();
+        new CreateNewTable(table).execute();
     }
 
     public void addTextOnTable(int left, int top) {
@@ -137,10 +111,12 @@ public class PaintBoard extends View {
             case MotionEvent.ACTION_MOVE:
                 if (pressPoint == PressPoint.CONTROL_POINT) {
                     allTables.get(selectedIndex).setSize(left - originalWidth + widthOffSet, top - originalHeight + heightOffset);
+                    new UpdateTable(allTables.get(selectedIndex)).execute();
                     invalidate();
                 }
                 else if (pressPoint == PressPoint.SHAPE) {
                    allTables.get(selectedIndex).setTable(left - xOffSet, top - yOffSet);
+                    new UpdateTable(allTables.get(selectedIndex)).execute();
                    invalidate();
                 }
                 break;
@@ -174,6 +150,7 @@ public class PaintBoard extends View {
             @Override
             public void onClick(View v) {
                 allTables.get(selectedIndex).setTableNumber(tableNumber.getText().toString());
+                new UpdateTable(allTables.get(selectedIndex)).execute();
                 alertDialog.dismiss();
             }
         });
@@ -216,64 +193,4 @@ public class PaintBoard extends View {
         clearSelectedTable();
         invalidate();
     }
-
-        class CreateNewTable extends AsyncTask<String, String, String> {
-
-        PaintBoard paintBoard;
-        Table table;
-        int id = -1;
-
-        CreateNewTable(PaintBoard paintBoard, Table table) {
-            this.paintBoard = paintBoard;
-            this.table = table;
-        };
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        // Creating table
-        protected String doInBackground(String... args) {
-            int int_leftIndex = allTables.get(0).getLeft();
-            int int_topIndex = allTables.get(0).getTop();
-            int int_width = allTables.get(0).getWidth();
-            int int_height = allTables.get(0).getHeight();
-            String String_text = allTables.get(0).getText();
-
-            // Building Parameters
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("leftIndex", Integer.toString(int_leftIndex)));
-            params.add(new BasicNameValuePair("topIndex", Integer.toString(int_topIndex)));
-            params.add(new BasicNameValuePair("width", Integer.toString(int_width)));
-            params.add(new BasicNameValuePair("height", Integer.toString(int_height)));
-            params.add(new BasicNameValuePair("text", String_text));
-
-            // check for success tag
-            try {
-                // getting JSON Object. Note that create product url accepts POST method
-                JSONObject json = jsonParser.makeHttpRequest(url_create_table, "POST", params);
-                int success = json.getInt(TAG_SUCCESS);
-                if (success == 1)
-                    id = json.getInt(TAG_ID);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        // After completing background task Dismiss the progress dialog
-        protected void onPostExecute(String file_url) {
-            if (id >= 0)
-                table.setID(id);
-            else {
-                cDialog = new ProgressDialog(tableLayout);
-                cDialog.setMessage("儲存失敗");
-                cDialog.setIndeterminate(false);
-                cDialog.setCancelable(true);
-                cDialog.show();
-            }
-        }
-    }
-
 }

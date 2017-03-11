@@ -9,11 +9,15 @@
         <item
             android:id="@+id/second"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="瀞文" />
+            android:title="顧客個人頁面" />
         <item
             android:id="@+id/third"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="宜謙 店家布局" />
+            android:title="店家佈局編輯" />
+        <item
+            android:id="@+id/tableScanner"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="店家佈局" />
         <item
             android:id="@+id/fourth"
             android:icon="@drawable/ic_menu_manage"
@@ -22,6 +26,11 @@
             android:id="@+id/fifth"
             android:icon="@drawable/ic_menu_manage"
             android:title="忻妤 顧客掃描qr code" />
+        <item
+            android:id="@+id/sixth"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="店家掃描顧客qr code" />
+
         <item
             android:id="@+id/logout"
             android:icon="@drawable/ic_menu_manage"
