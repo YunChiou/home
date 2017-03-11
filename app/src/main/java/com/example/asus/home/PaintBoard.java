@@ -1,36 +1,17 @@
 package com.example.asus.home;
 
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
-import android.text.InputType;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Handler;
-
-import static android.R.attr.name;
 
 
 public class PaintBoard extends View {
@@ -43,16 +24,6 @@ public class PaintBoard extends View {
         SHAPE, CONTROL_POINT, NONE
     }
 
-
-    // Progress Dialog
-    private ProgressDialog cDialog;
-    JSONParser jsonParser = new JSONParser();
-    // url to create new product
-    private static String url_create_table = "http://163.14.68.37/android_connect/create_table.php";
-    // JSON Node names
-    private static final String TAG_SUCCESS = "success";
-    private static final String TAG_ID = "id";
-
     private Paint paint;
     ArrayList<Table> allTables = new ArrayList<Table>();
     TableType tableType = TableType.NONE;
@@ -61,6 +32,7 @@ public class PaintBoard extends View {
 
     public PaintBoard(TableLayout tableLayout) {
         super(tableLayout);
+        new GetAllTables(allTables).execute();
         this.tableLayout = tableLayout;
         paint = new Paint();
         int tableColor = tableLayout.getResources().getColor(R.color.yello);
@@ -81,15 +53,15 @@ public class PaintBoard extends View {
 
     public void addRectangleTable(int left, int top) {
         Table table = new RectangleTable(left, top);
+        table.setTableType("R");
         allTables.add(table);
-        //new PaintBoard.CreateNewTable(this, table).execute();
         new CreateNewTable(this, table).execute();
     }
 
     public void addRoundTable(int left, int top) {
         Table table = new OvalTable(left, top);
+        table.setTableType("O");
         allTables.add(table);
-        //new PaintBoard.CreateNewTable(this, table).execute();
         new CreateNewTable(this, table).execute();
     }
 
@@ -220,5 +192,4 @@ public class PaintBoard extends View {
         clearSelectedTable();
         invalidate();
     }
-
 }

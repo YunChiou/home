@@ -35,6 +35,8 @@ public class CreateNewTable extends AsyncTask<String, String, String> {
 
     // Creating table
     protected String doInBackground(String... args) {
+
+        String String_tableType = table.getTableType();
         int int_leftIndex = table.getLeft();
         int int_topIndex = table.getTop();
         int int_width = table.getWidth();
@@ -43,6 +45,7 @@ public class CreateNewTable extends AsyncTask<String, String, String> {
 
         // Building Parameters
         List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("tableType", String_tableType));
         params.add(new BasicNameValuePair("leftIndex", Integer.toString(int_leftIndex)));
         params.add(new BasicNameValuePair("topIndex", Integer.toString(int_topIndex)));
         params.add(new BasicNameValuePair("width", Integer.toString(int_width)));
