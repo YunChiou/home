@@ -11,9 +11,11 @@ import java.util.List;
 public class GetAllTables extends AsyncTask<String, String, String> {
 
     ArrayList allTables;
+    PaintBoard paintBoard;
 
-    GetAllTables(ArrayList<Table> allTables) {
+    GetAllTables(ArrayList<Table> allTables, PaintBoard paintBoard) {
         this.allTables = allTables;
+        this.paintBoard = paintBoard;
     };
 
     JSONParser jsonParser = new JSONParser();
@@ -67,6 +69,7 @@ public class GetAllTables extends AsyncTask<String, String, String> {
                 else if (tableType.equals("O"))
                     allTables.add(new OvalTable(id, tableType, int_leftIndex, int_topIndex, int_width, int_height, String_text));
             }
+            paintBoard.invalidate();
         } catch (Exception e) {
         }
 

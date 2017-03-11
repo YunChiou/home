@@ -32,7 +32,7 @@ public class PaintBoard extends View {
 
     public PaintBoard(TableLayout tableLayout) {
         super(tableLayout);
-        new GetAllTables(allTables).execute();
+        new GetAllTables(allTables, this).execute();
         this.tableLayout = tableLayout;
         paint = new Paint();
         int tableColor = tableLayout.getResources().getColor(R.color.yello);
