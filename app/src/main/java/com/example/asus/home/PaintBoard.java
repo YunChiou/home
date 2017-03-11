@@ -139,6 +139,7 @@ public class PaintBoard extends View {
             case MotionEvent.ACTION_MOVE:
                 if (pressPoint == PressPoint.CONTROL_POINT) {
                     allTables.get(selectedIndex).setSize(left - originalWidth + widthOffSet, top - originalHeight + heightOffset);
+                    new UpdateTable(allTables.get(selectedIndex)).execute();
                     invalidate();
                 }
                 else if (pressPoint == PressPoint.SHAPE) {
