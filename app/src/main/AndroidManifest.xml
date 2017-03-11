@@ -4,6 +4,7 @@
 
     <!-- Internet Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -60,11 +61,13 @@
             android:name=".CustomerData"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".QRcode_Scanner_Boss"
-                 android:label=""
-                 android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+        <activity
+            android:name=".QRcode_Scanner_Boss"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".TableEditor"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
