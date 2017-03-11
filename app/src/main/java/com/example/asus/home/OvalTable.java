@@ -12,6 +12,16 @@ public class OvalTable extends Table {
         this.boundingBoxTop = top;
     }
 
+    public OvalTable(int id, String tableType, int boundingBoxLeft, int boundingBoxTop, int width, int height, String text) {
+        this.id = id;
+        this.tableType = tableType;
+        this.boundingBoxLeft = boundingBoxLeft;
+        this.boundingBoxTop = boundingBoxTop;
+        this.width = width;
+        this.height = height;
+        this.tableNumber = text;
+    }
+
     @Override
     public void draw(Canvas canvas, Paint paint) {
         //內圍

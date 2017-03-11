@@ -23,6 +23,11 @@
             android:icon="@drawable/ic_menu_manage"
             android:title="忻妤 顧客掃描qr code" />
         <item
+            android:id="@+id/sixth"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="店家掃描顧客qr code" />
+
+        <item
             android:id="@+id/logout"
             android:icon="@drawable/ic_menu_manage"
             android:title="登出" />
