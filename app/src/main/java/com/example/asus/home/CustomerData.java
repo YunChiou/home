@@ -24,6 +24,7 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
 import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,17 +43,17 @@ public class CustomerData extends AppCompatActivity  {
     private ProgressDialog pDialog;
     private TextView textViewJSON;
     // Creating JSON Parser object
-    JSONParser jParser = new JSONParser();
-
+    JSONParser jsonParser = new JSONParser();
+    JSONObject json;
     ArrayList<HashMap<String, String>> customersList;
 
     // url to get all products list
-    private static String url_all_customers = "http://163.14.68.37/android_connect/get_all_customers.php";
+    private static String url_all_customers = "http://163.14.68.37/android_connect/get_boss_details.php";
 
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
-    private static final String TAG_CUSTOMERS = "customers";
-    private static final String TAG_CID = "cid";
+    private static final String TAG_CUSTOMERS = "boss";
+    private static final String TAG_CID = "bid";
     private static final String TAG_NAME = "name";
     private static final String TAG_ACCOUNT = "account";
 
@@ -75,7 +76,6 @@ public class CustomerData extends AppCompatActivity  {
 
     }
     //宣告
-    JSONObject c;
     String id ;
     String name ;
     String account ;
@@ -101,40 +101,17 @@ public class CustomerData extends AppCompatActivity  {
         /**
          * getting All products from url
          * */
-
-
         protected String doInBackground(String... args) {
 
-            // Building Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            // getting JSON string from URL
-            JSONObject json = jParser.makeHttpRequest(url_all_customers, "GET", params);
-
-            // Check your log cat for JSON reponse
-            Log.d("All Products: ", json.toString());
+            int currentID = Model.getInstance().getBoss().getBossID();
+            params.add(new BasicNameValuePair("bid", currentID + ""));
 
             try {
-                // Checking for SUCCESS TAG
-                int success = json.getInt(TAG_SUCCESS);
-
-                if (success == 1) {
-                    // products found
-                    // Getting Array of Products
-                    customers = json.getJSONArray(TAG_CUSTOMERS);
-
-                    JSONObject c = customers.getJSONObject(3);
-
-                    // Storing each json item in variable
-                    String id = c.getString(TAG_CID);
-                    String name = c.getString(TAG_NAME);
-                    String account = c.getString(TAG_ACCOUNT);
-                    return id + "\n姓名" + name + "\n帳號" + account;
-
-                }
-            } catch (JSONException e) {
+                json = jsonParser.makeHttpRequest(url_all_customers, "GET", params);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-
             return null;
         }
 
@@ -142,12 +119,13 @@ public class CustomerData extends AppCompatActivity  {
          * After completing background task Dismiss the progress dialog
          * **/
         @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
+        protected void onPostExecute(String s)
+        {
             pDialog.dismiss();
-            textViewJSON.setText(s);
+            textViewJSON.setText(json.toString());
         }
     }
+
     //創造QRCode創造QRCode
     protected String getQRcodeValue() {
         StringBuffer buffer = new StringBuffer();
@@ -156,6 +134,7 @@ public class CustomerData extends AppCompatActivity  {
         buffer.append(account);
         return buffer.toString();
     }
+
     void qrcode(String value) {
         QRCodeWriter writer = new QRCodeWriter();
         try {
