@@ -121,7 +121,11 @@ public class MainActivity extends AppCompatActivity {
                 int success = json.getInt(TAG_SUCCESS);
 
                 if (success == 1) {
+                    boss_array = json.getJSONArray("boss_array");
+                    JSONObject c = boss_array.getJSONObject(0);
+                    id = c.getInt("bid");
                     check = "true";
+
                 }
                 return check;
             } catch (JSONException e) {

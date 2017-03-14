@@ -47,7 +47,7 @@ public class CustomerData extends AppCompatActivity  {
     ArrayList<HashMap<String, String>> customersList;
 
     // url to get all products list
-    private static String url_all_customers = "http://163.14.68.37/android_connect/get_all_customers.php";
+    private static String url_all_customers = "http://163.14.68.37/android_connect/get_all_boss.php";
 
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
@@ -104,36 +104,6 @@ public class CustomerData extends AppCompatActivity  {
 
 
         protected String doInBackground(String... args) {
-
-            // Building Parameters
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            // getting JSON string from URL
-            JSONObject json = jParser.makeHttpRequest(url_all_customers, "GET", params);
-
-            // Check your log cat for JSON reponse
-            Log.d("All Products: ", json.toString());
-
-            try {
-                // Checking for SUCCESS TAG
-                int success = json.getInt(TAG_SUCCESS);
-
-                if (success == 1) {
-                    // products found
-                    // Getting Array of Products
-                    customers = json.getJSONArray(TAG_CUSTOMERS);
-
-                    JSONObject c = customers.getJSONObject(3);
-
-                    // Storing each json item in variable
-                    String id = c.getString(TAG_CID);
-                    String name = c.getString(TAG_NAME);
-                    String account = c.getString(TAG_ACCOUNT);
-                    return id + "\n姓名" + name + "\n帳號" + account;
-
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
 
             return null;
         }

@@ -30,7 +30,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         // 建立應用程式需要的表格
-
+        db.execSQL(IDDAO.CREATE_TABLE);
     }
 
     @Override
