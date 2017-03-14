@@ -126,6 +126,11 @@ public class MainActivity extends AppCompatActivity {
                     id = c.getInt("bid");
                     check = "true";
 
+<<<<<<< HEAD
+=======
+                    Boss boss = new Boss(id, c.getString("account"), c.getString("password"), c.getString("name"), c.getString("address"), c.getString("phone"), c.getString("storename"));
+                    Model.getInstance().setBoss(boss);
+>>>>>>> b4c346676b547c31be1d243a735f4246f9f78c3b
                 }
                 return check;
             } catch (JSONException e) {
@@ -135,11 +140,11 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
 
-            /**
-             * After completing background task Dismiss the progress dialog
-             * **/
-            @Override
-            protected void onPostExecute(String s) {
+        /**
+         * After completing background task Dismiss the progress dialog
+         * **/
+        @Override
+        protected void onPostExecute(String s) {
             super.onPostExecute(s);
             pDialog.dismiss();
             if(s.equals("false"))
