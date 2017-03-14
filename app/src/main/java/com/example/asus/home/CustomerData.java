@@ -48,11 +48,7 @@ public class CustomerData extends AppCompatActivity  {
     ArrayList<HashMap<String, String>> customersList;
 
     // url to get all products list
-<<<<<<< HEAD
-    private static String url_all_customers = "http://163.14.68.37/android_connect/get_all_boss.php";
-=======
     private static String url_all_customers = "http://163.14.68.37/android_connect/get_boss_details.php";
->>>>>>> b4c346676b547c31be1d243a735f4246f9f78c3b
 
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
@@ -107,8 +103,6 @@ public class CustomerData extends AppCompatActivity  {
          * */
         protected String doInBackground(String... args) {
 
-<<<<<<< HEAD
-=======
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             int currentID = Model.getInstance().getBoss().getBossID();
             params.add(new BasicNameValuePair("bid", currentID + ""));
@@ -118,7 +112,6 @@ public class CustomerData extends AppCompatActivity  {
             } catch (Exception e) {
                 e.printStackTrace();
             }
->>>>>>> b4c346676b547c31be1d243a735f4246f9f78c3b
             return null;
         }
 

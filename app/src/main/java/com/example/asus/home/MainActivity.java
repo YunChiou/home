@@ -125,12 +125,8 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject c = boss_array.getJSONObject(0);
                     id = c.getInt("bid");
                     check = "true";
-
-<<<<<<< HEAD
-=======
                     Boss boss = new Boss(id, c.getString("account"), c.getString("password"), c.getString("name"), c.getString("address"), c.getString("phone"), c.getString("storename"));
                     Model.getInstance().setBoss(boss);
->>>>>>> b4c346676b547c31be1d243a735f4246f9f78c3b
                 }
                 return check;
             } catch (JSONException e) {
