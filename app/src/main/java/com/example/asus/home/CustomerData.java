@@ -1,21 +1,14 @@
 package com.example.asus.home;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.google.zxing.BarcodeFormat;
@@ -26,18 +19,13 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class CustomerData extends AppCompatActivity  {
+public class CustomerData extends NavigationbarActivity  {
 
     // Progress Dialog
     private ProgressDialog pDialog;
@@ -49,31 +37,40 @@ public class CustomerData extends AppCompatActivity  {
 
     // url to get all products list
     private static String url_all_customers = "http://163.14.68.37/android_connect/get_boss_details.php";
-
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_CUSTOMERS = "boss";
     private static final String TAG_CID = "bid";
     private static final String TAG_NAME = "name";
     private static final String TAG_ACCOUNT = "account";
-
     // products JSONArray
     JSONArray customers = null;
+     TextView nameText;
+     TextView accountText;
+     TextView passwordText;
+
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customerdata);
+        //產生sliding menu
+        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View contentView = inflater.inflate(R.layout.activity_customerdata, null, false);
+        drawer.addView(contentView, 0);
 
         // Hashmap for ListView
         customersList = new ArrayList<HashMap<String, String>>();
         textViewJSON = (TextView) findViewById(R.id.textViewJSON);
+
+        nameText = (TextView) findViewById(R.id.name);
+        accountText = (TextView) findViewById(R.id.account);
+        passwordText = (TextView) findViewById(R.id. password);
+
         // Loading products in Background Thread
         new LoadAllProducts().execute();
         //QRCode
-        inputValue();
-
+        qrcode(getQRcodeValue());
     }
     //宣告
     String id ;
@@ -118,11 +115,23 @@ public class CustomerData extends AppCompatActivity  {
         /**
          * After completing background task Dismiss the progress dialog
          * **/
+
+
         @Override
         protected void onPostExecute(String s)
         {
             pDialog.dismiss();
             textViewJSON.setText(json.toString());
+            try {
+                //JSONArray value = json.getJSONArray("product");
+                //JSONObject userObject = value.getJSONObject(0);
+                JSONObject value = json.getJSONArray("product").getJSONObject(0);
+                nameText.setText("姓名"+value.getString("name"));
+                accountText.setText("帳號"+value.getString("account"));
+                passwordText.setText("密碼"+value.getString("password"));
+            }catch(Exception e) {
+
+            }
         }
     }
 
@@ -152,15 +161,5 @@ public class CustomerData extends AppCompatActivity  {
         } catch (WriterException e) {
             e.printStackTrace();
         }
-    }
-    private void inputValue() {
-        Button button = (Button) findViewById(R.id.gen_btn);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                qrcode(getQRcodeValue());
-            }
-        });
-
     }
 }
