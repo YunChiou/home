@@ -12,10 +12,16 @@ public class GetAllTables extends AsyncTask<String, String, String> {
 
     ArrayList allTables;
     PaintBoard paintBoard;
+    PaintBoardToScan paintBoardToScan;
 
     GetAllTables(ArrayList<Table> allTables, PaintBoard paintBoard) {
         this.allTables = allTables;
         this.paintBoard = paintBoard;
+    };
+
+    GetAllTables(ArrayList<Table> allTables, PaintBoardToScan paintBoardToScan) {
+        this.allTables = allTables;
+        this.paintBoardToScan = paintBoardToScan;
     };
 
     JSONParser jsonParser = new JSONParser();
