@@ -8,16 +8,17 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="80dp"
+    android:paddingTop="60dp"
     tools:context="com.example.asus.home.StorePage">
+
 
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/marque">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -43,6 +44,8 @@
             android:gravity="center_horizontal"
             android:id="@+id/imageView3" />
 
+
+
     </LinearLayout>
         </HorizontalScrollView>
 
@@ -50,12 +53,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/horizontalScrollView1"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:id="@+id/scorllview">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="1">
 
         <TextView
             android:text="新漢城韓式料理店"
@@ -101,7 +106,43 @@
             android:layout_alignParentStart="true" />
 
 
-</LinearLayout>
+    </LinearLayout>
 
     </ScrollView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:textColor="@android:color/holo_red_light"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:textSize = "30sp"
+        android:text="在本店消費且願意併桌者可享小菜、飲品、餐飲折10元優惠三選一"
+        android:id="@+id/marque"
+        android:layout_weight="0.67"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="80dp"
+        android:layout_marginStart="87dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        app:srcCompat="@drawable/v1"
+        android:id="@+id/imageView4"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="350dp"
+        android:layout_above="@+id/horizontalScrollView1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>
