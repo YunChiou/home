@@ -76,6 +76,7 @@ public class GetAllTables extends AsyncTask<String, String, String> {
                     allTables.add(new OvalTable(id, tableType, int_leftIndex, int_topIndex, int_width, int_height, String_text));
             }
             paintBoard.invalidate();
+            paintBoardToScan.invalidate();
         } catch (Exception e) {
         }
 

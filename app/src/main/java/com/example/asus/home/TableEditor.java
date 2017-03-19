@@ -84,7 +84,5 @@ public class TableEditor extends NavigationbarActivity {
         } catch (WriterException e) {
             e.printStackTrace();
         }
-
-
     }
 }

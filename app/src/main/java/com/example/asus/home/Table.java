@@ -17,6 +17,7 @@ public abstract class Table {
     final int CONTROL_POINT_SIZE = 30;
     final int BORDER_WIDTH = 3;
     String tableNumber = "";
+    String condition = "";
 
     public Table() {
         isSelected = false;
@@ -32,6 +33,10 @@ public abstract class Table {
 
     public void setTableType (String tableType) {
         this.tableType = tableType;
+    }
+
+    public void setCondition (String condition) {
+        this.condition = condition;
     }
 
     public int getID() {
@@ -73,7 +78,6 @@ public abstract class Table {
             paint.setStyle(Paint.Style.FILL_AND_STROKE);
             paint.setColor(Color.RED);
             canvas.drawRect(boundingBoxLeft + width - CONTROL_POINT_SIZE, boundingBoxTop + height -CONTROL_POINT_SIZE, boundingBoxLeft + width + CONTROL_POINT_SIZE, boundingBoxTop + height + CONTROL_POINT_SIZE, paint);
-
         }
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
     }
