@@ -44,17 +44,17 @@ public class QRcode_Scanner_Boss extends NavigationbarActivity {
         });
     }
 
-        @Override
-        protected void onActivityResult(int requestCode, int resultCode, Intent data){
-            IntentResult result = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
-            if(result != null){
-                if(result.getContents()==null)
-                    Toast.makeText(this,"You cancelled the scanning",Toast.LENGTH_LONG).show();
-                else
-                    Toast.makeText(this,result.getContents(),Toast.LENGTH_LONG).show();
-            }
-            else {
-                super.onActivityResult(requestCode,resultCode,data);
-            }
-            }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
+        if(result != null){
+            if(result.getContents()==null)
+                Toast.makeText(this,"You cancelled the scanning",Toast.LENGTH_LONG).show();
+            else
+                Toast.makeText(this,result.getContents(),Toast.LENGTH_LONG).show();
+        }
+        else {
+            super.onActivityResult(requestCode,resultCode,data);
+        }
+    }
 }

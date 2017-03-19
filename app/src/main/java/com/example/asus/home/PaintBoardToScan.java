@@ -7,9 +7,7 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-
 import com.google.zxing.integration.android.IntentIntegrator;
-
 import java.util.ArrayList;
 
 public class PaintBoardToScan extends View {
@@ -40,7 +38,6 @@ public class PaintBoardToScan extends View {
     }
 
     public boolean onTouchEvent(MotionEvent ev) {
-        int index = ev.getActionIndex();
         int action = ev.getActionMasked();
         int left = (int) ev.getX();
         int top = (int) ev.getY();
@@ -59,7 +56,6 @@ public class PaintBoardToScan extends View {
                     }
                 }
                 return true;
-
             case MotionEvent.ACTION_MOVE:
 
                 break;
@@ -70,4 +66,5 @@ public class PaintBoardToScan extends View {
         }
         return true;
     }
+
 }
