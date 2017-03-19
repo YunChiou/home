@@ -1,8 +1,17 @@
 package com.example.asus.home;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.support.v7.app.ActionBar;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 
 public class RectangleTable extends Table {
 
@@ -35,6 +44,27 @@ public class RectangleTable extends Table {
         paint.setColor(Color.BLACK);
         paint.setTextSize(50);
         canvas.drawText(tableNumber, boundingBoxLeft + 10, boundingBoxTop + 50, paint);
+
+        QRCodeWriter writer = new QRCodeWriter();
+        try {
+            if (!condition.equals("")) {
+                BitMatrix bitMatrix = writer.encode(condition, BarcodeFormat.QR_CODE, 512, 512);
+                int width = bitMatrix.getWidth();
+                int height = bitMatrix.getHeight();
+                Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+                for (int x = 0; x < width; x++) {
+                    for (int y = 0; y < height; y++) {
+                        bmp.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
+                    }
+                }
+
+                paint.setColor(Color.RED);
+                canvas.drawBitmap(bmp, 0, 0, paint);
+            }
+
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

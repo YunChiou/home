@@ -42,11 +42,11 @@ public class TableEditor extends NavigationbarActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent date){
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode,resultCode,date);
         if(result != null){
-            if(result.getContents()==null)
+            if(result.getContents() == null)
                 Toast.makeText(this,"You cancelled the scanning",Toast.LENGTH_LONG).show();
             else {
                 Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
-                generateQrcode(result.getContents());
+                drawingView.setCondition(result.getContents());
             }
         }
         else {

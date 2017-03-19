@@ -37,6 +37,7 @@ public class PaintBoardToScan extends View {
         }
     }
 
+    int selectedIndex = -1;
     public boolean onTouchEvent(MotionEvent ev) {
         int action = ev.getActionMasked();
         int left = (int) ev.getX();
@@ -45,6 +46,7 @@ public class PaintBoardToScan extends View {
             case MotionEvent.ACTION_DOWN:
                 for (int i = allTables.size() - 1; i >= 0; i--) {
                     if (allTables.get(i).isInside(left, top)) {
+                        selectedIndex = i;
                         IntentIntegrator integrator = new IntentIntegrator(tableEditor);
                         integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
                         integrator.setPrompt("Scan");
@@ -65,6 +67,10 @@ public class PaintBoardToScan extends View {
             case MotionEvent.ACTION_CANCEL:
         }
         return true;
+    }
+
+    public void setCondition(String condition) {
+        allTables.get(selectedIndex).setCondition(condition);
     }
 
 }
