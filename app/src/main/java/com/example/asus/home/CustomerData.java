@@ -36,11 +36,11 @@ public class CustomerData extends NavigationbarActivity  {
     ArrayList<HashMap<String, String>> customersList;
 
     // url to get all products list
-    private static String url_all_customers = "http://163.14.68.37/android_connect/get_boss_details.php";
+    private static String url_all_users = "http://163.14.68.37/android_connect/get_user_details.php";
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_CUSTOMERS = "boss";
-    private static final String TAG_CID = "bid";
+    private static final String TAG_CID = "id";
     private static final String TAG_NAME = "name";
     private static final String TAG_ACCOUNT = "account";
     // products JSONArray
@@ -89,7 +89,7 @@ public class CustomerData extends NavigationbarActivity  {
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(CustomerData.this);
-            pDialog.setMessage("Loading customer data. Please wait...");
+            pDialog.setMessage("Loading user data. Please wait...");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(false);
             pDialog.show();
@@ -102,10 +102,10 @@ public class CustomerData extends NavigationbarActivity  {
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             int currentID = Model.getInstance().getBoss().getBossID();
-            params.add(new BasicNameValuePair("bid", currentID + ""));
+            params.add(new BasicNameValuePair("id", currentID + ""));
 
             try {
-                json = jsonParser.makeHttpRequest(url_all_customers, "GET", params);
+                json = jsonParser.makeHttpRequest(url_all_users, "GET", params);
             } catch (Exception e) {
                 e.printStackTrace();
             }

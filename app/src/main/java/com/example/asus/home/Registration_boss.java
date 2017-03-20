@@ -25,9 +25,6 @@ public class Registration_boss extends ToolbarActivity {
     private ProgressDialog cDialog;
     JSONParser jsonParser = new JSONParser();
     EditText inputaccount;
-    EditText inputphone;
-    EditText inputaddress;
-    EditText inputstorename;
     EditText inputpassword;
     EditText inputname;
     Button confirm;
@@ -42,9 +39,6 @@ public class Registration_boss extends ToolbarActivity {
         inputaccount = (EditText) findViewById(R.id.boss_act);
         inputpassword = (EditText) findViewById(R.id.boss_pwd);
         inputname = (EditText) findViewById(R.id.boss_name);
-        inputaddress = (EditText) findViewById(R.id.boss_storeadd);
-        inputphone = (EditText) findViewById(R.id.boss_storephone);
-        inputstorename = (EditText) findViewById(R.id.boss_storename);
         confirm=(Button)findViewById(R.id.boss_confirm_button);
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,9 +48,6 @@ public class Registration_boss extends ToolbarActivity {
                 boss.setAccount(inputaccount.getText().toString());
                 boss.setPassword(inputpassword.getText().toString());
                 boss.setName(inputname.getText().toString());
-                boss.setPhone(inputphone.getText().toString());
-                boss.setAddress(inputaddress.getText().toString());
-                boss.setStorename(inputstorename.getText().toString());
                 new Registration_boss.CreateNewBoss(boss).execute();
 
                 Intent intent = new Intent();
@@ -98,26 +89,17 @@ public class Registration_boss extends ToolbarActivity {
             String name = boss.getName();
             String account = boss.getAccount();
             String password = boss.getPassword();
-            String phone = boss.getPhone();
-            String address = boss.getAddress();
-            String storename = boss.getStorename();
-            // Building Parameters
+            // Building Boss Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("account", account));
             params.add(new BasicNameValuePair("password", password));
             params.add(new BasicNameValuePair("name", name));
-            params.add(new BasicNameValuePair("phone", phone));
-            params.add(new BasicNameValuePair("address", address));
-            params.add(new BasicNameValuePair("storename", storename));
-
             // getting JSON Object
             // Note that create product url accepts POST method
             JSONObject json = jsonParser.makeHttpRequest(url_create_boss,
                     "POST", params);
-
             // check log cat fro response
             Log.d("Create Response", json.toString());
-
             // check for success tag
             try {
                 int success = json.getInt(TAG_SUCCESS);
@@ -132,7 +114,6 @@ public class Registration_boss extends ToolbarActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
             return null;
         }
 

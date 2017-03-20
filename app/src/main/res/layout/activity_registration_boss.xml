@@ -52,49 +52,6 @@
             android:background="@color/colorPrimary"
             android:textColorHint="@android:color/background_light"
             android:layout_marginTop="10dp" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/boss_storename"
-            android:hint="店鋪名稱"
-            android:paddingLeft="10dp"
-            android:layout_below="@+id/boss_name"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:background="@color/colorPrimary"
-            android:textColorHint="@android:color/background_light"
-            android:layout_marginTop="10dp"
-            />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/boss_storephone"
-            android:hint="店鋪電話"
-            android:paddingLeft="10dp"
-            android:layout_below="@+id/boss_name"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:background="@color/colorPrimary"
-            android:textColorHint="@android:color/background_light"
-            android:layout_marginTop="10dp"
-            />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/boss_storeadd"
-            android:hint="店鋪地址"
-            android:paddingLeft="10dp"
-            android:layout_below="@+id/boss_storename"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:background="@color/colorPrimary"
-            android:textColorHint="@android:color/background_light"
-            android:layout_marginTop="10dp"
-            />
-
         <Button
             android:text="確認"
             android:layout_width="match_parent"

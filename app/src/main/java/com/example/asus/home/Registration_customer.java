@@ -111,12 +111,13 @@ public class Registration_customer extends ToolbarActivity {
             params.add(new BasicNameValuePair("account", account));
             params.add(new BasicNameValuePair("password", password));
             params.add(new BasicNameValuePair("name", name));
-
             // getting JSON Object
             // Note that create product url accepts POST method
+
             JSONObject json = jsonParser.makeHttpRequest(url_create_customer,
                     "POST", params);
             // check log cat fro response
+
             Log.d("Create Response", json.toString());
             // check for success tag
             try {
