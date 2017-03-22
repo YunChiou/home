@@ -17,15 +17,14 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            >
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".TableLayout"
             android:label=""
@@ -69,10 +68,16 @@
         <activity
             android:name=".QRcode_Scanner_Boss"
             android:label=""
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".TableEditor"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".TableEditor"
             android:label=""
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Registration_restaurant"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>

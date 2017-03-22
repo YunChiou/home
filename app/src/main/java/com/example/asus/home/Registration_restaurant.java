@@ -19,39 +19,40 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Registration_boss extends ToolbarActivity {
+public class Registration_restaurant extends ToolbarActivity {
 
-    // Progress Dialog
     private ProgressDialog cDialog;
     JSONParser jsonParser = new JSONParser();
-    EditText inputaccount;
-    EditText inputpassword;
     EditText inputname;
+    EditText inputadd;
+    EditText inputphone;
     Button confirm;
-    private static String url_create_boss = "http://163.14.68.37/android_connect/create_boss.php";
+    private static String url_create_restaurant = "http://163.14.68.37/android_connect/create_restaurant.php";
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_ID = "id";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration_boss);
-        inputaccount = (EditText) findViewById(R.id.boss_act);
-        inputpassword = (EditText) findViewById(R.id.boss_pwd);
-        inputname = (EditText) findViewById(R.id.boss_name);
-        confirm=(Button)findViewById(R.id.boss_confirm_button);
+        setContentView(R.layout.activity_registration_restaurant);
+
+        inputname = (EditText) findViewById(R.id.shop_name);
+        inputadd = (EditText) findViewById(R.id.shop_add);
+        inputphone = (EditText) findViewById(R.id.shop_phone);
+        confirm=(Button)findViewById(R.id.restaurant_confirm_button);
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Boss boss = new Boss();
-                boss.setAccount(inputaccount.getText().toString());
-                boss.setPassword(inputpassword.getText().toString());
+                boss.setAddress(inputadd.getText().toString());
                 boss.setName(inputname.getText().toString());
-                new Registration_boss.CreateNewBoss(boss).execute();
+                boss.setPhone(inputphone.getText().toString());
+                new Registration_restaurant.CreateNewRestaurant(boss).execute();
 
                 Intent intent = new Intent();
-                intent.setClass(Registration_boss.this, Registration_restaurant.class);
+                intent.setClass(Registration_restaurant.this, HomePage.class);
                 startActivity(intent);
             }
         });
@@ -64,9 +65,9 @@ public class Registration_boss extends ToolbarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    class CreateNewBoss extends AsyncTask<String, String, String> {
+    class CreateNewRestaurant extends AsyncTask<String, String, String> {
 
-        CreateNewBoss (Boss boss) {
+        CreateNewRestaurant (Boss boss) {
             this.boss = boss;
         }
         int id = -1;
@@ -74,7 +75,7 @@ public class Registration_boss extends ToolbarActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            cDialog = new ProgressDialog(Registration_boss.this);
+            cDialog = new ProgressDialog(Registration_restaurant.this);
             cDialog.setMessage("Creating Account..");
             cDialog.setIndeterminate(false);
             cDialog.setCancelable(true);
@@ -86,17 +87,18 @@ public class Registration_boss extends ToolbarActivity {
          * */
         protected String doInBackground(String... args) {
 
-            String name = boss.getName();
-            String account = boss.getAccount();
-            String password = boss.getPassword();
+            String storename = boss.getStorename();
+            String address = boss.getAddress();
+            String phone = boss.getPhone();
             // Building Boss Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("account", account));
-            params.add(new BasicNameValuePair("password", password));
-            params.add(new BasicNameValuePair("name", name));
+            params.add(new BasicNameValuePair("storename", storename));
+            params.add(new BasicNameValuePair("address", address));
+            params.add(new BasicNameValuePair("phone", phone));
             // getting JSON Object
             // Note that create product url accepts POST method
-            JSONObject json = jsonParser.makeHttpRequest(url_create_boss,
+
+            JSONObject json = jsonParser.makeHttpRequest(url_create_restaurant,
                     "POST", params);
             // check log cat fro response
             Log.d("Create Response", json.toString());
