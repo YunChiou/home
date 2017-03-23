@@ -45,11 +45,11 @@ public class Registration_restaurant extends ToolbarActivity {
             @Override
             public void onClick(View v) {
 
-                Boss boss = new Boss();
-                boss.setAddress(inputadd.getText().toString());
-                boss.setName(inputname.getText().toString());
-                boss.setPhone(inputphone.getText().toString());
-                new Registration_restaurant.CreateNewRestaurant(boss).execute();
+                Restaurant restaurant = new Restaurant();
+                restaurant.setAddress(inputadd.getText().toString());
+                restaurant.setStorename(inputname.getText().toString());
+                restaurant.setPhone(inputphone.getText().toString());
+                new Registration_restaurant.CreateNewRestaurant(restaurant).execute();
 
                 Intent intent = new Intent();
                 intent.setClass(Registration_restaurant.this, HomePage.class);
@@ -67,11 +67,11 @@ public class Registration_restaurant extends ToolbarActivity {
     }
     class CreateNewRestaurant extends AsyncTask<String, String, String> {
 
-        CreateNewRestaurant (Boss boss) {
-            this.boss = boss;
+        CreateNewRestaurant (Restaurant restaurant) {
+            this.restaurant = restaurant;
         }
         int id = -1;
-        Boss boss;
+        Restaurant restaurant;
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -87,12 +87,12 @@ public class Registration_restaurant extends ToolbarActivity {
          * */
         protected String doInBackground(String... args) {
 
-            String storename = boss.getStorename();
-            String address = boss.getAddress();
-            String phone = boss.getPhone();
+            String storename = restaurant.getStorename();
+
+            List<NameValuePair> params = new ArrayList<NameValuePair>();            String address = restaurant.getAddress();
+            String phone = restaurant.getPhone();
             // Building Boss Parameters
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("storename", storename));
+            params.add(new BasicNameValuePair("name", storename));
             params.add(new BasicNameValuePair("address", address));
             params.add(new BasicNameValuePair("phone", phone));
             // getting JSON Object
@@ -125,7 +125,7 @@ public class Registration_restaurant extends ToolbarActivity {
         protected void onPostExecute(String file_url) {
 
             if (id > 0) {
-                boss.setBossID(id);
+                restaurant.setID(id);
 
                 cDialog.setMessage("註冊成功！");
                 cDialog.setIndeterminate(false);
