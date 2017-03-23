@@ -7,6 +7,8 @@ package com.example.asus.home;
 public class Model {
 
     User user;
+    Restaurant restaurant;
+
     static Model instance = new Model();
 
     protected Model() {}
@@ -21,6 +23,12 @@ public class Model {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Restaurant getRestaurant(){return restaurant;}
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
 }

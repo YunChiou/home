@@ -89,7 +89,8 @@ public class Registration_restaurant extends ToolbarActivity {
 
             String storename = restaurant.getStorename();
 
-            List<NameValuePair> params = new ArrayList<NameValuePair>();            String address = restaurant.getAddress();
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            String address = restaurant.getAddress();
             String phone = restaurant.getPhone();
             // Building Boss Parameters
             params.add(new BasicNameValuePair("name", storename));
@@ -108,6 +109,8 @@ public class Registration_restaurant extends ToolbarActivity {
 
                 if (success == 1) {
                     id = json.getInt(TAG_ID);
+                    restaurant.setID(id);
+                    Model.getInstance().setRestaurant(restaurant);
                     // successfully created product
 
                 } else {

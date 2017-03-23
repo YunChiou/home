@@ -24,7 +24,7 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".TableLayout"
             android:label=""
@@ -73,10 +73,14 @@
             android:name=".TableEditor"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Registration_restaurant"
+        <activity
+            android:name=".Registration_restaurant"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".RestaurantData"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar">
-
         </activity>
     </application>
 
