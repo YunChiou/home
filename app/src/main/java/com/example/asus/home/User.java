@@ -2,6 +2,7 @@ package com.example.asus.home;
 
 public class User {
 
+    public int id;
     public String account;
     public String password;
     public String name;
@@ -16,6 +17,10 @@ public class User {
         this.name = name;
     }
 
+    public int getID() {
+        return id;
+    }
+
     public String getAccount() {
         return account;
     }
@@ -26,6 +31,10 @@ public class User {
 
     public String getName() {
         return name;
+    }
+
+    public void setID(int id) {
+        this.id = id;
     }
 
     public void setAccount(String account) {

@@ -72,10 +72,10 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Boss boss = new Boss();
-                boss.setAccount(edittext_account.getText().toString().trim());
-                boss.setPassword(edittext_password.getText().toString().trim());
-                new Login(boss).execute();
+                User user = new User();
+                user.setAccount(edittext_account.getText().toString().trim());
+                user.setPassword(edittext_password.getText().toString().trim());
+                new Login(user).execute();
             }
         });
 
@@ -83,9 +83,9 @@ public class MainActivity extends AppCompatActivity {
     class Login extends AsyncTask<String, String, String> {
         int id = -1;
         String check = "false";
-        Boss boss;
-        public Login(Boss boss) {
-            this.boss = boss;
+        User user;
+        public Login(User user) {
+            this.user = user;
         }
 
         @Override
@@ -104,8 +104,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         protected String doInBackground(String... args) {
-            String account = boss.getAccount();
-            String password = boss.getPassword();
+            String account = user.getAccount();
+            String password = user.getPassword();
             // Building Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("account", account));
@@ -124,9 +124,10 @@ public class MainActivity extends AppCompatActivity {
                     boss_array = json.getJSONArray("boss_array");
                     JSONObject c = boss_array.getJSONObject(0);
                     id = c.getInt("id");
+                    user.setID(id);
                     check = "true";
-                    Boss boss = new Boss(id, c.getString("account"), c.getString("password"), "", "", "", "");
-                    Model.getInstance().setBoss(boss);
+                    //U boss = new Boss(id, c.getString("account"), c.getString("password"), "", "", "", "");
+                    Model.getInstance().setUser(user);
                 }
                 return check;
             } catch (JSONException e) {

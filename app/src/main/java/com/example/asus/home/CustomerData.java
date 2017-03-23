@@ -37,14 +37,6 @@ public class CustomerData extends NavigationbarActivity  {
 
     // url to get all products list
     private static String url_all_users = "http://163.14.68.37/android_connect/get_user_details.php";
-    // JSON Node names
-    private static final String TAG_SUCCESS = "success";
-    private static final String TAG_CUSTOMERS = "boss";
-    private static final String TAG_CID = "id";
-    private static final String TAG_NAME = "name";
-    private static final String TAG_ACCOUNT = "account";
-    // products JSONArray
-    JSONArray customers = null;
      TextView nameText;
      TextView accountText;
      TextView passwordText;
@@ -101,7 +93,7 @@ public class CustomerData extends NavigationbarActivity  {
         protected String doInBackground(String... args) {
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            int currentID = Model.getInstance().getBoss().getBossID();
+            int currentID = Model.getInstance().getUser().getID();
             params.add(new BasicNameValuePair("id", currentID + ""));
 
             try {

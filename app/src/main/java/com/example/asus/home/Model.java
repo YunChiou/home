@@ -6,7 +6,7 @@ package com.example.asus.home;
 
 public class Model {
 
-    Boss boss;
+    User user;
     static Model instance = new Model();
 
     protected Model() {}
@@ -15,12 +15,12 @@ public class Model {
         return instance;
     }
 
-    public Boss getBoss() {
-        return boss;
+    public User getUser() {
+        return user;
     }
 
-    public void setBoss(Boss boss) {
-        this.boss = boss;
+    public void setUser(User user) {
+        this.user = user;
     }
 
 }
