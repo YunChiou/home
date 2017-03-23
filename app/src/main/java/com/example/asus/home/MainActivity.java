@@ -123,10 +123,10 @@ public class MainActivity extends AppCompatActivity {
                 if (success == 1) {
                     boss_array = json.getJSONArray("boss_array");
                     JSONObject c = boss_array.getJSONObject(0);
-                    id = c.getInt("bid");
+                    id = c.getInt("id");
                     check = "true";
-                   // Boss boss = new Boss(id, c.getString("account"), c.getString("password"), "", "", "", "");
-                    //Model.getInstance().setBoss(boss);
+                    Boss boss = new Boss(id, c.getString("account"), c.getString("password"), "", "", "", "");
+                    Model.getInstance().setBoss(boss);
                 }
                 return check;
             } catch (JSONException e) {
@@ -136,9 +136,6 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
 
-        /**
-         * After completing background task Dismiss the progress dialog
-         * **/
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
@@ -150,12 +147,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.setClass(MainActivity.this, HomePage.class);
                 startActivity(intent);
             }
-
-
-
         }
     }
-
-
 
 }
