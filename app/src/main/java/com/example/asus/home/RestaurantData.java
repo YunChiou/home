@@ -32,7 +32,7 @@ public class RestaurantData extends NavigationbarActivity {
     // Creating JSON Parser object
     JSONParser jsonParser = new JSONParser();
     JSONObject json;
-    ArrayList<HashMap<String, String>> customersList;
+    ArrayList<HashMap<String, String>> restaurantList;
 
     // url to get all products list
     private static String url_all_restaurant = "http://163.14.68.37/android_connect/get_restaurant_details.php";
@@ -47,11 +47,11 @@ public class RestaurantData extends NavigationbarActivity {
 
         //產生sliding menu
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View contentView = inflater.inflate(R.layout.activity_customerdata, null, false);
+        View contentView = inflater.inflate(R.layout.activity_restaurant_data, null, false);
         drawer.addView(contentView, 0);
 
         // Hashmap for ListView
-        customersList = new ArrayList<HashMap<String, String>>();
+        restaurantList = new ArrayList<HashMap<String, String>>();
         textViewJSON = (TextView) findViewById(R.id.textViewJSON);
 
         storenameText = (TextView) findViewById(R.id.storename);
