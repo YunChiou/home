@@ -47,7 +47,7 @@ public class RestaurantData extends NavigationbarActivity {
 
         //產生sliding menu
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View contentView = inflater.inflate(R.layout.activity_customerdata, null, false);
+        View contentView = inflater.inflate(R.layout.activity_restaurant_data, null, false);
         drawer.addView(contentView, 0);
 
         // Hashmap for ListView
