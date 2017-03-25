@@ -17,6 +17,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -52,13 +53,54 @@
             android:background="@color/colorPrimary"
             android:textColorHint="@android:color/background_light"
             android:layout_marginTop="10dp" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/cus_des"
+            android:hint="併桌條件"
+            android:paddingLeft="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@color/colorPrimary"
+            android:textColorHint="@android:color/background_light"
+            android:layout_marginTop="10dp" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/cus_sale"
+            android:hint="併桌優惠"
+            android:paddingLeft="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@color/colorPrimary"
+            android:textColorHint="@android:color/background_light"
+            android:layout_marginTop="10dp" />
+        <RadioGroup
+            android:id="@+id/ticketType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
+            <RadioButton
+                android:id="@+id/yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="可接受併桌"
+                />
+            <RadioButton
+                android:id="@+id/no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColorHint="@android:color/background_light"
+                android:text="不可接受併桌" />
+        </RadioGroup>
 
         <Button
-            android:text="確認"
+            android:id="@+id/cus_confirm_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/cus_confirm_button"
             android:layout_marginTop="10dp"
+            android:text="確認"
             android:textSize="18sp" />
     </LinearLayout>
 </RelativeLayout>
