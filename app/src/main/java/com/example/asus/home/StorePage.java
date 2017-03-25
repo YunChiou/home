@@ -34,6 +34,8 @@ public class StorePage extends NavigationbarActivity {
     JSONParser jsonParser = new JSONParser();
     JSONObject json;
     ArrayList<HashMap<String, String>> customersList;
+    private touchimageview Image;
+    private touchimageview Image1;
 
     // url to get all products list
     private static String url_all_restaurant = "http://163.14.68.37/android_connect/get_restaurant_details.php";
@@ -54,6 +56,8 @@ public class StorePage extends NavigationbarActivity {
         storenameText = (TextView) findViewById(R.id.storename);
         phoneText = (TextView) findViewById(R.id.phone);
         addressText = (TextView) findViewById(R.id. address);
+        Image = (touchimageview)findViewById(R.id.imageView);
+        Image1 = (touchimageview)findViewById(R.id.imageView3);
 
         ImageButton fb = (ImageButton)findViewById(R.id.fb);
 

@@ -27,7 +27,7 @@
         android:id="@+id/ONE">
 
 
-        <ImageView
+        <com.example.asus.home.touchimageview
             android:layout_width="200dp"
             android:layout_height="200dp"
             app:srcCompat="@drawable/p1"
@@ -37,7 +37,7 @@
             android:layout_centerHorizontal="true"
             android:layout_weight="0.67" />
 
-        <ImageView
+        <com.example.asus.home.touchimageview
             android:layout_width="200dp"
             android:layout_height="173dp"
             app:srcCompat="@drawable/one"
@@ -63,7 +63,7 @@
         android:weightSum="1">
 
         <TextView
-            android:text="新漢城韓式料理店"
+            android:text=""
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/storename"
@@ -73,7 +73,7 @@
             android:layout_alignParentStart="true" />
 
         <TextView
-            android:text="Tel : (02)2381-7396"
+            android:text=""
             android:layout_width="347dp"
             android:layout_height="wrap_content"
             android:textSize = "30sp"
@@ -84,7 +84,7 @@
             android:layout_alignParentStart="true" />
 
         <TextView
-            android:text="Address : 台北市延平南路216巷2號"
+            android:text=""
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize = "30sp"
