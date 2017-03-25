@@ -53,36 +53,4 @@ public class TableEditor extends NavigationbarActivity {
             //MainActivity.super.onActivityResult(requestCode, resultCode, date);
         }
     }
-
-    void generateQrcode(String value) {
-        QRCodeWriter writer = new QRCodeWriter();
-        try {
-            BitMatrix bitMatrix = writer.encode( value , BarcodeFormat.QR_CODE, 512, 512);
-            int width = bitMatrix.getWidth();
-            int height = bitMatrix.getHeight();
-            Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
-            for (int x = 0; x < width; x++) {
-                for (int y = 0; y < height; y++) {
-                    bmp.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
-                }
-            }
-            //((ImageView) findViewById(R.id.image)).setImageBitmap(bmp);
-            //LinearLayOut Setup
-            LinearLayout linearLayout= new LinearLayout(this);
-            linearLayout.setOrientation(LinearLayout.VERTICAL);
-
-            linearLayout.setLayoutParams(new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT,
-                    ActionBar.LayoutParams.MATCH_PARENT));
-            ImageView imageView = new ImageView(this);
-            imageView.setImageBitmap(bmp);
-            imageView.setLayoutParams(new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT,
-                    ActionBar.LayoutParams.WRAP_CONTENT));
-
-            linearLayout.addView(imageView);
-            setContentView(linearLayout);
-
-        } catch (WriterException e) {
-            e.printStackTrace();
-        }
-    }
 }

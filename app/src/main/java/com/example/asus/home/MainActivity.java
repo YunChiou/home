@@ -126,7 +126,6 @@ public class MainActivity extends AppCompatActivity {
                     id = c.getInt("id");
                     user.setID(id);
                     check = "true";
-                    //U boss = new Boss(id, c.getString("account"), c.getString("password"), "", "", "", "");
                     Model.getInstance().setUser(user);
                 }
                 return check;

@@ -26,9 +26,6 @@ import java.util.List;
 
 public class Registration_customer extends ToolbarActivity {
 
-    // Progress Dialog
-
-    EditText account;
     private ProgressDialog cDialog;
     JSONParser jsonParser = new JSONParser();
     EditText inputaccount;
@@ -55,12 +52,11 @@ public class Registration_customer extends ToolbarActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Customer customer = new Customer();
-                customer.setAccount(inputaccount.getText().toString());
-                customer.setName(inputname.getText().toString());
-                customer.setPassword(inputpassword.getText().toString());
-                new Registration_customer.CreateNewCustomer(customer).execute();
+                User user = new User();
+                user.setAccount(inputaccount.getText().toString());
+                user.setName(inputname.getText().toString());
+                user.setPassword(inputpassword.getText().toString());
+                new Registration_customer.CreateNewCustomer(user).execute();
 
                 Intent intent = new Intent();
                 intent.setClass(Registration_customer.this, HomePage.class);
@@ -73,19 +69,16 @@ public class Registration_customer extends ToolbarActivity {
         if (item.getItemId() == android.R.id.home) {
             finish(); // close this activity and return to preview activity (if there is any)
         }
-
         return super.onOptionsItemSelected(item);
     }
 
     class CreateNewCustomer extends AsyncTask<String, String, String> {
 
         int id = -1;
-        Customer customer;
-        /**
-         * Before starting background thread Show Progress Dialog
-         * */
-        CreateNewCustomer (Customer customer) {
-            this.customer = customer;
+        User user;
+
+        CreateNewCustomer (User user) {
+            this.user = user;
         }
 
         @Override
@@ -103,28 +96,24 @@ public class Registration_customer extends ToolbarActivity {
          * */
         protected String doInBackground(String... args) {
 
-            String account = customer.getAccount();
-            String password = customer.getPassword();
-            String name = customer.getName();
+            String account = user.getAccount();
+            String password = user.getPassword();
+            String name = user.getName();
             // Building Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("account", account));
             params.add(new BasicNameValuePair("password", password));
             params.add(new BasicNameValuePair("name", name));
-            // getting JSON Object
-            // Note that create product url accepts POST method
 
             JSONObject json = jsonParser.makeHttpRequest(url_create_customer,
                     "POST", params);
-            // check log cat fro response
 
-            Log.d("Create Response", json.toString());
-            // check for success tag
             try {
                 int success = json.getInt(TAG_SUCCESS);
                 if (success == 1) {
                     id = json.getInt(TAG_ID);
-                    // successfully created product
+                    user.setID(id);
+                    Model.getInstance().setUser(user);
                 } else {
                     // failed to create product
                 }
@@ -140,12 +129,7 @@ public class Registration_customer extends ToolbarActivity {
             // dismiss the dialog once done
             //cDialog.dismiss();
             if (id > 0) {
-                customer.setCustomerID(id);
-                try{
-                    writeData();
-                }
-                catch (Exception e){
-                }
+                user.setID(id);
                 cDialog.setMessage("註冊成功！");
                 cDialog.setIndeterminate(false);
                 cDialog.setCancelable(true);
@@ -156,20 +140,6 @@ public class Registration_customer extends ToolbarActivity {
                 cDialog.setIndeterminate(false);
                 cDialog.setCancelable(true);
                 cDialog.show();
-            }
-        }
-
-        protected void writeData() throws IOException{
-            String fileName = "MyFile";
-            String content = "hello world";
-
-            FileOutputStream outputStream = null;
-            try {
-                outputStream = openFileOutput(fileName, Context.MODE_PRIVATE);
-                outputStream.write(content.getBytes());
-                outputStream.close();
-            } catch (Exception e) {
-                e.printStackTrace();
             }
         }
     }

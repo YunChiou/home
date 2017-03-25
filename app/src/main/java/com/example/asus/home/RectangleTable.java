@@ -48,7 +48,7 @@ public class RectangleTable extends Table {
         QRCodeWriter writer = new QRCodeWriter();
         try {
             if (!condition.equals("")) {
-                BitMatrix bitMatrix = writer.encode(condition, BarcodeFormat.QR_CODE, 512, 512);
+                BitMatrix bitMatrix = writer.encode(condition, BarcodeFormat.QR_CODE, width - 2 * BORDER_WIDTH, height - 2 * BORDER_WIDTH);
                 int width = bitMatrix.getWidth();
                 int height = bitMatrix.getHeight();
                 Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
@@ -59,7 +59,7 @@ public class RectangleTable extends Table {
                 }
 
                 paint.setColor(Color.RED);
-                canvas.drawBitmap(bmp, 0, 0, paint);
+                canvas.drawBitmap(bmp, this.boundingBoxLeft + BORDER_WIDTH, boundingBoxTop + BORDER_WIDTH, paint);
             }
 
         } catch (WriterException e) {
