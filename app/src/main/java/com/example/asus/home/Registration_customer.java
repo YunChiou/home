@@ -56,13 +56,11 @@ public class Registration_customer extends ToolbarActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-<<<<<<< HEAD
-                User user = new User();
+                /*User user = new User();
                 user.setAccount(inputaccount.getText().toString());
                 user.setName(inputname.getText().toString());
                 user.setPassword(inputpassword.getText().toString());
-                new Registration_customer.CreateNewCustomer(user).execute();
-=======
+                new Registration_customer.CreateNewCustomer(user).execute();*/
 
                 Customer customer = new Customer();
                 customer.setAccount(inputaccount.getText().toString());
@@ -72,7 +70,6 @@ public class Registration_customer extends ToolbarActivity {
                 customer.setsale(inputsale.getText().toString());
 
                 new Registration_customer.CreateNewCustomer(customer).execute();
->>>>>>> 6e30231a1ab95f4563e1bb6fd28f7e3dc4541fb1
 
                 Intent intent = new Intent();
                 intent.setClass(Registration_customer.this, HomePage.class);
@@ -91,10 +88,10 @@ public class Registration_customer extends ToolbarActivity {
     class CreateNewCustomer extends AsyncTask<String, String, String> {
 
         int id = -1;
-        User user;
+        Customer customer;
 
-        CreateNewCustomer (User user) {
-            this.user = user;
+        CreateNewCustomer (Customer customer) {
+            this.customer = customer;
         }
 
         @Override
@@ -112,30 +109,21 @@ public class Registration_customer extends ToolbarActivity {
          * */
         protected String doInBackground(String... args) {
 
-<<<<<<< HEAD
-            String account = user.getAccount();
-            String password = user.getPassword();
-            String name = user.getName();
-=======
             String account = customer.getAccount();
             String password = customer.getPassword();
             String name = customer.getName();
             String description = customer.getdes();
             String sale = customer.getsale();
 
->>>>>>> 6e30231a1ab95f4563e1bb6fd28f7e3dc4541fb1
             // Building Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("account", account));
             params.add(new BasicNameValuePair("password", password));
             params.add(new BasicNameValuePair("name", name));
-<<<<<<< HEAD
-=======
             params.add(new BasicNameValuePair("description", description));
             params.add(new BasicNameValuePair("sale", sale));
             // getting JSON Object
             // Note that create product url accepts POST method
->>>>>>> 6e30231a1ab95f4563e1bb6fd28f7e3dc4541fb1
 
             JSONObject json = jsonParser.makeHttpRequest(url_create_customer,
                     "POST", params);
@@ -144,8 +132,8 @@ public class Registration_customer extends ToolbarActivity {
                 int success = json.getInt(TAG_SUCCESS);
                 if (success == 1) {
                     id = json.getInt(TAG_ID);
-                    user.setID(id);
-                    Model.getInstance().setUser(user);
+                    customer.setID(id);
+                    Model.getInstance().setUser(customer);
                 } else {
                     // failed to create product
                 }
@@ -161,7 +149,7 @@ public class Registration_customer extends ToolbarActivity {
             // dismiss the dialog once done
             //cDialog.dismiss();
             if (id > 0) {
-                user.setID(id);
+                customer.setID(id);
                 cDialog.setMessage("註冊成功！");
                 cDialog.setIndeterminate(false);
                 cDialog.setCancelable(true);
