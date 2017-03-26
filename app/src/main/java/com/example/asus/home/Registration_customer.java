@@ -31,8 +31,7 @@ public class Registration_customer extends ToolbarActivity {
     EditText inputaccount;
     EditText inputpassword;
     EditText inputname;
-    EditText inputdes;
-    EditText inputsale;
+
     Button confirm;
     // url to create new product
     private static String url_create_customer = "http://163.14.68.37/android_connect/create_customer.php";
@@ -48,8 +47,7 @@ public class Registration_customer extends ToolbarActivity {
         inputaccount = (EditText) findViewById(R.id.cus_act);
         inputpassword = (EditText) findViewById(R.id.cus_pwd);
         inputname = (EditText) findViewById(R.id.cus_name);
-        inputdes = (EditText) findViewById(R.id.cus_des);
-        inputsale = (EditText) findViewById(R.id.cus_sale);
+
         // Create button
         confirm=(Button)findViewById(R.id.cus_confirm_button);
         // button click event
@@ -66,8 +64,6 @@ public class Registration_customer extends ToolbarActivity {
                 customer.setAccount(inputaccount.getText().toString());
                 customer.setName(inputname.getText().toString());
                 customer.setPassword(inputpassword.getText().toString());
-                customer.setdes(inputdes.getText().toString());
-                customer.setsale(inputsale.getText().toString());
 
                 new Registration_customer.CreateNewCustomer(customer).execute();
 
@@ -112,16 +108,13 @@ public class Registration_customer extends ToolbarActivity {
             String account = customer.getAccount();
             String password = customer.getPassword();
             String name = customer.getName();
-            String description = customer.getdes();
-            String sale = customer.getsale();
 
             // Building Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("account", account));
             params.add(new BasicNameValuePair("password", password));
             params.add(new BasicNameValuePair("name", name));
-            params.add(new BasicNameValuePair("description", description));
-            params.add(new BasicNameValuePair("sale", sale));
+
             // getting JSON Object
             // Note that create product url accepts POST method
 
