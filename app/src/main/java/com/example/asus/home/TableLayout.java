@@ -63,7 +63,7 @@ public class TableLayout extends NavigationbarActivity {
                 circleBack.setBackgroundResource(R.drawable.circle_table_selected);
                 circle.setBackgroundResource(R.drawable.circle_table);
                 rect.setBackgroundResource(R.drawable.rectangle_table);
-                drawingView.setTableType(PaintBoard.TableType.TEXT);
+                drawingView.setTableType(PaintBoard.TableType.DELETE);
             }
         });
     }
