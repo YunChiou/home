@@ -14,6 +14,7 @@ import android.widget.*;
 
 public class HomePage extends NavigationbarActivity {
     Button layoutsettings;
+    TextView type;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +23,6 @@ public class HomePage extends NavigationbarActivity {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.activity_home_page, null, false);
         drawer.addView(contentView, 0);
-
+        ItemsToShow(Model.getInstance().getUser().getType());
     }
 }

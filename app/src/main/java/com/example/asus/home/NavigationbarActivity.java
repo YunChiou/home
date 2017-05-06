@@ -28,6 +28,7 @@ public class NavigationbarActivity extends AppCompatActivity implements Navigati
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
     }
     @Override
     public void onBackPressed() {
@@ -98,13 +99,30 @@ public class NavigationbarActivity extends AppCompatActivity implements Navigati
             intent.setClass(NavigationbarActivity.this, RestaurantData.class);
             startActivity(intent);
         }
+
         else if(id == R.id.logout){
             Intent intent = new Intent();
             intent.setClass(NavigationbarActivity.this, MainActivity.class);
             startActivity(intent);
         }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    public void ItemsToShow (String type) {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        Menu nav_Menu = navigationView.getMenu();
+        if(type == "c"){
+            nav_Menu.findItem(R.id.seventh).setVisible(false);
+            nav_Menu.findItem(R.id.third).setVisible(false);
+            nav_Menu.findItem(R.id.tableScanner).setVisible(false);
+            nav_Menu.findItem(R.id.sixth).setVisible(false);
+        }
+        else if(type == "b"){
+            nav_Menu.findItem(R.id.second).setVisible(false);
+            nav_Menu.findItem(R.id.fourth).setVisible(false);
+            nav_Menu.findItem(R.id.fifth).setVisible(false);
+        }
     }
 }
