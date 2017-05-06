@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class PaintBoard extends View {
 
     public enum TableType {
-        ROUND, RECTANGE, TEXT, NONE
+        ROUND, RECTANGE, DELETE, NONE
     }
 
     public enum PressPoint {
@@ -65,10 +65,6 @@ public class PaintBoard extends View {
         new CreateNewTable(table).execute();
     }
 
-    public void addTextOnTable(int left, int top) {
-        allTables.add(new TextOnTable(left, top));
-    }
-
     int selectedIndex = -1;
     int xOffSet = 0;
     int yOffSet = 0;
@@ -78,7 +74,6 @@ public class PaintBoard extends View {
     int originalHeight;
     int actionDownLeft = 0;
     public boolean onTouchEvent(MotionEvent ev) {
-        int index = ev.getActionIndex();
         int action = ev.getActionMasked();
         int left = (int) ev.getX();
         int top = (int) ev.getY();
@@ -92,15 +87,12 @@ public class PaintBoard extends View {
                     invalidate();
                     return true;
                 }
-                if (tableType == TableType.RECTANGE) {
+                if (tableType == TableType.RECTANGE)
                     addRectangleTable(left, top);
-                }
-                else if (tableType == TableType.ROUND) {
+                else if (tableType == TableType.ROUND)
                     addRoundTable(left, top);
-                }
-                else if (tableType == TableType.TEXT) {
-                    addTextOnTable(left, top);
-                }
+                else if (tableType == TableType.DELETE)
+                    deleteTable(left, top);
                 tableLayout.clearAllSelections();
                 invalidate();
                 tableType = TableType.NONE;
@@ -115,9 +107,9 @@ public class PaintBoard extends View {
                     invalidate();
                 }
                 else if (pressPoint == PressPoint.SHAPE) {
-                   allTables.get(selectedIndex).setTable(left - xOffSet, top - yOffSet);
+                    allTables.get(selectedIndex).setTable(left - xOffSet, top - yOffSet);
                     new UpdateTable(allTables.get(selectedIndex)).execute();
-                   invalidate();
+                    invalidate();
                 }
                 break;
             case MotionEvent.ACTION_UP:
@@ -155,6 +147,18 @@ public class PaintBoard extends View {
             }
         });
         invalidate();
+    }
+
+    public void deleteTable(int left, int top) {
+        for (int i = allTables.size() - 1; i >= 0; i--) {
+            if (allTables.get(i).isInside(left, top)) {
+                allTables.get(i).setIsSelected(true);
+                selectedIndex = i;
+                allTables.remove(selectedIndex);
+                new DeleteTable(allTables.get(selectedIndex), this).execute();
+                break;
+            }
+        }
     }
 
     public void actionDownWithNone(int left, int top) {
