@@ -154,8 +154,8 @@ public class PaintBoard extends View {
             if (allTables.get(i).isInside(left, top)) {
                 allTables.get(i).setIsSelected(true);
                 selectedIndex = i;
-                allTables.remove(selectedIndex);
                 new DeleteTable(allTables.get(selectedIndex), this).execute();
+                allTables.remove(selectedIndex);
                 break;
             }
         }
