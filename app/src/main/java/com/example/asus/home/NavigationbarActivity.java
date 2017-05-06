@@ -66,7 +66,6 @@ public class NavigationbarActivity extends AppCompatActivity implements Navigati
             Intent intent = new Intent();
             intent.setClass(NavigationbarActivity.this, CustomerData.class);
             startActivity(intent);
-
         }
 
         else if(id == R.id.third){
@@ -97,6 +96,11 @@ public class NavigationbarActivity extends AppCompatActivity implements Navigati
         else if(id == R.id.seventh){
             Intent intent = new Intent();
             intent.setClass(NavigationbarActivity.this, RestaurantData.class);
+            startActivity(intent);
+        }
+        else if(id == R.id.eighth){
+            Intent intent = new Intent();
+            intent.setClass(NavigationbarActivity.this, SelectOffer.class);
             startActivity(intent);
         }
 
