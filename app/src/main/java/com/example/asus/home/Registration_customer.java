@@ -105,28 +105,29 @@ public class Registration_customer extends ToolbarActivity {
          * */
         protected String doInBackground(String... args) {
 
+            String name = customer.getName();
             String account = customer.getAccount();
             String password = customer.getPassword();
-            String name = customer.getName();
-
-            // Building Parameters
+            // Building Boss Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("account", account));
             params.add(new BasicNameValuePair("password", password));
             params.add(new BasicNameValuePair("name", name));
-
+            params.add(new BasicNameValuePair("userType", "c"));
             // getting JSON Object
             // Note that create product url accepts POST method
-
             JSONObject json = jsonParser.makeHttpRequest(url_create_customer,
                     "POST", params);
-
+            // check log cat fro response
+            Log.d("Create Response", json.toString());
+            // check for success tag
             try {
                 int success = json.getInt(TAG_SUCCESS);
+
                 if (success == 1) {
                     id = json.getInt(TAG_ID);
-                    customer.setID(id);
-                    Model.getInstance().setUser(customer);
+                    // successfully created product
+
                 } else {
                     // failed to create product
                 }

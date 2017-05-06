@@ -94,6 +94,7 @@ public class Registration_boss extends ToolbarActivity {
             params.add(new BasicNameValuePair("account", account));
             params.add(new BasicNameValuePair("password", password));
             params.add(new BasicNameValuePair("name", name));
+            params.add(new BasicNameValuePair("userType", "b"));
             // getting JSON Object
             // Note that create product url accepts POST method
             JSONObject json = jsonParser.makeHttpRequest(url_create_boss,
