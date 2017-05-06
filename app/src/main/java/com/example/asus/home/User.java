@@ -6,15 +6,17 @@ public class User {
     public String account;
     public String password;
     public String name;
+    public String type;
 
     public User() {
 
     }
 
-    public User(String account, String password, String name) {
+    public User(String account, String password, String name, String type) {
         this.account = account;
         this.password = password;
         this.name = name;
+        this.type = type;
     }
 
     public int getID() {
@@ -33,6 +35,8 @@ public class User {
         return name;
     }
 
+    public String getType() { return type;}
+
     public void setID(int id) {
         this.id = id;
     }
@@ -47,5 +51,9 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
