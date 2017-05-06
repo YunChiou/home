@@ -27,7 +27,7 @@
         android:id="@+id/ONE">
 
 
-        <com.example.asus.home.touchimageview
+        <ImageView
             android:layout_width="200dp"
             android:layout_height="200dp"
             app:srcCompat="@drawable/p1"
@@ -35,14 +35,16 @@
             android:gravity="center_horizontal"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_weight="0.67" />
+            android:layout_weight="0.67"
+            android:scaleType="matrix"/>
 
-        <com.example.asus.home.touchimageview
+        <ImageView
             android:layout_width="200dp"
             android:layout_height="173dp"
             app:srcCompat="@drawable/one"
             android:gravity="center_horizontal"
-            android:id="@+id/imageView3" />
+            android:id="@+id/imageView3"
+            android:scaleType="matrix"/>
 
 
 
