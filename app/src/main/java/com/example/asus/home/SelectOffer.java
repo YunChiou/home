@@ -11,7 +11,7 @@ public class SelectOffer extends NavigationbarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_select_offer);
+        //setContentView(R.layout.activity_select_offer);
 
         LayoutInflater inflater = (LayoutInflater) this
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);

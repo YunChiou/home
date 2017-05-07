@@ -20,11 +20,10 @@ public class QRcode_Scanner_Boss extends NavigationbarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_qrcode__scanner__boss);
 
         LayoutInflater inflater = (LayoutInflater) this
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View contentView = inflater.inflate(R.layout.activity_store_page, null, false);
+        View contentView = inflater.inflate(R.layout.activity_qrcode__scanner__boss, null, false);
         drawer.addView(contentView, 0);
 
         scan = (Button)findViewById(R.id.button_scan);

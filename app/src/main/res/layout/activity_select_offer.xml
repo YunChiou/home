@@ -10,12 +10,31 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.asus.home.SelectOffer">
 
+    <TextView
+        android:text="請選擇一種優惠"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize = "30sp"
+        android:layout_marginTop="40dp"
+        android:id="@+id/textView3"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="41dp"
+        android:layout_marginStart="41dp" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp">
+
     <RadioButton
         android:text="贈送小菜"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginStart="12dp"
         android:layout_marginTop="77dp"
         android:id="@+id/radioButton"
         android:layout_alignParentTop="true"
@@ -42,21 +61,6 @@
         android:layout_alignLeft="@+id/radioButton"
         android:layout_alignStart="@+id/radioButton" />
 
-    <TextView
-        android:text="請選擇一種優惠"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize = "30sp"
-        android:layout_marginTop="13dp"
-        android:id="@+id/textView3"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/radioButton"
-        android:layout_alignStart="@+id/radioButton"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="41dp"
-        android:layout_marginStart="41dp" />
-
     <RadioButton
         android:text="贈送飲料"
         android:layout_width="wrap_content"
@@ -67,14 +71,16 @@
         android:layout_alignLeft="@+id/radioButton3"
         android:layout_alignStart="@+id/radioButton3" />
 
+    </RadioGroup>
+
     <Button
         android:text="送出"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/radioButton4"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="76dp"
-        android:id="@+id/button" />
+        android:layout_marginTop="80dp"
+        android:id="@+id/button"
+        android:layout_below="@+id/radioGroup1"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
