@@ -127,11 +127,10 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject c = boss_array.getJSONObject(0);
                     id = c.getInt("id");
                     user.setID(id);
-                   // type = c.getString("userType");
-                    //user.setType(type);
+                    type = c.getString("userType");
+                    user.setType(type);
                     check = "true";
                     Model.getInstance().setUser(user);
-
                 }
                 return check;
             } catch (JSONException e) {
@@ -155,6 +154,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
 
 }
