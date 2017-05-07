@@ -3,27 +3,20 @@ package com.example.asus.home;
 public class Customer extends User {
 
     private int customerID;
-    private String des;
-    private String sale;
+    private String condition;
 
     public Customer() {
-
     }
 
-    public Customer(int customerID, String account, String password, String name,String des,String sale) {
+    public Customer(int customerID, String account, String password, String name, String condition) {
         super.account = account;
         super.password = password;
         super.name = name;
         this.customerID = customerID;
-        this.des = des;
-        this.sale = sale;
+        this.condition = condition;
     }
 
-    public String getdes() {return des;}
-    public String getsale() {return sale;}
-    public int getCustomerID() {return customerID;}
+    public String getCondition() {return condition;}
 
-    public void setdes(String des) {this.des =des;}
-    public void setsale(String sale) {this.sale= sale;}
-    public void setCustomerID(int customerID) {this.customerID = customerID;}
+    public void setCondition(String condition) {this.condition = condition;}
 }

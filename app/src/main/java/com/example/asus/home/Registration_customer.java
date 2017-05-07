@@ -54,12 +54,6 @@ public class Registration_customer extends ToolbarActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*User user = new User();
-                user.setAccount(inputaccount.getText().toString());
-                user.setName(inputname.getText().toString());
-                user.setPassword(inputpassword.getText().toString());
-                new Registration_customer.CreateNewCustomer(user).execute();*/
-
                 Customer customer = new Customer();
                 customer.setAccount(inputaccount.getText().toString());
                 customer.setName(inputname.getText().toString());
@@ -74,7 +68,6 @@ public class Registration_customer extends ToolbarActivity {
         });
     }
     public boolean onOptionsItemSelected(MenuItem item) {
-        // handle arrow click here
         if (item.getItemId() == android.R.id.home) {
             finish(); // close this activity and return to preview activity (if there is any)
         }
@@ -93,18 +86,14 @@ public class Registration_customer extends ToolbarActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            cDialog = new ProgressDialog(Registration_customer.this);
+            /*cDialog = new ProgressDialog(Registration_customer.this);
             cDialog.setMessage("Creating Account..");
             cDialog.setIndeterminate(false);
             cDialog.setCancelable(true);
-            cDialog.show();
+            cDialog.show();*/
         }
 
-        /**
-         * Creating product
-         * */
         protected String doInBackground(String... args) {
-
             String name = customer.getName();
             String account = customer.getAccount();
             String password = customer.getPassword();
@@ -114,35 +103,24 @@ public class Registration_customer extends ToolbarActivity {
             params.add(new BasicNameValuePair("password", password));
             params.add(new BasicNameValuePair("name", name));
             params.add(new BasicNameValuePair("userType", "c"));
-            // getting JSON Object
-            // Note that create product url accepts POST method
-            JSONObject json = jsonParser.makeHttpRequest(url_create_customer,
-                    "POST", params);
-            // check log cat fro response
+            JSONObject json = jsonParser.makeHttpRequest(url_create_customer, "POST", params);
             Log.d("Create Response", json.toString());
             // check for success tag
             try {
                 int success = json.getInt(TAG_SUCCESS);
-
                 if (success == 1) {
                     id = json.getInt(TAG_ID);
-                    // successfully created product
-
-                } else {
-                    // failed to create product
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
             return null;
         }
-        /**
-         * After completing background task Dismiss the progress dialog
-         * **/
+
         protected void onPostExecute(String file_url) {
             // dismiss the dialog once done
             //cDialog.dismiss();
-            if (id > 0) {
+            if (id >= 0) {
                 customer.setID(id);
                 cDialog.setMessage("註冊成功！");
                 cDialog.setIndeterminate(false);
