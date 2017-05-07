@@ -24,5 +24,6 @@ public class HomePage extends NavigationbarActivity {
         View contentView = inflater.inflate(R.layout.activity_home_page, null, false);
         drawer.addView(contentView, 0);
         ItemsToShow(Model.getInstance().getUser().getType());
+        //ItemsToShow("b");
     }
 }
