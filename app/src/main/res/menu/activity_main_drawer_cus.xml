@@ -38,7 +38,10 @@
             android:id="@+id/eighth"
             android:icon="@drawable/ic_menu_manage"
             android:title="優惠選擇" />
-
+        <item
+            android:id="@+id/ninth"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="選擇餐廳" />
         <item
             android:id="@+id/logout"
             android:icon="@drawable/ic_menu_manage"
