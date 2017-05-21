@@ -1,6 +1,7 @@
 package com.example.asus.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -51,7 +52,10 @@ public class PaintBoardToSendMessage extends View {
                 for (int i = allTables.size() - 1; i >= 0; i--) {
                     if (allTables.get(i).isInside(left, top)) {
                         selectedIndex = i;
-
+                        Intent intent = new Intent();
+                        intent.setClass(tableMessaging, ActivitySendPushNotification.class);
+                        intent.putExtra("tableId", allTables.get(i).getCondition());
+                        tableMessaging.startActivity(intent);
                         break;
                     }
                 }

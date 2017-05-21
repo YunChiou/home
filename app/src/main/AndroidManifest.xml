@@ -103,10 +103,12 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
         <activity
             android:name=".TableMessaging"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ActivitySendPushNotification"></activity>
     </application>
 
 </manifest>
