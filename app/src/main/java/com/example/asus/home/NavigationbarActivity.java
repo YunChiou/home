@@ -103,6 +103,11 @@ public class NavigationbarActivity extends AppCompatActivity implements Navigati
             intent.setClass(NavigationbarActivity.this, SelectOffer.class);
             startActivity(intent);
         }
+        else if(id == R.id.ninth){
+            Intent intent = new Intent();
+            intent.setClass(NavigationbarActivity.this, All_Restaurants.class);
+            startActivity(intent);
+        }
 
         else if(id == R.id.logout){
             Intent intent = new Intent();
