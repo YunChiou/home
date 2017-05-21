@@ -23,6 +23,10 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="店家佈局" />
         <item
+            android:id="@+id/viewTables"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="檢視目前客人" />
+        <item
             android:id="@+id/fourth"
             android:icon="@drawable/ic_menu_manage"
             android:title="忻妤 顧客產生qr code" />

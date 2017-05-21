@@ -7,25 +7,28 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import com.google.zxing.integration.android.IntentIntegrator;
 import java.util.ArrayList;
 
-public class PaintBoardToScan extends View {
+/**
+ * Created by User on 2017/5/22.
+ */
+
+public class PaintBoardToSendMessage extends View {
 
     private Paint paint;
     ArrayList<Table> allTables = new ArrayList<Table>();
-    TableEditor tableEditor;
+    TableMessaging tableMessaging;
 
-    public PaintBoardToScan(TableEditor tableEditor) {
-        super(tableEditor);
+    public PaintBoardToSendMessage(TableMessaging tableMessaging) {
+        super(tableMessaging);
         new GetAllTables(allTables, this).execute();
-        this.tableEditor = tableEditor;
+        this.tableMessaging = tableMessaging;
         paint = new Paint();
-        int tableColor = tableEditor.getResources().getColor(R.color.yello);
+        int tableColor = tableMessaging.getResources().getColor(R.color.yello);
         paint.setColor(tableColor);
     }
 
-    public PaintBoardToScan(Context context, AttributeSet attrs) {
+    public PaintBoardToSendMessage(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -34,6 +37,7 @@ public class PaintBoardToScan extends View {
         canvas.drawColor(Color.argb(10, 10, 10, 10));
         for (int i = 0; i < allTables.size(); i++) {
             allTables.get(i).draw(canvas, paint);
+            allTables.get(i).setCondition(allTables.get(i).getCondition());
         }
     }
 
@@ -47,13 +51,7 @@ public class PaintBoardToScan extends View {
                 for (int i = allTables.size() - 1; i >= 0; i--) {
                     if (allTables.get(i).isInside(left, top)) {
                         selectedIndex = i;
-                        IntentIntegrator integrator = new IntentIntegrator(tableEditor);
-                        integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
-                        integrator.setPrompt("Scan");
-                        integrator.setCameraId(0);
-                        integrator.setBeepEnabled(false);
-                        integrator.setBarcodeImageEnabled(false);
-                        integrator.initiateScan();
+
                         break;
                     }
                 }
@@ -67,12 +65,6 @@ public class PaintBoardToScan extends View {
             case MotionEvent.ACTION_CANCEL:
         }
         return true;
-    }
-
-    public void setCondition(String condition) {
-        allTables.get(selectedIndex).setCondition(condition);
-        new UpdateCurrentCustomer(allTables.get(selectedIndex), condition).execute();
-        invalidate();
     }
 
 }

@@ -67,6 +67,10 @@ public abstract class Table {
         return tableType;
     }
 
+    public String getCondition() {
+        return condition;
+    }
+
     public void draw(Canvas canvas, Paint paint) {
         if (isSelected) {
             //邊框

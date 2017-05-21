@@ -13,6 +13,7 @@ public class GetAllTables extends AsyncTask<String, String, String> {
     ArrayList allTables;
     PaintBoard paintBoard;
     PaintBoardToScan paintBoardToScan;
+    PaintBoardToSendMessage paintBoardToSendMessage;
 
     GetAllTables(ArrayList<Table> allTables, PaintBoard paintBoard) {
         this.allTables = allTables;
@@ -22,6 +23,11 @@ public class GetAllTables extends AsyncTask<String, String, String> {
     GetAllTables(ArrayList<Table> allTables, PaintBoardToScan paintBoardToScan) {
         this.allTables = allTables;
         this.paintBoardToScan = paintBoardToScan;
+    };
+
+    GetAllTables(ArrayList<Table> allTables, PaintBoardToSendMessage paintBoardToSendMessage) {
+        this.allTables = allTables;
+        this.paintBoardToSendMessage = paintBoardToSendMessage;
     };
 
     JSONParser jsonParser = new JSONParser();
@@ -36,6 +42,7 @@ public class GetAllTables extends AsyncTask<String, String, String> {
     private static final String TAG_WIDTH = "width";
     private static final String TAG_HEIGHT = "height";
     private static final String TAG_TEXT = "text";
+    private static final String TAG_CID = "cid";
     JSONObject json;
     JSONArray tables = null;
 
@@ -69,9 +76,10 @@ public class GetAllTables extends AsyncTask<String, String, String> {
                 int int_width = c.getInt(TAG_WIDTH);
                 int int_height = c.getInt(TAG_HEIGHT);
                 String String_text = c.getString(TAG_TEXT);
+                String cid = c.getString(TAG_CID);
 
                 if (tableType.equals("R"))
-                    allTables.add(new RectangleTable(id, tableType, int_leftIndex, int_topIndex, int_width, int_height, String_text));
+                    allTables.add(new RectangleTable(id, tableType, int_leftIndex, int_topIndex, int_width, int_height, String_text, cid));
                 else if (tableType.equals("O"))
                     allTables.add(new OvalTable(id, tableType, int_leftIndex, int_topIndex, int_width, int_height, String_text));
             }
@@ -79,6 +87,8 @@ public class GetAllTables extends AsyncTask<String, String, String> {
                 paintBoard.invalidate();
             if (paintBoardToScan != null)
                 paintBoardToScan.invalidate();
+            if (paintBoardToSendMessage != null)
+                paintBoardToSendMessage.invalidate();
         } catch (Exception e) {
         }
 
