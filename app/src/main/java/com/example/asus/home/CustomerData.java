@@ -59,6 +59,7 @@ public class CustomerData extends NavigationbarActivity  {
 
         // Loading products in Background Thread
         new LoadAllProducts().execute();
+        ItemsToShow(Model.getInstance().getUser().getType());
     }
 
     String id ;

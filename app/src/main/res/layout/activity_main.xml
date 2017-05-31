@@ -3,66 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/edittext_account"
-        android:hint="帳號"
-
-        android:paddingLeft="10dp"
-        android:layout_marginTop="68dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="18sp"
-        android:background="@color/colorPrimary"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
-        android:textColorHint="@android:color/background_light"
-        />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/edittext_password"
-        android:hint="密碼"
-        android:paddingLeft="10dp"
-        android:layout_marginTop="35dp"
-        android:layout_below="@+id/edittext_account"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:background="@color/colorPrimary"
-        android:textColorHint="@android:color/background_light"
-        />
-
-    <Button
-        android:text="登入"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button_login"
-        android:background="@color/colorPrimary"
-        android:textColor="@android:color/background_light"
-        android:textSize="18sp"
-        android:layout_alignBaseline="@+id/button_register"
-        android:layout_alignBottom="@+id/button_register"
-        android:layout_alignRight="@+id/edittext_password"
-        android:layout_alignEnd="@+id/edittext_password" />
-
-    <Button
-        android:text="註冊"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button_register"
-        android:background="@android:color/darker_gray"
-        android:textColor="@android:color/background_light"
-        android:textSize="18sp"
-        android:layout_marginTop="72dp"
-        android:layout_below="@+id/edittext_password"
-        android:layout_centerHorizontal="true" />
+    android:layout_height="match_parent"
+   android:background="@color/colorPrimary"
+    >
 
     <TextView
         android:layout_width="wrap_content"
@@ -72,6 +15,82 @@
         android:layout_below="@+id/edittext_password"
         android:layout_alignLeft="@+id/edittext_password"
         android:layout_alignStart="@+id/edittext_password"
-        android:layout_marginTop="14dp" />
+        android:layout_marginTop="14dp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/edittext_account"
+        android:hint="帳號"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="69dp"
+        android:textSize="18sp"
+        android:background="@drawable/home_edittext"
+        android:textColorHint="#444444"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/edittext_password"
+        android:layout_alignStart="@+id/edittext_password"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/user"
+        android:layout_marginEnd="20dp"
+        android:textCursorDrawable="@drawable/cursor_color"
+        android:cursorVisible="true"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/edittext_password"
+        android:hint="密碼"
+        android:paddingLeft="10dp"
+        android:background="@drawable/home_edittext"
+        android:textColorHint="#444444"
+        android:layout_below="@+id/edittext_account"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/padlock"
+        android:textCursorDrawable="@drawable/cursor_color"
+        android:cursorVisible="true"
+        />
+
+    <Button
+        android:text="登入"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_login"
+        android:background="@drawable/home_login_button"
+        android:textColor="#000000"
+        android:textSize="18sp"
+
+        android:layout_below="@+id/login_hint"
+        android:layout_toRightOf="@+id/login_hint"
+        android:layout_alignRight="@+id/edittext_password"
+        android:layout_alignEnd="@+id/edittext_password"
+        />
+
+    <TextView
+        android:text="註冊"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_login"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:id="@+id/textView_register"
+        android:textSize="18sp"
+        android:textColor="@drawable/registration_textview" />
+
+    <TextView
+        android:text="或"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_login"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView5"
+        android:textSize="18sp"
+        android:layout_marginTop="20dp" />
 
 </RelativeLayout>

@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -24,7 +26,7 @@ public class Registration_restaurant extends ToolbarActivity {
     private ProgressDialog cDialog;
     JSONParser jsonParser = new JSONParser();
     EditText inputname;
-    EditText inputadd;
+    AutoCompleteTextView inputadd;
     EditText inputphone;
     Button confirm;
     private static String url_create_restaurant = "http://163.14.68.37/android_connect/create_restaurant.php";
@@ -38,7 +40,7 @@ public class Registration_restaurant extends ToolbarActivity {
         setContentView(R.layout.activity_registration_restaurant);
 
         inputname = (EditText) findViewById(R.id.shop_name);
-        inputadd = (EditText) findViewById(R.id.shop_add);
+        inputadd = (AutoCompleteTextView) findViewById(R.id.shopadd);
         inputphone = (EditText) findViewById(R.id.shop_phone);
         confirm=(Button)findViewById(R.id.restaurant_confirm_button);
         confirm.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +58,11 @@ public class Registration_restaurant extends ToolbarActivity {
                 startActivity(intent);
             }
         });
+        //AutoCompleteTextview
+        String[] city = new String[]{"基隆市", "台北市", "桃園市", "新竹市", "花蓮縣", "台東縣", "宜蘭縣", "屏東縣", "高雄市", "台南市", "嘉義市", "雲林縣", "南投縣", "台中市", "彰化縣", "苗栗縣"};
+        //設定自動填入的文字內容
+        ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_dropdown_item_1line,city);
+        inputadd.setAdapter(adapter);
     }
     public boolean onOptionsItemSelected(MenuItem item) {
         // handle arrow click here

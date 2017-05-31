@@ -128,16 +128,18 @@ public class NavigationbarActivity extends AppCompatActivity implements Navigati
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         Menu nav_Menu = navigationView.getMenu();
         if(type.equals("c")){
-            nav_Menu.findItem(R.id.first).setVisible(false);
             nav_Menu.findItem(R.id.seventh).setVisible(false);
             nav_Menu.findItem(R.id.third).setVisible(false);
             nav_Menu.findItem(R.id.tableScanner).setVisible(false);
             nav_Menu.findItem(R.id.sixth).setVisible(false);
         }
         else if(type.equals("b")){
-            nav_Menu.findItem(R.id.second).setVisible(false);
+            nav_Menu.findItem(R.id.first).setVisible(false);
             nav_Menu.findItem(R.id.fourth).setVisible(false);
             nav_Menu.findItem(R.id.fifth).setVisible(false);
+            nav_Menu.findItem(R.id.eighth).setVisible(false);
+            nav_Menu.findItem(R.id.ninth).setVisible(false);
+
         }
     }
 }

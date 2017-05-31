@@ -41,9 +41,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     EditText edittext_account;
     EditText edittext_password;
-    Button register;
     Button login;
     TextView login_hint;
+    TextView register;
     private ProgressDialog pDialog;
     JSONParser jParser_get = new JSONParser();
     JSONParser jParser_post = new JSONParser();
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         edittext_account = (EditText)findViewById(R.id.edittext_account);
         edittext_password = (EditText)findViewById(R.id.edittext_password);
         login_hint = (TextView)findViewById(R.id.login_hint);
-        register = (Button)findViewById(R.id.button_register);
+        register = (TextView)findViewById(R.id.textView_register);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
