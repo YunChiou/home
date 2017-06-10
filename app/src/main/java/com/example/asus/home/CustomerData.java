@@ -41,8 +41,6 @@ public class CustomerData extends NavigationbarActivity  {
      TextView accountText;
      TextView passwordText;
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,22 +59,16 @@ public class CustomerData extends NavigationbarActivity  {
 
         // Loading products in Background Thread
         new LoadAllProducts().execute();
-        //QRCode
-        qrcode(getQRcodeValue());
+        ItemsToShow(Model.getInstance().getUser().getType());
     }
-    //宣告
+
     String id ;
     String name ;
     String account ;
 
-    /**
-     * Background Async Task to Load all product by making HTTP Request
-     * */
     class LoadAllProducts extends AsyncTask<String, String, String> {
 
-        /**
-         * Before starting background thread Show Progress Dialog
-         * */
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -87,9 +79,6 @@ public class CustomerData extends NavigationbarActivity  {
             pDialog.show();
         }
 
-        /**
-         * getting All products from url
-         * */
         protected String doInBackground(String... args) {
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -104,11 +93,6 @@ public class CustomerData extends NavigationbarActivity  {
             return null;
         }
 
-        /**
-         * After completing background task Dismiss the progress dialog
-         * **/
-
-
         @Override
         protected void onPostExecute(String s)
         {
@@ -121,6 +105,7 @@ public class CustomerData extends NavigationbarActivity  {
                 nameText.setText("姓名"+value.getString("name"));
                 accountText.setText("帳號"+value.getString("account"));
                 passwordText.setText("密碼"+value.getString("password"));
+                qrcode(getQRcodeValue(value.getString("id")));
             }catch(Exception e) {
 
             }
@@ -128,18 +113,19 @@ public class CustomerData extends NavigationbarActivity  {
     }
 
     //創造QRCode創造QRCode
-    protected String getQRcodeValue() {
+    protected String getQRcodeValue(String id) {
         StringBuffer buffer = new StringBuffer();
-        buffer.append(id + "，");
-        buffer.append( name +"，");
-        buffer.append(account);
+
+        buffer.append(id);
+        //buffer.append( name +"，");
+        //buffer.append(account);
         return buffer.toString();
     }
 
     void qrcode(String value) {
         QRCodeWriter writer = new QRCodeWriter();
         try {
-            BitMatrix bitMatrix = writer.encode( value , BarcodeFormat.QR_CODE, 512, 512);
+            BitMatrix bitMatrix = writer.encode(value , BarcodeFormat.QR_CODE, 512, 512);
             int width = bitMatrix.getWidth();
             int height = bitMatrix.getHeight();
             Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);

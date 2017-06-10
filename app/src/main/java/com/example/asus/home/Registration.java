@@ -33,6 +33,12 @@ public class Registration extends ToolbarActivity {
                 startActivity(intent);
             }
         });
+        //把toolbar icon改成叉叉
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationIcon(R.drawable.cross);
+
 }
     public boolean onOptionsItemSelected(MenuItem item) {
         // handle arrow click here

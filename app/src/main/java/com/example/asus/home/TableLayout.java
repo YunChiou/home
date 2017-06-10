@@ -1,15 +1,22 @@
 package com.example.asus.home;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 public class TableLayout extends NavigationbarActivity {
 
@@ -17,6 +24,7 @@ public class TableLayout extends NavigationbarActivity {
     LinearLayout rect;
     LinearLayout circle;
     LinearLayout circleBack;
+    LinearLayout background;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,14 +36,16 @@ public class TableLayout extends NavigationbarActivity {
         View contentView = inflater.inflate(R.layout.activity_table_layout, null, false);
         drawer.addView(contentView, 0);
 
-        LinearLayout layout=(LinearLayout) findViewById(R.id.drawing_area);
+        LinearLayout layout = (LinearLayout) findViewById(R.id.drawing_area);
         drawingView = new PaintBoard(this);
         drawingView.invalidate();
         layout.addView(drawingView);
         rect = (LinearLayout) findViewById(R.id.rect);
         circle = (LinearLayout) findViewById(R.id.circle);
         circleBack = (LinearLayout) findViewById(R.id.circleBack);
+        background = (LinearLayout) findViewById(R.id.background);
         chooseTable();
+        setBackground();
     }
 
     private void chooseTable() {
@@ -66,6 +76,41 @@ public class TableLayout extends NavigationbarActivity {
                 drawingView.setTableType(PaintBoard.TableType.DELETE);
             }
         });
+    }
+
+    private static final int SELECT_PICTURE = 1;
+    public void setBackground() {
+        background.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View v){
+                Intent pickIntent = new Intent();
+                pickIntent.setType("image/*");
+                pickIntent.setAction(Intent.ACTION_GET_CONTENT);
+                Intent takePhotoIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                String pickTitle = "Select or take a new Picture";
+                Intent chooserIntent = Intent.createChooser(pickIntent, pickTitle);
+                chooserIntent.putExtra (
+                        Intent.EXTRA_INITIAL_INTENTS,
+                        new Intent[] { takePhotoIntent}
+                );
+                startActivityForResult(chooserIntent, SELECT_PICTURE);
+            }
+        });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == SELECT_PICTURE && resultCode == Activity.RESULT_OK) {
+            if (data == null)
+                return;
+            try {
+                InputStream inputStream = getContentResolver().openInputStream(data.getData());
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                drawingView.setBackground(bitmap);
+            } catch (FileNotFoundException e) {
+            }
+        }
     }
 
     public void clearAllSelections() {

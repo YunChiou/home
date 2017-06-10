@@ -71,6 +71,7 @@ public class PaintBoardToScan extends View {
 
     public void setCondition(String condition) {
         allTables.get(selectedIndex).setCondition(condition);
+        new UpdateCurrentCustomer(allTables.get(selectedIndex), condition).execute();
         invalidate();
     }
 

@@ -20,7 +20,7 @@ public class RectangleTable extends Table {
         this.boundingBoxTop = top;
     }
 
-    public RectangleTable(int id, String tableType, int boundingBoxLeft, int boundingBoxTop, int width, int height, String text) {
+    public RectangleTable(int id, String tableType, int boundingBoxLeft, int boundingBoxTop, int width, int height, String text, String condition) {
         this.id = id;
         this.tableType = tableType;
         this.boundingBoxLeft = boundingBoxLeft;
@@ -28,6 +28,7 @@ public class RectangleTable extends Table {
         this.width = width;
         this.height = height;
         this.tableNumber = text;
+        this.condition = condition;
     }
 
     @Override

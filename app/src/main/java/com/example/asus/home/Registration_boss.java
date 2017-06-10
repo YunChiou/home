@@ -2,6 +2,7 @@ package com.example.asus.home;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -55,6 +56,8 @@ public class Registration_boss extends ToolbarActivity {
                 startActivity(intent);
             }
         });
+        Typeface type = Typeface.createFromAsset(getAssets(),"fonts/Quicksand-Regular.otf");
+        confirm.setTypeface(type);
     }
     public boolean onOptionsItemSelected(MenuItem item) {
         // handle arrow click here

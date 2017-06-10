@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
@@ -40,18 +41,16 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     EditText edittext_account;
     EditText edittext_password;
-    Button register;
     Button login;
     TextView login_hint;
+    TextView register;
     private ProgressDialog pDialog;
     JSONParser jParser_get = new JSONParser();
     JSONParser jParser_post = new JSONParser();
     private static String url_all = "http://163.14.68.37/android_connect/get_all.php";
     private static final String TAG_SUCCESS = "success";
-    private static final String TAG_BOSS = "boss";
-    private static final String TAG_PASSWORD = "password";
-    private static final String TAG_ACCOUNT = "account";
     JSONArray boss_array = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         edittext_account = (EditText)findViewById(R.id.edittext_account);
         edittext_password = (EditText)findViewById(R.id.edittext_password);
         login_hint = (TextView)findViewById(R.id.login_hint);
-        register = (Button)findViewById(R.id.button_register);
+        register = (TextView)findViewById(R.id.textView_register);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,10 +75,22 @@ public class MainActivity extends AppCompatActivity {
                 user.setAccount(edittext_account.getText().toString().trim());
                 user.setPassword(edittext_password.getText().toString().trim());
                 new Login(user).execute();
+                sendTokenToServer();
             }
         });
 
     }
+
+    //storing token to mysql server
+    private void sendTokenToServer() {
+        final String token = SharedPrefManager.getInstance(this).getDeviceToken();
+        if (token == null) {
+            Toast.makeText(this, "Token not generated", Toast.LENGTH_LONG).show();
+            return;
+        }
+        new UpdateDeviceToken(token).execute();
+    }
+
     class Login extends AsyncTask<String, String, String> {
         int id = -1;
         String type;

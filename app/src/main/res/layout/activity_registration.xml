@@ -6,28 +6,45 @@
     android:layout_height="match_parent">
 
     <Button
-        android:text="我是顧客"
-        android:layout_width="match_parent"
+        android:text="店家"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button_customer"
-        android:background="@color/colorPrimary"
-        android:textColor="@android:color/background_light"
-        android:textSize="18sp"
-        android:gravity="center"
-        android:layout_marginTop="20dp"
+        android:id="@+id/button_boss"
+        android:background="@drawable/registration_button_unselected"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/button_customer"
+        android:layout_alignLeft="@+id/button_customer"
+        android:layout_alignStart="@+id/button_customer"
+        android:drawableTop="@drawable/shop"
+        android:padding="15dp"
         />
 
     <Button
-        android:text="我是老闆"
-        android:layout_width="match_parent"
+        android:text="顧客"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button_boss"
-        android:background="@color/colorPrimary"
-        android:textColor="@android:color/background_light"
-        android:textSize="18sp"
-        android:layout_marginTop="72dp"
-        android:gravity="center"
-        />
+        android:id="@+id/button_customer"
+        android:background="@drawable/registration_button_unselected"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:layout_marginTop="86dp"
+        android:drawableTop="@drawable/customer"
+        android:padding="15dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="請選擇您的身分"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:id="@+id/textView4"
+        android:fontFamily="sans-serif"
+        android:textSize="30sp" />
 
 </RelativeLayout>
 
