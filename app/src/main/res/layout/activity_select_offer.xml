@@ -32,7 +32,7 @@
         android:layout_marginTop="34dp">
 
     <RadioButton
-        android:text="贈送小菜"
+        android:text="招待特色招牌"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="77dp"
@@ -42,7 +42,7 @@
         android:layout_alignParentStart="true" />
 
     <RadioButton
-        android:text="餐點免費加大"
+        android:text="招待飲料"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
@@ -52,7 +52,7 @@
         android:layout_alignStart="@+id/radioButton2" />
 
     <RadioButton
-        android:text="餐點折10元"
+        android:text="招待特色小菜"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
@@ -62,7 +62,7 @@
         android:layout_alignStart="@+id/radioButton" />
 
     <RadioButton
-        android:text="贈送飲料"
+        android:text="自由選擇"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"

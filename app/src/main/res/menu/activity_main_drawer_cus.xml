@@ -43,6 +43,10 @@
             android:icon="@drawable/ic_menu_manage"
             android:title="選擇餐廳" />
         <item
+            android:id="@+id/ten"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="顧客提供優惠" />
+        <item
             android:id="@+id/logout"
             android:icon="@drawable/ic_menu_manage"
             android:title="登出" />
