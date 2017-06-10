@@ -1,9 +1,14 @@
 package com.example.asus.home;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -45,10 +50,17 @@ public class PaintBoard extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        if (bitmap != null)
+            canvas.drawBitmap(bitmap, 0, 0, paint);
         canvas.drawColor(Color.argb(10, 10, 10, 10));
         for (int i = 0; i < allTables.size(); i++) {
             allTables.get(i).draw(canvas, paint);
         }
+    }
+
+    Bitmap bitmap;
+    public void setBackground(Bitmap bitmap) {
+        this.bitmap = bitmap;
     }
 
     public void addRectangleTable(int left, int top) {
