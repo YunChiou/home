@@ -33,10 +33,7 @@ dependencies {
     compile 'com.android.support:design:24.2.1'
     compile 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
     compile 'com.android.support.constraint:constraint-layout:1.0.1'
-<<<<<<< HEAD
-=======
     compile 'com.google.firebase:firebase-messaging:10.0.1'
->>>>>>> 99afc9efc1ac9034dad59c60e79789591417bf2e
     testCompile 'junit:junit:4.12'
 }
 
@@ -44,4 +41,3 @@ dependencies {
 
 
 
-apply plugin: 'com.google.gms.google-services'
