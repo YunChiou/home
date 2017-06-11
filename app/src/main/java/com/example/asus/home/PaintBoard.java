@@ -1,14 +1,10 @@
 package com.example.asus.home;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -22,7 +18,7 @@ import java.util.ArrayList;
 public class PaintBoard extends View {
 
     public enum TableType {
-        ROUND, RECTANGE, DELETE, NONE
+        ROUND, RECTANGE, CHAIR, DELETE, NONE
     }
 
     public enum PressPoint {
@@ -70,6 +66,12 @@ public class PaintBoard extends View {
         new CreateNewTable(table).execute();
     }
 
+    public void addChair(int left, int top) {
+        Table chair = new ImageChair(getResources().getDrawable(R.drawable.chair), left, top);
+        chair.setTableType("C");
+        allTables.add(chair);
+    }
+
     public void addRoundTable(int left, int top) {
         Table table = new OvalTable(left, top);
         table.setTableType("O");
@@ -103,6 +105,8 @@ public class PaintBoard extends View {
                     addRectangleTable(left, top);
                 else if (tableType == TableType.ROUND)
                     addRoundTable(left, top);
+                else if (tableType == TableType.CHAIR)
+                    addChair(left, top);
                 else if (tableType == TableType.DELETE)
                     deleteTable(left, top);
                 tableLayout.clearAllSelections();

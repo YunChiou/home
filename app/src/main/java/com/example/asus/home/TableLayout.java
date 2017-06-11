@@ -5,9 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,6 +22,7 @@ public class TableLayout extends NavigationbarActivity {
     LinearLayout circle;
     LinearLayout circleBack;
     LinearLayout background;
+    LinearLayout chair;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +42,10 @@ public class TableLayout extends NavigationbarActivity {
         circle = (LinearLayout) findViewById(R.id.circle);
         circleBack = (LinearLayout) findViewById(R.id.circleBack);
         background = (LinearLayout) findViewById(R.id.background);
+        chair = (LinearLayout) findViewById(R.id.chair);
         chooseTable();
         setBackground();
+
     }
 
     private void chooseTable() {
@@ -74,6 +74,12 @@ public class TableLayout extends NavigationbarActivity {
                 circle.setBackgroundResource(R.drawable.circle_table);
                 rect.setBackgroundResource(R.drawable.rectangle_table);
                 drawingView.setTableType(PaintBoard.TableType.DELETE);
+            }
+        });
+        chair.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawingView.setTableType(PaintBoard.TableType.CHAIR);
             }
         });
     }
@@ -108,6 +114,7 @@ public class TableLayout extends NavigationbarActivity {
                 InputStream inputStream = getContentResolver().openInputStream(data.getData());
                 Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                 drawingView.setBackground(bitmap);
+
             } catch (FileNotFoundException e) {
             }
         }
