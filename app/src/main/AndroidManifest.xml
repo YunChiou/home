@@ -92,6 +92,9 @@
             android:name=".All_Restaurants"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
+<<<<<<< HEAD
+        <activity android:name=".customer_selectoffer"></activity>
+=======
 
         <service android:name=".MyFirebaseInstanceIDService">
             <intent-filter>
@@ -119,6 +122,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+>>>>>>> 99afc9efc1ac9034dad59c60e79789591417bf2e
     </application>
 
 </manifest>
