@@ -50,7 +50,7 @@ public class All_Restaurants extends NavigationbarActivity implements Spinner.On
 
         resaurant = new ArrayList<String>();
         spinner = (Spinner) findViewById(R.id.spinner);
-        spinner.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
+        spinner.setOnItemSelectedListener(this);
         textViewName = (TextView) findViewById(R.id.textViewName);
         textViewPhone = (TextView) findViewById(R.id.textViewPhone);
         textViewAddress = (TextView) findViewById(R.id.textViewAddress);
@@ -70,8 +70,8 @@ public class All_Restaurants extends NavigationbarActivity implements Spinner.On
                             //Storing the Array of JSON String to our JSON Array
                             result = j.getJSONArray(Config.JSON_ARRAY);
 
-                            //Calling method getStudents to get the students from the JSON Array
-                            getStudents(result);
+                            //Calling method getRestaurants to get the students from the JSON Array
+                            getRestaurants(result);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -91,7 +91,7 @@ public class All_Restaurants extends NavigationbarActivity implements Spinner.On
         requestQueue.add(stringRequest);
     }
 
-    private void getStudents(JSONArray j){
+    private void getRestaurants(JSONArray j){
         //Traversing through all the items in the json array
         for(int i=0;i<j.length();i++){
             try {
