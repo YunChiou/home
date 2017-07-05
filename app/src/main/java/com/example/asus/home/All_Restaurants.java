@@ -70,7 +70,7 @@ public class All_Restaurants extends NavigationbarActivity implements Spinner.On
                             //Storing the Array of JSON String to our JSON Array
                             result = j.getJSONArray(Config.JSON_ARRAY);
 
-                            //Calling method getRestaurants to get the students from the JSON Array
+                            //Calling method getRestaurants to get the restaurants from the JSON Array
                             getRestaurants(result);
                         } catch (JSONException e) {
                             e.printStackTrace();
