@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorAccent">#FFFFFF</color>
     <color name="yello">	#FFFFFF</color>
+    <color name="red">	#FF0000</color>
+    <color name="green">	#00FF00</color>
 </resources>

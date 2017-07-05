@@ -12,6 +12,26 @@
     android:paddingTop="80dp"
     tools:context="com.example.asus.home.TableLayout">
 
+    <com.astuetz.PagerSlidingTabStrip
+    android:id="@+id/tabs"
+    app:pstsShouldExpand="true"
+    app:pstsTextAllCaps="true"
+    android:paddingTop="80dp"
+    android:layout_width="match_parent"
+    android:layout_height="48dp" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:paddingTop="80dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        app:pstsDividerColor="@color/green"
+        app:pstsIndicatorColor="@color/red"
+        app:pstsUnderlineColor="@color/yello"
+        app:pstsTabPaddingLeftRight="14dp"/>
+
+
     <LinearLayout
         android:orientation="vertical"
         android:id="@+id/rect"

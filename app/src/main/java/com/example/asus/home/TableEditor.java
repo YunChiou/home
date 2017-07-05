@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.astuetz.PagerSlidingTabStrip;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
@@ -36,6 +38,16 @@ public class TableEditor extends NavigationbarActivity {
         drawingView = new PaintBoardToScan(this);
         drawingView.invalidate();
         layout.addView(drawingView);
+
+        // Get the ViewPager and set it's PagerAdapter so that it can display items
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager.setAdapter(new SampleFragmentPagerAdapter(getSupportFragmentManager()));
+
+        // Give the PagerSlidingTabStrip the ViewPager
+        PagerSlidingTabStrip tabsStrip = (PagerSlidingTabStrip) findViewById(R.id.tabs);
+        // Attach the view pager to the tab strip
+        tabsStrip.setViewPager(viewPager);
+
     }
 
     @Override
