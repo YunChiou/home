@@ -78,7 +78,7 @@ public class Registration_boss extends ToolbarActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             cDialog = new ProgressDialog(Registration_boss.this);
-            cDialog.setMessage("Creating Account..");
+            cDialog.setMessage("");
             cDialog.setIndeterminate(false);
             cDialog.setCancelable(true);
             cDialog.show();

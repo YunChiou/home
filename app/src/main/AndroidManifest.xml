@@ -108,7 +108,7 @@
             android:name=".TableMessaging"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ActivitySendPushNotification"></activity>
+        <activity android:name=".ActivitySendPushNotification" />
     </application>
 
 </manifest>

@@ -15,7 +15,7 @@
     <!-- Navbar  color -->
     <!-- toolbar(back arrow) color -->
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-    <item name="colorControlNormal">#000000</item>
+        <item name="colorControlNormal">#000000</item>
     </style>
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

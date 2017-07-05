@@ -31,7 +31,6 @@ public class Registration_customer extends ToolbarActivity {
     EditText inputaccount;
     EditText inputpassword;
     EditText inputname;
-
     Button confirm;
     // url to create new product
     private static String url_create_customer = "http://163.14.68.37/android_connect/create_customer.php";
@@ -62,11 +61,12 @@ public class Registration_customer extends ToolbarActivity {
                 new Registration_customer.CreateNewCustomer(customer).execute();
 
                 Intent intent = new Intent();
-                intent.setClass(Registration_customer.this, HomePage.class);
+                intent.setClass(Registration_customer.this, hometest.class);
                 startActivity(intent);
             }
         });
     }
+    //back arrow
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             finish(); // close this activity and return to preview activity (if there is any)
@@ -86,11 +86,11 @@ public class Registration_customer extends ToolbarActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            /*cDialog = new ProgressDialog(Registration_customer.this);
-            cDialog.setMessage("Creating Account..");
+            cDialog = new ProgressDialog(Registration_customer.this);
+            cDialog.setMessage("");
             cDialog.setIndeterminate(false);
             cDialog.setCancelable(true);
-            cDialog.show();*/
+            cDialog.show();
         }
 
         protected String doInBackground(String... args) {
