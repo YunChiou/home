@@ -37,6 +37,8 @@ public class TableLayout extends NavigationbarActivity {
         View contentView = inflater.inflate(R.layout.activity_table_layout, null, false);
         drawer.addView(contentView, 0);
 
+        createTabFragment();
+
         LinearLayout layout = (LinearLayout) findViewById(R.id.drawing_area);
         drawingView = new PaintBoard(this);
         drawingView.invalidate();
@@ -48,7 +50,9 @@ public class TableLayout extends NavigationbarActivity {
         chair = (LinearLayout) findViewById(R.id.chair);
         chooseTable();
         setBackground();
+    }
 
+    public void createTabFragment() {
         // Get the ViewPager and set it's PagerAdapter so that it can display items
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         viewPager.setAdapter(new SampleFragmentPagerAdapter(getSupportFragmentManager()));
@@ -57,7 +61,6 @@ public class TableLayout extends NavigationbarActivity {
         PagerSlidingTabStrip tabsStrip = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         // Attach the view pager to the tab strip
         tabsStrip.setViewPager(viewPager);
-
     }
 
     private void chooseTable() {

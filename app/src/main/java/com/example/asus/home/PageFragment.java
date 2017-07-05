@@ -7,10 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-/**
- * Created by User on 2017/6/25.
- */
-
 public class PageFragment extends Fragment {
     public static final String ARG_PAGE = "ARG_PAGE";
 
@@ -34,9 +30,18 @@ public class PageFragment extends Fragment {
     // Set the associated text for the title
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_page, container, false);
-        TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
-        tvTitle.setText("Fragment #" + mPage);
-        return view;
+        if (mPage == 1) {
+            View view = inflater.inflate(R.layout.fragment_page, container, false);
+            TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
+            tvTitle.setText("Fragment #" + mPage);
+            return view;
+        }
+        else if (mPage == 2) {
+            View view = inflater.inflate(R.layout.table_fragment, container, false);
+            TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
+            tvTitle.setText("Fragment #" + mPage);
+            return view;
+        }
+        return null;
     }
 }
