@@ -5,7 +5,7 @@ package com.example.asus.home;
  */
 
 public class Config {
-    public static final String url_get_all_restaurant = "http://163.14.68.37/android_connect/get_all_restaurant.php";
+    public static final String url_get_all_restaurant = "http://163.14.68.37/android_connect/all_restaurant.php";
 
     //Tags used in the JSON String
     public static final String TAG_USERNAME = "username";
