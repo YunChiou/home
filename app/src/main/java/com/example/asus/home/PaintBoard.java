@@ -1,6 +1,7 @@
 package com.example.asus.home;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 public class PaintBoard extends View {
 
     public enum TableType {
-        ROUND, RECTANGE, DELETE, NONE
+        ROUND, RECTANGE, CHAIR, DELETE, NONE
     }
 
     public enum PressPoint {
@@ -45,10 +46,17 @@ public class PaintBoard extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        if (bitmap != null)
+            canvas.drawBitmap(bitmap, 0, 0, paint);
         canvas.drawColor(Color.argb(10, 10, 10, 10));
         for (int i = 0; i < allTables.size(); i++) {
             allTables.get(i).draw(canvas, paint);
         }
+    }
+
+    Bitmap bitmap;
+    public void setBackground(Bitmap bitmap) {
+        this.bitmap = bitmap;
     }
 
     public void addRectangleTable(int left, int top) {
@@ -56,6 +64,12 @@ public class PaintBoard extends View {
         table.setTableType("R");
         allTables.add(table);
         new CreateNewTable(table).execute();
+    }
+
+    public void addChair(int left, int top) {
+        Table chair = new ImageChair(getResources().getDrawable(R.drawable.chair), left, top);
+        chair.setTableType("C");
+        allTables.add(chair);
     }
 
     public void addRoundTable(int left, int top) {
@@ -91,6 +105,8 @@ public class PaintBoard extends View {
                     addRectangleTable(left, top);
                 else if (tableType == TableType.ROUND)
                     addRoundTable(left, top);
+                else if (tableType == TableType.CHAIR)
+                    addChair(left, top);
                 else if (tableType == TableType.DELETE)
                     deleteTable(left, top);
                 tableLayout.clearAllSelections();

@@ -60,6 +60,30 @@
         android:layout_marginLeft="175dp"
         android:layout_marginStart="175dp">
     </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/chair"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/chair"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="250dp"
+        android:layout_marginStart="250dp">
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/background"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/background_icon"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="300dp"
+        android:layout_marginStart="300dp">
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"

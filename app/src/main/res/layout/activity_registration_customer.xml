@@ -14,6 +14,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:weightSum="1"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
@@ -47,21 +48,64 @@
             android:cursorVisible="true"
             />
         <EditText
+            android:id="@+id/cus_name"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:id="@+id/cus_name"
-            android:hint="姓名"
-            android:paddingLeft="10dp"
-            android:layout_below="@+id/cus_pwd"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:layout_below="@+id/cus_pwd"
+            android:hint="姓名"
+            android:paddingLeft="10dp"
             android:background="@drawable/registration_edittext"
             android:textColorHint="#000000"
             android:layout_marginTop="10dp"
             android:textCursorDrawable="@drawable/cursor_color"
-            android:cursorVisible="true"
-            />
+            android:cursorVisible="true"/>
 
+        <RadioGroup
+            android:id="@+id/radioGroup1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="0dp">
+            <RadioButton
+                android:id="@+id/radioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_width="42dp"
+                android:layout_height="46dp"
+                android:background="@drawable/baseball1" />
+
+            <RadioButton
+                android:id="@+id/radioButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="39dp"
+                android:background="@drawable/basketball1" />
+
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_width="46dp"
+                android:layout_height="42dp"
+                android:background="@drawable/badmintain" />
+            <RadioButton
+                android:id="@+id/radioButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_width="42dp"
+                android:layout_height="41dp"
+                android:background="@drawable/golfball" />
+        </RadioGroup>
         <Button
             android:id="@+id/cus_confirm_button"
             android:layout_width="match_parent"

@@ -1,9 +1,12 @@
 package com.example.asus.home;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.ActionBar;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -46,7 +49,7 @@ public class RectangleTable extends Table {
         paint.setTextSize(50);
         canvas.drawText(tableNumber, boundingBoxLeft + 10, boundingBoxTop + 50, paint);
 
-        QRCodeWriter writer = new QRCodeWriter();
+        /*QRCodeWriter writer = new QRCodeWriter();
         try {
             if (!condition.equals("")) {
                 BitMatrix bitMatrix = writer.encode(condition, BarcodeFormat.QR_CODE, width - 2 * BORDER_WIDTH, height - 2 * BORDER_WIDTH);
@@ -65,7 +68,7 @@ public class RectangleTable extends Table {
 
         } catch (WriterException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     @Override

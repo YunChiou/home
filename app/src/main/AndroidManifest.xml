@@ -92,6 +92,7 @@
             android:name=".All_Restaurants"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".customer_selectoffer"></activity>
 
         <service android:name=".MyFirebaseInstanceIDService">
             <intent-filter>
@@ -109,6 +110,16 @@
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ActivitySendPushNotification" />
+        
+        <activity
+            android:name=".ActivityXPTO"
+            android:screenOrientation="sensor"
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter>
+                <action android:name="ACTIVITY_XPTO" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

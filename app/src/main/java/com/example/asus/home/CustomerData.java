@@ -3,7 +3,10 @@ package com.example.asus.home;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -112,7 +115,7 @@ public class CustomerData extends NavigationbarActivity  {
         }
     }
 
-    //創造QRCode創造QRCode
+    //創造QRCode
     protected String getQRcodeValue(String id) {
         StringBuffer buffer = new StringBuffer();
 
@@ -121,9 +124,29 @@ public class CustomerData extends NavigationbarActivity  {
         //buffer.append(account);
         return buffer.toString();
     }
+    public static Bitmap mergeBitmaps(Bitmap bmp1, Bitmap bmp2) {
+        Bitmap bmOverlay = Bitmap.createBitmap(bmp1.getWidth(),
+             bmp1.getHeight(), bmp1.getConfig());
+        Canvas canvas = new Canvas(bmOverlay);
+        canvas.drawBitmap(bmp1, new Matrix(), null);
+        canvas.drawBitmap(bmp2, 0, 0, null);
+        return bmOverlay;
+    }
+
+   // public Bitmap mergeBitmaps(Bitmap bmp1, Bitmap bmp2) {
+    //    Bitmap combined = Bitmap.createBitmap(bmp1.getWidth(), bmp1.getHeight(), bmp1.getConfig());
+     //   Canvas canvas = new Canvas(combined);
+      //  canvas.drawBitmap(bmp1, new Matrix(), null);
+       // int centreX = bmp2.getWidth() - bmp2.getWidth() /2;
+        //int centreY = (bmp2.getHeight() - bmp2.getHeight()) /2 ;
+        //canvas.drawBitmap(bmp2,centreX,centreY, null);
+        //return combined;
+    //}
 
     void qrcode(String value) {
         QRCodeWriter writer = new QRCodeWriter();
+        //從drawable抓圖片
+        Bitmap mylogo = BitmapFactory.decodeResource(getResources(), R.drawable.badmintain);
         try {
             BitMatrix bitMatrix = writer.encode(value , BarcodeFormat.QR_CODE, 512, 512);
             int width = bitMatrix.getWidth();
@@ -134,7 +157,7 @@ public class CustomerData extends NavigationbarActivity  {
                     bmp.setPixel(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
                 }
             }
-            ((ImageView) findViewById(R.id.image)).setImageBitmap(bmp);
+            ((ImageView) findViewById(R.id.image)).setImageBitmap(mergeBitmaps(bmp,mylogo));
 
         } catch (WriterException e) {
             e.printStackTrace();
