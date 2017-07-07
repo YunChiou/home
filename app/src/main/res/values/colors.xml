@@ -3,5 +3,7 @@
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorAccent">#FFFFFF</color>
-    <color name="yello">	#FFFFFF</color>
+    <color name="yello">	#FFFF66</color>
+    <color name="red">	#FF9999</color>
+    <color name="green">	#33FF99</color>
 </resources>
