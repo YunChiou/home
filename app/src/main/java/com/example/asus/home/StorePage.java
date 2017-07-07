@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
@@ -30,7 +31,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class StorePage extends NavigationbarActivity {
+public class StorePage extends ToolbarActivity {
 
     private ImageView p1;
     private ImageView p2;
@@ -51,12 +52,7 @@ public class StorePage extends NavigationbarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_store_page);
-        //產生sliding menu
-        LayoutInflater inflater = (LayoutInflater) this
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View contentView = inflater.inflate(R.layout.activity_store_page, null, false);
-        drawer.addView(contentView, 0);
+        setContentView(R.layout.activity_store_page);
 
         storenameText = (TextView) findViewById(R.id.storename);
         phoneText = (TextView) findViewById(R.id.phone);
@@ -79,7 +75,13 @@ public class StorePage extends NavigationbarActivity {
 
         new StorePage.LoadAllProducts().execute();
     }
-
+    //產生back arrow
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // close this activity and return to preview activity (if there is any)
+        }
+        return super.onOptionsItemSelected(item);
+    }
     class LoadAllProducts extends AsyncTask<String, String, String> {
 
         /**

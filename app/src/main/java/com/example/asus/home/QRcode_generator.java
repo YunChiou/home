@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,21 +19,22 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
-public class QRcode_generator extends NavigationbarActivity {
+public class QRcode_generator extends ToolbarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_qrcode_generator);
-        //setContentView(R.layout.activity_qrcode_generator);
-        //產生sliding menu
-        LayoutInflater inflater = (LayoutInflater) this
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View contentView = inflater.inflate(R.layout.activity_qrcode_generator, null, false);
-        drawer.addView(contentView, 0);
+        setContentView(R.layout.activity_qrcode_generator);
+
         inputValue();
     }
-
+    //產生back arrow
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // close this activity and return to preview activity (if there is any)
+        }
+        return super.onOptionsItemSelected(item);
+    }
     private void qrcode(String value) {
         QRCodeWriter writer = new QRCodeWriter();
         try {

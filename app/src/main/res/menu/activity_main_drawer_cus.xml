@@ -3,56 +3,56 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/first"
-            android:icon="@drawable/ic_menu_camera"
+            android:id="@+id/store"
+            android:icon="@drawable/res"
             android:title="怡廷 店家" />
         <item
-            android:id="@+id/seventh"
-            android:icon="@drawable/ic_menu_manage"
+            android:id="@+id/store_info"
+            android:icon="@drawable/res"
             android:title="店家資訊" />
         <item
-            android:id="@+id/second"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="顧客個人頁面" />
-        <item
-            android:id="@+id/third"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:id="@+id/layout_edit"
+            android:icon="@drawable/layout_edit"
             android:title="店家佈局編輯" />
         <item
-            android:id="@+id/tableScanner"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:id="@+id/layout"
+            android:icon="@drawable/layout"
             android:title="店家佈局" />
         <item
             android:id="@+id/viewTables"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/customers"
             android:title="檢視目前客人" />
         <item
-            android:id="@+id/fourth"
+            android:id="@+id/qrcode"
             android:icon="@drawable/ic_menu_manage"
             android:title="忻妤 顧客產生qr code" />
         <item
-            android:id="@+id/fifth"
+            android:id="@+id/qrcode_scan_cus"
             android:icon="@drawable/ic_menu_manage"
             android:title="忻妤 顧客掃描qr code" />
         <item
-            android:id="@+id/sixth"
+            android:id="@+id/qrcode_scan_store"
             android:icon="@drawable/ic_menu_manage"
             android:title="店家掃描顧客qr code" />
         <item
-            android:id="@+id/eighth"
+            android:id="@+id/coupon"
             android:icon="@drawable/ic_menu_manage"
             android:title="優惠選擇" />
         <item
-            android:id="@+id/ninth"
+            android:id="@+id/restaurants"
             android:icon="@drawable/ic_menu_manage"
             android:title="選擇餐廳" />
         <item
-            android:id="@+id/ten"
+            android:id="@+id/give_coupon"
             android:icon="@drawable/ic_menu_manage"
             android:title="顧客提供優惠" />
         <item
+            android:id="@+id/profile"
+            android:icon="@drawable/user"
+            android:title="個人檔案" />
+        <item
             android:id="@+id/logout"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/logout"
             android:title="登出" />
 
     </group>

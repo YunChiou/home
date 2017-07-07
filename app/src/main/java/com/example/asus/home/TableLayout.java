@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -18,7 +19,7 @@ import com.astuetz.PagerSlidingTabStrip;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-public class TableLayout extends NavigationbarActivity {
+public class TableLayout extends ToolbarActivity {
 
     PaintBoard drawingView;
     LinearLayout rect;
@@ -30,12 +31,7 @@ public class TableLayout extends NavigationbarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_table_layout);
-        //產生sliding menu
-        LayoutInflater inflater = (LayoutInflater) this
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View contentView = inflater.inflate(R.layout.activity_table_layout, null, false);
-        drawer.addView(contentView, 0);
+        setContentView(R.layout.activity_table_layout);
 
         createTabFragment();
 
@@ -139,6 +135,13 @@ public class TableLayout extends NavigationbarActivity {
         circle.setBackgroundResource(R.drawable.circle_table);
         rect.setBackgroundResource(R.drawable.rectangle_table);
         circleBack.setBackgroundResource(R.drawable.circle_table);
+    }
+    //產生back arrow
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // close this activity and return to preview activity (if there is any)
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 

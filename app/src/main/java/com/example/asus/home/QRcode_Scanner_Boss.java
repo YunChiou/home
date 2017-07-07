@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -13,18 +14,14 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-public class QRcode_Scanner_Boss extends NavigationbarActivity {
+public class QRcode_Scanner_Boss extends ToolbarActivity {
 
     private Button scan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        LayoutInflater inflater = (LayoutInflater) this
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View contentView = inflater.inflate(R.layout.activity_qrcode__scanner__boss, null, false);
-        drawer.addView(contentView, 0);
+        setContentView(R.layout.activity_qrcode__scanner__boss);
 
         scan = (Button)findViewById(R.id.button_scan);
         final Activity activity = this;
@@ -42,7 +39,13 @@ public class QRcode_Scanner_Boss extends NavigationbarActivity {
             }
         });
     }
-
+    //產生back arrow
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // close this activity and return to preview activity (if there is any)
+        }
+        return super.onOptionsItemSelected(item);
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);

@@ -1,33 +1,19 @@
 package com.example.asus.home;
 
+
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.View;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.QRCodeWriter;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -71,16 +57,39 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                User user = new User();
-                user.setAccount(edittext_account.getText().toString().trim());
-                user.setPassword(edittext_password.getText().toString().trim());
-                new Login(user).execute();
-                sendTokenToServer();
+                if(validation_check()){
+                    User user = new User();
+                    user.setAccount(edittext_account.getText().toString().trim());
+                    user.setPassword(edittext_password.getText().toString().trim());
+                    new Login(user).execute();
+                    sendTokenToServer();
+                }
+                else{//帳密提示字
+                    if(edittext_account.getText().toString().trim().equals("")){
+                        if(edittext_password.getText().toString().equals(""))
+                            login_hint.setText("請輸入帳號和密碼");
+                        else
+                            login_hint.setText("請輸入帳號");
+                    }
+                    else if(edittext_password.getText().toString().trim().equals("")){
+                        if(edittext_account.getText().toString().equals(""))
+                            login_hint.setText("請輸入帳號和密碼");
+                        else
+                            login_hint.setText("請輸入密碼");
+                    }
+
+                }
             }
         });
 
     }
+    //檢查有沒有輸入帳號密碼
+    private boolean validation_check(){
+        if(edittext_account.getText().toString().trim().equals("") ||
+                edittext_password.getText().toString().equals("")) return false;
+        else return true;
 
+    }
     //storing token to mysql server
     private void sendTokenToServer() {
         final String token = SharedPrefManager.getInstance(this).getDeviceToken();
@@ -158,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
             if(s.equals("false"))
                 login_hint.setText("帳號或密碼錯誤");
             else{
+                login_hint.setText("");
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, HomePage.class);
                 startActivity(intent);

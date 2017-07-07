@@ -9,7 +9,9 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,7 +30,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class CustomerData extends NavigationbarActivity  {
+public class CustomerData extends ToolbarActivity {
 
     // Progress Dialog
     private ProgressDialog pDialog;
@@ -47,10 +49,8 @@ public class CustomerData extends NavigationbarActivity  {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //產生sliding menu
-        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View contentView = inflater.inflate(R.layout.activity_customerdata, null, false);
-        drawer.addView(contentView, 0);
+        setContentView(R.layout.activity_customerdata);
+
 
         // Hashmap for ListView
         customersList = new ArrayList<HashMap<String, String>>();
@@ -62,7 +62,7 @@ public class CustomerData extends NavigationbarActivity  {
 
         // Loading products in Background Thread
         new LoadAllProducts().execute();
-        ItemsToShow(Model.getInstance().getUser().getType());
+        //ItemsToShow(Model.getInstance().getUser().getType());
     }
 
     String id ;
@@ -142,7 +142,13 @@ public class CustomerData extends NavigationbarActivity  {
         //canvas.drawBitmap(bmp2,centreX,centreY, null);
         //return combined;
     //}
-
+//產生back arrow
+   public boolean onOptionsItemSelected(MenuItem item) {
+       if (item.getItemId() == android.R.id.home) {
+           finish(); // close this activity and return to preview activity (if there is any)
+       }
+       return super.onOptionsItemSelected(item);
+   }
     void qrcode(String value) {
         QRCodeWriter writer = new QRCodeWriter();
         //從drawable抓圖片

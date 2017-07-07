@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 
 
 
-public class All_Restaurants extends NavigationbarActivity implements Spinner.OnItemSelectedListener {
+public class All_Restaurants extends ToolbarActivity implements Spinner.OnItemSelectedListener {
 
     private Spinner spinner;
     private ArrayList<String> resaurant;
@@ -42,12 +43,7 @@ public class All_Restaurants extends NavigationbarActivity implements Spinner.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        LayoutInflater inflater = (LayoutInflater) this
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View contentView = inflater.inflate(R.layout.activity_all__restaurants, null, false);
-        drawer.addView(contentView, 0);
-
+        setContentView(R.layout.activity_all__restaurants);
         resaurant = new ArrayList<String>();
         spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(this);
@@ -55,6 +51,13 @@ public class All_Restaurants extends NavigationbarActivity implements Spinner.On
         textViewPhone = (TextView) findViewById(R.id.textViewPhone);
         textViewAddress = (TextView) findViewById(R.id.textViewAddress);
         getData();
+    }
+    //產生back arrow
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // close this activity and return to preview activity (if there is any)
+        }
+        return super.onOptionsItemSelected(item);
     }
     private void getData(){
         //Creating a string request

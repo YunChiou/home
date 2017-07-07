@@ -7,16 +7,6 @@
    android:background="@color/colorPrimary"
     >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/login_hint"
-        android:textSize="24sp"
-        android:layout_below="@+id/edittext_password"
-        android:layout_alignLeft="@+id/edittext_password"
-        android:layout_alignStart="@+id/edittext_password"
-        android:layout_marginTop="14dp"
-        />
 
     <EditText
         android:layout_width="match_parent"
@@ -32,7 +22,7 @@
         android:layout_alignLeft="@+id/edittext_password"
         android:layout_alignStart="@+id/edittext_password"
         android:drawablePadding="10dp"
-        android:drawableLeft="@drawable/user"
+        android:drawableLeft="@drawable/account"
         android:layout_marginEnd="20dp"
         android:textCursorDrawable="@drawable/cursor_color"
         android:cursorVisible="true"
@@ -57,20 +47,29 @@
         android:cursorVisible="true"
         />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/login_hint"
+        android:textSize="24sp"
+        android:layout_below="@+id/edittext_password"
+        android:layout_alignLeft="@+id/edittext_password"
+        android:layout_alignStart="@+id/edittext_password"
+        android:layout_marginTop="14dp"
+        />
     <Button
         android:text="登入"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/button_login"
         android:background="@drawable/home_login_button"
         android:textColor="#000000"
         android:textSize="18sp"
-
         android:layout_below="@+id/login_hint"
-        android:layout_toRightOf="@+id/login_hint"
         android:layout_alignRight="@+id/edittext_password"
         android:layout_alignEnd="@+id/edittext_password"
-        />
+        android:layout_alignLeft="@+id/login_hint"
+        android:layout_alignStart="@+id/login_hint" />
 
     <TextView
         android:text="註冊"

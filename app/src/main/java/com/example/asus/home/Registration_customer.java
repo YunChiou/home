@@ -61,12 +61,12 @@ public class Registration_customer extends ToolbarActivity {
                 new Registration_customer.CreateNewCustomer(customer).execute();
 
                 Intent intent = new Intent();
-                intent.setClass(Registration_customer.this, hometest.class);
+                intent.setClass(Registration_customer.this, HomePage.class);
                 startActivity(intent);
             }
         });
     }
-    //back arrow
+    //產生back arrow
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             finish(); // close this activity and return to preview activity (if there is any)
