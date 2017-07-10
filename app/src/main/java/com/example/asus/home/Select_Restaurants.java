@@ -1,14 +1,6 @@
 package com.example.asus.home;
 
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.os.AsyncTask;
-import android.os.StrictMode;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,7 +19,7 @@ import java.util.ArrayList;
 
 
 
-public class All_Restaurants extends ToolbarActivity implements Spinner.OnItemSelectedListener {
+public class Select_Restaurants extends ToolbarActivity implements Spinner.OnItemSelectedListener {
 
     private Spinner spinner;
     private ArrayList<String> resaurant;
@@ -36,14 +28,10 @@ public class All_Restaurants extends ToolbarActivity implements Spinner.OnItemSe
     private TextView textViewPhone;
     private TextView textViewAddress;
 
-
-
-    //private static String url_get_all_restaurant = "http://163.14.68.37/android_connect/get_all_restaurant.php";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all__restaurants);
+        setContentView(R.layout.activity_select__restaurants);
         resaurant = new ArrayList<String>();
         spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(this);
@@ -109,7 +97,7 @@ public class All_Restaurants extends ToolbarActivity implements Spinner.OnItemSe
         }
 
         //Setting adapter to show the items in the spinner
-        spinner.setAdapter(new ArrayAdapter<String>(All_Restaurants.this, android.R.layout.simple_spinner_dropdown_item, resaurant));
+        spinner.setAdapter(new ArrayAdapter<String>(Select_Restaurants.this, android.R.layout.simple_spinner_dropdown_item, resaurant));
     }
 
     //Method to get student name of a particular position

@@ -3,10 +3,6 @@ package com.example.asus.home;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -15,9 +11,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.*;
 import android.widget.TableLayout;
 
 public class Nav_drawer extends AppCompatActivity
@@ -82,7 +76,7 @@ public class Nav_drawer extends AppCompatActivity
         }
         else if (id == R.id.store) {
             Intent intent = new Intent();
-            intent.setClass(Nav_drawer.this, All_Restaurants.class);
+            intent.setClass(Nav_drawer.this, Select_Restaurants.class);
             startActivity(intent);
         }
         else if (id == R.id.store_info) {
@@ -116,6 +110,11 @@ public class Nav_drawer extends AppCompatActivity
             startActivity(intent);
         }
         else if (id == R.id.layout_edit) {
+            Intent intent = new Intent();
+            intent.setClass(Nav_drawer.this, GetAllRestaurants.class);
+            startActivity(intent);
+        }
+        else if (id == R.id.all__restaurants) {
             Intent intent = new Intent();
             intent.setClass(Nav_drawer.this, TableEditor.class);
             startActivity(intent);
