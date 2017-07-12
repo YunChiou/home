@@ -119,6 +119,11 @@ public class Nav_drawer extends AppCompatActivity
             intent.setClass(Nav_drawer.this, TableEditor.class);
             startActivity(intent);
         }
+        else if (id == R.id.map) {
+            Intent intent = new Intent();
+            intent.setClass(Nav_drawer.this, MapsActivity.class);
+            startActivity(intent);
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

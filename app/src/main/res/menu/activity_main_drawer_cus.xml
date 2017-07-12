@@ -23,6 +23,10 @@
             android:icon="@drawable/customers"
             android:title="檢視目前客人" />
         <item
+            android:id="@+id/map"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="地圖" />
+        <item
             android:id="@+id/qrcode"
             android:icon="@drawable/ic_menu_manage"
             android:title="忻妤 顧客產生qr code" />
