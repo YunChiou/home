@@ -23,17 +23,9 @@
             android:icon="@drawable/ic_menu_manage"
             android:title="地圖" />
         <item
-            android:id="@+id/qrcode"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="忻妤 顧客產生qr code" />
-        <item
             android:id="@+id/qrcode_scan_cus"
             android:icon="@drawable/ic_menu_manage"
-            android:title="忻妤 顧客掃描qr code" />
-        <item
-            android:id="@+id/qrcode_scan_store"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="店家掃描顧客qr code" />
+            android:title="掃描qr code" />
         <item
             android:id="@+id/coupon"
             android:icon="@drawable/ic_menu_manage"

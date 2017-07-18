@@ -60,18 +60,9 @@ public class Nav_drawer extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.qrcode_scan_store) {
-            Intent intent = new Intent();
-            intent.setClass(Nav_drawer.this, QRcode_Scanner_Boss.class);
-            startActivity(intent);
-        } else if (id == R.id.qrcode_scan_cus) {
+        if (id == R.id.qrcode_scan_cus) {
             Intent intent = new Intent();
             intent.setClass(Nav_drawer.this, QRcode_Scanner.class);
-            startActivity(intent);
-        }
-        else if (id == R.id.qrcode) {
-            Intent intent = new Intent();
-            intent.setClass(Nav_drawer.this, QRcode_generator.class);
             startActivity(intent);
         }
         else if (id == R.id.store) {
@@ -122,6 +113,11 @@ public class Nav_drawer extends AppCompatActivity
         else if (id == R.id.map) {
             Intent intent = new Intent();
             intent.setClass(Nav_drawer.this, Map.class);
+            startActivity(intent);
+        }
+        else if (id == R.id.viewTables) {
+            Intent intent = new Intent();
+            intent.setClass(Nav_drawer.this, TableMessaging.class);
             startActivity(intent);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

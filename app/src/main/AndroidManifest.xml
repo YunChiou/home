@@ -66,19 +66,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ToolbarActivity" />
         <activity
-            android:name=".QRcode_generator"
-            android:label=""
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".QRcode_Scanner"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CustomerData"
-            android:label=""
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".QRcode_Scanner_Boss"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
