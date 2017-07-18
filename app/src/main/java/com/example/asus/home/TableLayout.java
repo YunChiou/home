@@ -10,7 +10,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -19,7 +18,7 @@ import com.astuetz.PagerSlidingTabStrip;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-public class TableLayout extends ToolbarActivity {
+public class TableLayout extends ToolbarActivity  {
 
     PaintBoard drawingView;
     LinearLayout rect;
@@ -33,7 +32,7 @@ public class TableLayout extends ToolbarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_table_layout);
 
-        createTabFragment();
+        //createTabFragment();
 
         LinearLayout layout = (LinearLayout) findViewById(R.id.drawing_area);
         drawingView = new PaintBoard(this);
@@ -135,13 +134,6 @@ public class TableLayout extends ToolbarActivity {
         circle.setBackgroundResource(R.drawable.circle_table);
         rect.setBackgroundResource(R.drawable.rectangle_table);
         circleBack.setBackgroundResource(R.drawable.circle_table);
-    }
-    //產生back arrow
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish(); // close this activity and return to preview activity (if there is any)
-        }
-        return super.onOptionsItemSelected(item);
     }
 }
 

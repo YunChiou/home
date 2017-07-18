@@ -121,7 +121,7 @@ public class Nav_drawer extends AppCompatActivity
         }
         else if (id == R.id.map) {
             Intent intent = new Intent();
-            intent.setClass(Nav_drawer.this, MapsActivity.class);
+            intent.setClass(Nav_drawer.this, Map.class);
             startActivity(intent);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

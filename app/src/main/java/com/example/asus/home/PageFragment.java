@@ -34,6 +34,9 @@ public class PageFragment extends Fragment {
             View view = inflater.inflate(R.layout.fragment_page, container, false);
             TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
             tvTitle.setText("Fragment #" + mPage);
+
+            view.setOnClickListener(tabClickListener);
+
             return view;
         }
         else if (mPage == 2) {
@@ -44,4 +47,15 @@ public class PageFragment extends Fragment {
         }
         return null;
     }
+
+    private View.OnClickListener tabClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            if (v.getVisibility() == View.VISIBLE) {
+                v.setVisibility( View.INVISIBLE );
+            } else {
+                v.setVisibility( View.VISIBLE );
+            }
+        }
+    };
+
 }

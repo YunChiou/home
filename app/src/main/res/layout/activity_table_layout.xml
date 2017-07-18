@@ -17,7 +17,6 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:orientation="vertical">
-
         <com.astuetz.PagerSlidingTabStrip
             android:id="@+id/tabs"
             app:pstsShouldExpand="true"
@@ -36,10 +35,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/white" />
-
     </LinearLayout>
-
-
+    
     <LinearLayout
         android:orientation="vertical"
         android:id="@+id/rect"
@@ -126,6 +123,5 @@
         android:layout_height="450dp"
         android:layout_marginTop="72dp">
     </LinearLayout>
-
 
 </RelativeLayout>
