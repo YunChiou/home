@@ -111,12 +111,12 @@ public class Nav_drawer extends AppCompatActivity
         }
         else if (id == R.id.layout_edit) {
             Intent intent = new Intent();
-            intent.setClass(Nav_drawer.this, GetAllRestaurants.class);
+            intent.setClass(Nav_drawer.this, TableEditor.class);
             startActivity(intent);
         }
         else if (id == R.id.all__restaurants) {
             Intent intent = new Intent();
-            intent.setClass(Nav_drawer.this, TableEditor.class);
+            intent.setClass(Nav_drawer.this, GetAllRestaurants.class);
             startActivity(intent);
         }
         else if (id == R.id.map) {
@@ -128,5 +128,5 @@ public class Nav_drawer extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    }
+}
 
