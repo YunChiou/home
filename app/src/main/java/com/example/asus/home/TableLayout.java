@@ -2,6 +2,7 @@ package com.example.asus.home;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -148,25 +149,26 @@ public class TableLayout extends ToolbarActivity {
         delete.setBackgroundResource(R.drawable.garbage);
     }
 
-    AlertDialog alertDialog;
-    EditText tableNumber;
+
     public void setChairsNumber() {
         chair1_1.setOnLongClickListener(new
         View.OnLongClickListener() {
             @Override
             public boolean onLongClick (View v){
-                alertDialog = new AlertDialog.Builder(TableLayout.this).create();
-                alertDialog.setTitle("請輸入數量");
-                LinearLayout layout = new LinearLayout(TableLayout.this);
-                layout.setOrientation(LinearLayout.VERTICAL);
-                tableNumber = new EditText(TableLayout.this);
-                tableNumber.setHint("");
-                layout.addView(tableNumber);
-                final Button enterText = new Button(TableLayout.this);
-                enterText.setText("確認");
-                layout.addView(enterText);
-                alertDialog.setView(layout);
-                alertDialog.show();
+                final CharSequence[] items = {
+                        "2", "3", "4", "5"
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(TableLayout.this);
+                builder.setTitle("請選擇數量");
+                builder.setItems(items, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int item) {
+                        drawingView.addManyChair(1, 1, item + 2);
+                    }
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
+
                 return true;
             }
 

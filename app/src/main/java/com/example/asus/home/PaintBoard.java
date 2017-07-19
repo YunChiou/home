@@ -93,6 +93,29 @@ public class PaintBoard extends View {
         allTables.add(chair);
     }
 
+    public void addManyChair(int number, int direction, int volumn) {
+        Table chair = new ImageChair(getResources().getDrawable(R.drawable.chair), 0, 0);
+        int left = 150;
+        int top  = 850;
+        if (number == 1 && direction == 1) {
+            for (int i = 0; i < volumn; i++) {
+                chair = new ImageChair(getResources().getDrawable(R.drawable.chair1_1), left, top);
+                chair.setTableType("C");
+                allTables.add(chair);
+                left += 200;
+            }
+        }
+        else if (number == 1 && direction == 2) {
+            for (int i = 0; i < volumn; i++) {
+                chair = new ImageChair(getResources().getDrawable(R.drawable.chair1_2), left, top);
+                chair.setTableType("C");
+                allTables.add(chair);
+                left += 50;
+            }
+        }
+        invalidate();
+    }
+
     public void addRoundTable(int left, int top) {
         Table table = new OvalTable(left, top);
         table.setTableType("O");
