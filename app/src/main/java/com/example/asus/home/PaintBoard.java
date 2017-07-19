@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class PaintBoard extends View {
 
     public enum TableType {
-        ROUND, RECTANGE, CHAIR, DELETE, NONE
+        ROUND, RECTANGE, CHAIR, TABLE, DELETE, NONE
     }
 
     public enum PressPoint {
@@ -59,6 +59,13 @@ public class PaintBoard extends View {
         this.bitmap = bitmap;
     }
 
+    int number;
+    int direction;
+    public void setObjectNumber(int number, int direction) {
+        this.number = number;
+        this.direction = direction;
+    }
+
     public void addRectangleTable(int left, int top) {
         Table table = new RectangleTable(left, top);
         table.setTableType("R");
@@ -66,9 +73,23 @@ public class PaintBoard extends View {
         new CreateNewTable(table).execute();
     }
 
-    public void addChair(int left, int top) {
+    public void addChair(int left, int top, int number, int direction) {
         Table chair = new ImageChair(getResources().getDrawable(R.drawable.chair), left, top);
+        if (number == 1 && direction == 1)
+            chair = new ImageChair(getResources().getDrawable(R.drawable.chair1_1), left, top);
+        else if (number == 1 && direction == 2)
+            chair = new ImageChair(getResources().getDrawable(R.drawable.chair1_2), left, top);
         chair.setTableType("C");
+        allTables.add(chair);
+    }
+
+    public void addTable(int left, int top, int number, int direction) {
+        Table chair = new ImageTable(getResources().getDrawable(R.drawable.chair), left, top);
+        if (number == 1 && direction == 1)
+            chair = new ImageTable(getResources().getDrawable(R.drawable.table1_1), left, top);
+        else if (number == 2 && direction == 2)
+            chair = new ImageTable(getResources().getDrawable(R.drawable.table2_2), left, top);
+        chair.setTableType("T");
         allTables.add(chair);
     }
 
@@ -106,7 +127,9 @@ public class PaintBoard extends View {
                 else if (tableType == TableType.ROUND)
                     addRoundTable(left, top);
                 else if (tableType == TableType.CHAIR)
-                    addChair(left, top);
+                    addChair(left, top, number, direction);
+                else if (tableType == TableType.TABLE)
+                    addTable(left, top, number, direction);
                 else if (tableType == TableType.DELETE)
                     deleteTable(left, top);
                 tableLayout.clearAllSelections();
