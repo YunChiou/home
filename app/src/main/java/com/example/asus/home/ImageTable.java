@@ -20,7 +20,7 @@ public class ImageTable extends Table {
     @Override
     public void draw(Canvas canvas, Paint paint) {
         Bitmap chairBitmap = ((BitmapDrawable) table).getBitmap();
-        canvas.drawBitmap(chairBitmap, null, new RectF(boundingBoxLeft, boundingBoxTop, boundingBoxLeft + 100, boundingBoxTop + 100), paint);
+        canvas.drawBitmap(chairBitmap, null, new RectF(boundingBoxLeft, boundingBoxTop, boundingBoxLeft + 600, boundingBoxTop + 600), paint);
     }
 
     @Override

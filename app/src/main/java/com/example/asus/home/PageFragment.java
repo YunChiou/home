@@ -36,7 +36,6 @@ public class PageFragment extends Fragment {
             tvTitle.setText("Fragment #" + mPage);
 
             view.setOnClickListener(tabClickListener);
-
             return view;
         }
         else if (mPage == 2) {
