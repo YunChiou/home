@@ -109,11 +109,6 @@ public class Nav_drawer extends AppCompatActivity
             intent.setClass(Nav_drawer.this, GetAllRestaurants.class);
             startActivity(intent);
         }
-        else if (id == R.id.map) {
-            Intent intent = new Intent();
-            intent.setClass(Nav_drawer.this, Map.class);
-            startActivity(intent);
-        }
         else if (id == R.id.viewTables) {
             Intent intent = new Intent();
             intent.setClass(Nav_drawer.this, TableMessaging.class);
