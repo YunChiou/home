@@ -12,7 +12,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.TableLayout;
 
 public class Nav_drawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -108,11 +107,6 @@ public class Nav_drawer extends AppCompatActivity
         else if (id == R.id.all__restaurants) {
             Intent intent = new Intent();
             intent.setClass(Nav_drawer.this, GetAllRestaurants.class);
-            startActivity(intent);
-        }
-        else if (id == R.id.map) {
-            Intent intent = new Intent();
-            intent.setClass(Nav_drawer.this, Map.class);
             startActivity(intent);
         }
         else if (id == R.id.viewTables) {

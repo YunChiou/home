@@ -21,7 +21,7 @@ public class ImageChair extends Table{
     @Override
     public void draw(Canvas canvas, Paint paint) {
         Bitmap chairBitmap = ((BitmapDrawable) chair).getBitmap();
-        canvas.drawBitmap(chairBitmap, null, new RectF(boundingBoxLeft, boundingBoxTop, boundingBoxLeft + 100, boundingBoxTop + 100), paint);
+        canvas.drawBitmap(chairBitmap, null, new RectF(boundingBoxLeft, boundingBoxTop, boundingBoxLeft + 200, boundingBoxTop + 200), paint);
     }
 
     @Override

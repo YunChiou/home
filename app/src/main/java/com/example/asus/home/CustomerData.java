@@ -135,40 +135,38 @@ public class CustomerData extends ToolbarActivity {
         protected void onPostExecute(String s)
         {
             pDialog.dismiss();
-            textViewJSON.setText(json.toString());
+            //textViewJSON.setText(json.toString());
             try {
                 //JSONArray value = json.getJSONArray("product");
                 //JSONObject userObject = value.getJSONObject(0);
                 JSONObject value = json.getJSONArray("product").getJSONObject(0);
-                nameText.setText("姓名"+value.getString("name"));
-                accountText.setText("帳號"+value.getString("account"));
-                passwordText.setText("密碼"+value.getString("password"));
+                nameText.setText("姓名　"+value.getString("name"));
+                accountText.setText("帳號　"+value.getString("account"));
+                passwordText.setText("密碼　"+value.getString("password"));
                 qrcode(getQRcodeValue(value.getString("id")));
             }catch(Exception e) {
-
             }
         }
     }
-
-
 
     //創造QRCode
     protected String getQRcodeValue(String id) {
         StringBuffer buffer = new StringBuffer();
 
         buffer.append(id);
-        //buffer.append( name +"，");
-        //buffer.append(account);
+        buffer.append(name +"，");
+        buffer.append(account);
         return buffer.toString();
     }
-    //public static Bitmap mergeBitmaps(Bitmap bmp1, Bitmap bmp2) {
-       // Bitmap bmOverlay = Bitmap.createBitmap(bmp1.getWidth(),
-            // bmp1.getHeight(), bmp1.getConfig());
-       // Canvas canvas = new Canvas(bmOverlay);
-       // canvas.drawBitmap(bmp1, new Matrix(), null);
-        //canvas.drawBitmap(bmp2, 0, 0, null);
-        //return bmOverlay;
-   // }
+
+    /*public static Bitmap mergeBitmaps(Bitmap bmp1, Bitmap bmp2) {
+        Bitmap bmOverlay = Bitmap.createBitmap(bmp1.getWidth(),
+        bmp1.getHeight(), bmp1.getConfig());
+        Canvas canvas = new Canvas(bmOverlay);
+        canvas.drawBitmap(bmp1, new Matrix(), null);
+        canvas.drawBitmap(bmp2, 0, 0, null);
+        return bmOverlay;
+   }*/
 
    public boolean onOptionsItemSelected(MenuItem item) {
        if (item.getItemId() == android.R.id.home) {
@@ -192,7 +190,7 @@ public class CustomerData extends ToolbarActivity {
                 }
             }
             //((ImageView) findViewById(R.id.image)).setImageBitmap(mergeBitmaps(bmp,mylogo));
-           // Drawable d = new BitmapDrawable(bmp);
+            // Drawable d = new BitmapDrawable(bmp);
             //sw.setImageDrawable(d);
             //sw.setImageDrawable(new BitmapDrawable(getResources(),bmp));
             //((ImageView) findViewById(R.id.image)).setImageBitmap(bmp);
