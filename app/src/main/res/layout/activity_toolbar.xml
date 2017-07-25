@@ -5,11 +5,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/layout"
-    tools:context=".ToolbarActivity" >
+    tools:context=".ToolbarActivity"
+    android:weightSum="1">
 
     <android.support.v7.widget.Toolbar
         android:theme="@style/AppTheme.AppBarOverlay"
-        android:layout_height="wrap_content"
+        android:layout_height="23dp"
         android:layout_width="match_parent"
         android:minHeight="?attr/actionBarSize"
         android:id="@+id/toolbar" />
