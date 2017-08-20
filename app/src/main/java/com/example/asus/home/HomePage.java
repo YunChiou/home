@@ -42,8 +42,8 @@ public class HomePage extends Nav_drawer implements OnMapReadyCallback {
 
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(23, 120);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("餐廳A"));
+        LatLng sydney = new LatLng(25.038342, 121.509633);
+       // mMap.addMarker(new MarkerOptions().position(sydney).title("餐廳A"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
         MarkerOptions one = new MarkerOptions();
