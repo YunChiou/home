@@ -74,6 +74,7 @@ public class Registration_boss extends ToolbarActivity {
         }
         int id = -1;
         Boss boss;
+        User user;
         @Override
         protected void onPreExecute() {
             super.onPreExecute();

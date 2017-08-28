@@ -61,7 +61,7 @@ public class Registration_customer extends ToolbarActivity {
                 new Registration_customer.CreateNewCustomer(customer).execute();
 
                 Intent intent = new Intent();
-                intent.setClass(Registration_customer.this, HomePage.class);
+                intent.setClass(Registration_customer.this, MainActivity.class);
                 startActivity(intent);
             }
         });

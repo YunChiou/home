@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -31,7 +32,42 @@ public class Nav_drawer extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        hideItem();
+    }
+    //針對顧客或店家隱藏部分item
+    private void hideItem()
+    {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        Menu nav_Menu = navigationView.getMenu();
+        if(Model.getInstance().getUser().getType().equals("c")){
+            nav_Menu.findItem(R.id.store_info).setVisible(true);
+            nav_Menu.findItem(R.id.layout_edit).setVisible(false);
+            nav_Menu.findItem(R.id.layout).setVisible(false);
+            nav_Menu.findItem(R.id.viewTables).setVisible(false);
+            nav_Menu.findItem(R.id.map).setVisible(true);
+            nav_Menu.findItem(R.id.qrcode_scan_cus).setVisible(false);
+            nav_Menu.findItem(R.id.coupon).setVisible(true);
+            nav_Menu.findItem(R.id.store).setVisible(true);
+            nav_Menu.findItem(R.id.all__restaurants).setVisible(true);
+            nav_Menu.findItem(R.id.give_coupon).setVisible(true);
+            nav_Menu.findItem(R.id.profile).setVisible(true);
+            nav_Menu.findItem(R.id.logout).setVisible(true);
+        }
 
+        else{
+            nav_Menu.findItem(R.id.store_info).setVisible(true);
+            nav_Menu.findItem(R.id.layout_edit).setVisible(true);
+            nav_Menu.findItem(R.id.layout).setVisible(true);
+            nav_Menu.findItem(R.id.viewTables).setVisible(true);
+            nav_Menu.findItem(R.id.map).setVisible(true);
+            nav_Menu.findItem(R.id.qrcode_scan_cus).setVisible(true);
+            nav_Menu.findItem(R.id.coupon).setVisible(false);
+            nav_Menu.findItem(R.id.store).setVisible(false);
+            nav_Menu.findItem(R.id.all__restaurants).setVisible(true);
+            nav_Menu.findItem(R.id.give_coupon).setVisible(false);
+            nav_Menu.findItem(R.id.profile).setVisible(true);
+            nav_Menu.findItem(R.id.logout).setVisible(true);
+    }
     }
     //用來extend的
     public void addContentView(int layoutId) {
@@ -41,6 +77,7 @@ public class Nav_drawer extends AppCompatActivity
         drawer.addView(contentView, 0);
     }
     @Override
+
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -118,5 +155,6 @@ public class Nav_drawer extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }
 

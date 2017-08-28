@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.asus.home"
     android:versionCode="1"
     android:versionName="1.0">
@@ -126,13 +127,16 @@
         </activity>
         <activity android:name=".Nav_drawer" />
         <activity android:name=".GetAllRestaurants" />
-
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
         <!-- Google Service版本 -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".ResponseRequest"></activity>
+        <activity android:name=".ResponseRequest" />
     </application>
 
 </manifest>

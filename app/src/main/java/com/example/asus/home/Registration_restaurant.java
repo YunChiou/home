@@ -54,7 +54,7 @@ public class Registration_restaurant extends ToolbarActivity {
                 new Registration_restaurant.CreateNewRestaurant(restaurant).execute();
 
                 Intent intent = new Intent();
-                intent.setClass(Registration_restaurant.this, HomePage.class);
+                intent.setClass(Registration_restaurant.this, MainActivity.class);
                 startActivity(intent);
             }
         });
