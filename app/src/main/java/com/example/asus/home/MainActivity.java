@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
     //檢查有沒有輸入帳號密碼
     private boolean validation_check(){
         if(edittext_account.getText().toString().trim().equals("") ||
@@ -90,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
         else return true;
 
     }
+
     //storing token to mysql server
     private void sendTokenToServer() {
         final String token = SharedPrefManager.getInstance(this).getDeviceToken();
@@ -119,29 +121,17 @@ public class MainActivity extends AppCompatActivity {
             pDialog.show();
         }
 
-        /**
-         * getting All products from url
-         * */
-
-
-
         protected String doInBackground(String... args) {
             String account = user.getAccount();
             String password = user.getPassword();
-            // Building Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("account", account));
             params.add(new BasicNameValuePair("password", password));
-            // getting JSON string from URL
-            JSONObject json = jParser_post.makeHttpRequest(url_all,
-                    "POST", params);
-            // Check your log cat for JSON reponse
+            JSONObject json = jParser_post.makeHttpRequest(url_all, "POST", params);
 
             Log.d("Create Response", json.toString());
             try {
-                // Checking for SUCCESS TAG
                 int success = json.getInt(TAG_SUCCESS);
-
                 if (success == 1) {
                     boss_array = json.getJSONArray("boss_array");
                     JSONObject c = boss_array.getJSONObject(0);
@@ -175,5 +165,4 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
 }
