@@ -3,17 +3,14 @@ package com.example.asus.home;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,9 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private static String url_all = "http://163.14.68.37/android_connect/get_all.php";
     private static final String TAG_SUCCESS = "success";
     JSONArray boss_array = null;
-    static SharedPreferences prefs;
-    CheckBox check;
-    User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         edittext_account = (EditText)findViewById(R.id.edittext_account);
         edittext_password = (EditText)findViewById(R.id.edittext_password);
         login_hint = (TextView)findViewById(R.id.login_hint);
-        check = (CheckBox) findViewById(R.id.auto);
         register = (TextView)findViewById(R.id.textView_register);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,27 +53,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        //自動填入帳號密碼
-        auto_login();
-        //如帳密皆非空就自動登入
-        if(validation_check()){
-            user = new User();
-            user.setAccount(edittext_account.getText().toString().trim());
-            user.setPassword(edittext_password.getText().toString().trim());
-            prefs.edit().putBoolean("check",check.isChecked()).commit();
-            new Login(user).execute();
-            sendTokenToServer();
-        }
-        //手動的登入
         login = (Button)findViewById(R.id.button_login);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(validation_check()){
-                    user = new User();
+                    User user = new User();
                     user.setAccount(edittext_account.getText().toString().trim());
                     user.setPassword(edittext_password.getText().toString().trim());
-                    prefs.edit().putBoolean("check",check.isChecked()).commit();
                     new Login(user).execute();
                     sendTokenToServer();
                 }
@@ -102,17 +83,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    //自動填入帳號密碼
-    private void auto_login(){
-        prefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-        check.setChecked(prefs.getBoolean("check", false));
-        //如果上次有勾選"自動登入"
-        if(prefs.getBoolean("check", false)){
-            //自動填入帳號與密碼
-            edittext_account.setText(prefs.getString("account", null));
-            edittext_password.setText(prefs.getString("password", null));
-        }
-    }
+
     //檢查有沒有輸入帳號密碼
     private boolean validation_check(){
         if(edittext_account.getText().toString().trim().equals("") ||
@@ -120,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
         else return true;
 
     }
+
     //storing token to mysql server
     private void sendTokenToServer() {
         final String token = SharedPrefManager.getInstance(this).getDeviceToken();
@@ -149,30 +121,17 @@ public class MainActivity extends AppCompatActivity {
             pDialog.show();
         }
 
-        /**
-         * getting All products from url
-         * */
-
-
-
         protected String doInBackground(String... args) {
             String account = user.getAccount();
             String password = user.getPassword();
-
-            // Building Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("account", account));
             params.add(new BasicNameValuePair("password", password));
-            // getting JSON string from URL
-            JSONObject json = jParser_post.makeHttpRequest(url_all,
-                    "POST", params);
-            // Check your log cat for JSON reponse
+            JSONObject json = jParser_post.makeHttpRequest(url_all, "POST", params);
 
             Log.d("Create Response", json.toString());
             try {
-                // Checking for SUCCESS TAG
                 int success = json.getInt(TAG_SUCCESS);
-
                 if (success == 1) {
                     boss_array = json.getJSONArray("boss_array");
                     JSONObject c = boss_array.getJSONObject(0);
@@ -182,13 +141,6 @@ public class MainActivity extends AppCompatActivity {
                     user.setType(type);
                     check = "true";
                     Model.getInstance().setUser(user);
-                    //自動登入功能
-                    prefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-                    prefs.edit().putString("account",account).commit();
-                    prefs.edit().putString("password",password).commit();
-
-
-
                 }
                 return check;
             } catch (JSONException e) {
@@ -213,5 +165,4 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
 }
