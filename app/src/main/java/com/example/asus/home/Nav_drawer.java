@@ -2,7 +2,9 @@ package com.example.asus.home;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -117,6 +119,7 @@ public class Nav_drawer extends AppCompatActivity
             startActivity(intent);
         }
         else if (id == R.id.logout) {
+            MainActivity.prefs.edit().clear().commit();
             Intent intent = new Intent();
             intent.setClass(Nav_drawer.this, MainActivity.class);
             startActivity(intent);
