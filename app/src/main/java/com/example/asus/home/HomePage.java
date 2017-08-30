@@ -68,12 +68,12 @@ public class HomePage extends Nav_drawer implements OnMapReadyCallback {
         mMap.addMarker(two);
 
         //mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
-        //mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         //mMap.setMyLocationEnabled(true);
         mMap.getUiSettings().setZoomControlsEnabled(true); // 右下角的放大縮小功能
         mMap.getUiSettings().setCompassEnabled(true); // 左上角的指南針，要兩指旋轉才會出現
         mMap.getUiSettings().setMapToolbarEnabled(true); // 右下角的導覽及開啟 Google Map功能
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(5));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
     }
 }
