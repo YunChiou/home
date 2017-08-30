@@ -48,30 +48,6 @@
         />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/login_hint"
-        android:textSize="24sp"
-        android:layout_below="@+id/edittext_password"
-        android:layout_alignLeft="@+id/edittext_password"
-        android:layout_alignStart="@+id/edittext_password"
-        android:layout_marginTop="14dp"
-        />
-    <Button
-        android:text="登入"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/button_login"
-        android:background="@drawable/home_login_button"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:layout_below="@+id/login_hint"
-        android:layout_alignRight="@+id/edittext_password"
-        android:layout_alignEnd="@+id/edittext_password"
-        android:layout_alignLeft="@+id/login_hint"
-        android:layout_alignStart="@+id/login_hint" />
-
-    <TextView
         android:text="註冊"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -94,12 +70,29 @@
 
     <CheckBox
         android:text="自動登入"
+        android:textSize="18dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/login_hint"
-        android:layout_alignLeft="@+id/login_hint"
-        android:layout_alignStart="@+id/login_hint"
         android:id="@+id/auto"
-        android:checked="false" />
+        android:checked="false"
+        android:layout_below="@+id/edittext_password"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        />
+
+    <Button
+        android:text="登入"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_login"
+        android:background="@drawable/home_login_button"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/auto"
+        android:layout_alignLeft="@+id/auto"
+        android:layout_alignStart="@+id/auto"
+        android:layout_alignRight="@+id/edittext_password"
+        android:layout_alignEnd="@+id/edittext_password" />
 
 </RelativeLayout>

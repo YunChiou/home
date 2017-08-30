@@ -3,14 +3,17 @@ package com.example.asus.home;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     EditText edittext_account;
     EditText edittext_password;
     Button login;
-    TextView login_hint;
     TextView register;
     private ProgressDialog pDialog;
     JSONParser jParser_get = new JSONParser();
@@ -36,14 +38,16 @@ public class MainActivity extends AppCompatActivity {
     private static String url_all = "http://163.14.68.37/android_connect/get_all.php";
     private static final String TAG_SUCCESS = "success";
     JSONArray boss_array = null;
+    CheckBox checkBox;
+    static SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        checkBox = (CheckBox) findViewById(R.id.auto);
         edittext_account = (EditText)findViewById(R.id.edittext_account);
         edittext_password = (EditText)findViewById(R.id.edittext_password);
-        login_hint = (TextView)findViewById(R.id.login_hint);
         register = (TextView)findViewById(R.id.textView_register);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,31 +57,29 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        //自動填入帳密
+        auto_fill();
+        //帳密皆非空則自動登入
+        if(validation_check()){
+            User user = new User();
+            user.setAccount(edittext_account.getText().toString().trim());
+            user.setPassword(edittext_password.getText().toString().trim());
+            new Login(user).execute();
+            sendTokenToServer();
+        }
         login = (Button)findViewById(R.id.button_login);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(validation_check()){
+                    //存入checkbox status
+                    prefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                    prefs.edit().putBoolean("check", checkBox.isChecked()).commit();
                     User user = new User();
                     user.setAccount(edittext_account.getText().toString().trim());
                     user.setPassword(edittext_password.getText().toString().trim());
                     new Login(user).execute();
                     sendTokenToServer();
-                }
-                else{//帳密提示字
-                    if(edittext_account.getText().toString().trim().equals("")){
-                        if(edittext_password.getText().toString().equals(""))
-                            login_hint.setText("請輸入帳號和密碼");
-                        else
-                            login_hint.setText("請輸入帳號");
-                    }
-                    else if(edittext_password.getText().toString().trim().equals("")){
-                        if(edittext_account.getText().toString().equals(""))
-                            login_hint.setText("請輸入帳號和密碼");
-                        else
-                            login_hint.setText("請輸入密碼");
-                    }
-
                 }
             }
         });
@@ -89,7 +91,15 @@ public class MainActivity extends AppCompatActivity {
         if(edittext_account.getText().toString().trim().equals("") ||
                 edittext_password.getText().toString().equals("")) return false;
         else return true;
-
+    }
+    //自動填入帳密
+    private void auto_fill(){
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if(prefs.getBoolean("check", false)){
+            checkBox.setChecked(true);
+            edittext_account.setText(prefs.getString("account", null));
+            edittext_password.setText(prefs.getString("password", null));
+        }
     }
 
     //storing token to mysql server
@@ -133,6 +143,9 @@ public class MainActivity extends AppCompatActivity {
             try {
                 int success = json.getInt(TAG_SUCCESS);
                 if (success == 1) {
+                    prefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                    prefs.edit().putString("account", account).commit();
+                    prefs.edit().putString("password", password).commit();
                     boss_array = json.getJSONArray("boss_array");
                     JSONObject c = boss_array.getJSONObject(0);
                     id = c.getInt("id");
@@ -141,6 +154,10 @@ public class MainActivity extends AppCompatActivity {
                     user.setType(type);
                     check = "true";
                     Model.getInstance().setUser(user);
+
+                }
+                else{
+
                 }
                 return check;
             } catch (JSONException e) {
@@ -154,10 +171,10 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             pDialog.dismiss();
-            if(s.equals("false"))
-                login_hint.setText("帳號或密碼錯誤");
+            if(s.equals("false")){
+
+            }
             else{
-                login_hint.setText("");
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, HomePage.class);
                 startActivity(intent);
