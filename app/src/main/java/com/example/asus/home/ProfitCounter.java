@@ -4,12 +4,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-public class ResponseRequest extends ToolbarActivity {
+public class ProfitCounter extends ToolbarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_response_request);
+        setContentView(R.layout.activity_profit_counter);
     }
 
     //產生back arrow

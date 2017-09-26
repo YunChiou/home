@@ -136,7 +136,14 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".ResponseRequest" />
+        <activity android:name=".ResponseRequest"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ProfitCounter"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
