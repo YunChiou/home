@@ -5,5 +5,46 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.asus.home.ResponseRequest">
+    <LinearLayout android:orientation="vertical" android:layout_height="fill_parent" android:layout_width="fill_parent">
+        <LinearLayout android:orientation="horizontal" android:id="@+id/rajawali" android:layout_weight="1" android:layout_height="fill_parent" android:layout_width="fill_parent"/>
+        <LinearLayout android:orientation="vertical" android:gravity="center" android:layout_weight="1" android:layout_height="fill_parent" android:layout_width="fill_parent">
 
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="用戶對您發出併桌請求"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="贈送炸物拼盤"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+            <LinearLayout android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_height="fill_parent"
+                android:layout_width="match_parent">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:padding="10dp"
+                    android:text="確認" />
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:padding="10dp"
+                    android:text="拒絕" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
