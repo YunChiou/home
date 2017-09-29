@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
@@ -22,6 +23,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class HomePage extends Nav_drawer implements OnMapReadyCallback {
@@ -35,28 +37,33 @@ public class HomePage extends Nav_drawer implements OnMapReadyCallback {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-
     }
 
+
+    MarkerOptions one;
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-
-        // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(25.038342, 121.509633);
-       // mMap.addMarker(new MarkerOptions().position(sydney).title("餐廳A"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
-        MarkerOptions one = new MarkerOptions();
+        one = new MarkerOptions();
         one.position(new LatLng(25.037762, 121.505837));
-        one.title("麥當勞");
+        one.title("初曼咖啡");
         one.snippet("目前有1為顧客與您使用相同圖形");
         one.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
         one.draggable(false);
         one.visible(true);
         mMap.addMarker(one);
+        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(LatLng arg0) {
+                // TODO Auto-generated method stub
+                Intent intent = new Intent();
+                intent.setClass(HomePage.this, RestaurantModel.class);
+                startActivity(intent);
+            }
+        });
 
         MarkerOptions two = new MarkerOptions();
         two.position(new LatLng(25.038019, 121.506000));
@@ -85,4 +92,5 @@ public class HomePage extends Nav_drawer implements OnMapReadyCallback {
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(16));
     }
+
 }

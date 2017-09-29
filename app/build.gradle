@@ -43,9 +43,10 @@ dependencies {
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.android.support:support-v13:25.3.1'
     compile 'com.google.android.gms:play-services-location:11.0.4'
-    testCompile 'junit:junit:4.12'
     compile 'org.rajawali3d:rajawali:1.1.970'
+    testCompile 'junit:junit:4.12'
 }
+
 
 
 
