@@ -35,6 +35,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:padding="10dp"
+                    android:background="@drawable/home_login_button"
                     android:text="確認" />
 
                 <Button
@@ -43,6 +44,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:padding="10dp"
+                    android:background="@drawable/home_login_button"
                     android:text="拒絕" />
             </LinearLayout>
         </LinearLayout>
