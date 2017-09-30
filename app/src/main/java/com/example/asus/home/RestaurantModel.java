@@ -1,17 +1,12 @@
 package com.example.asus.home;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import org.rajawali3d.renderer.Renderer;
 import org.rajawali3d.view.ISurface;
 import org.rajawali3d.view.SurfaceView;
 
@@ -26,10 +21,12 @@ public class RestaurantModel extends ToolbarActivity {
 
         final SurfaceView surface = new SurfaceView(this);
         surface.setFrameRate(60.0);
-        surface.setTransparent(true);
+        //surface.setTransparent(true);
         surface.setRenderMode(ISurface.RENDERMODE_WHEN_DIRTY);
 
-        addContentView(surface, new ActionBar.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT));
+        LinearLayout rajawali = (LinearLayout)findViewById(R.id.rajawali);
+        rajawali.addView(surface);
+
         renderer = new RestaurantModelRenderer(this);
         surface.setSurfaceRenderer(renderer);
     }
