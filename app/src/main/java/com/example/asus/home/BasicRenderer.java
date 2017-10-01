@@ -30,17 +30,18 @@ public class BasicRenderer extends Renderer {
         mDirectionalLight.setPower(8);
         getCurrentScene().addLight(mDirectionalLight);
         try{
-            LoaderOBJ objParser = new LoaderOBJ(context.getResources(),mTextureManager, R.raw.fastfood);
-            objParser.parse();
-            mObject = objParser.getParsedObject();
-            mObject.setScale(0.17);
-            mObject.rotate(Vector3.Axis.Y, 90);
-            //getCurrentScene().addChild(mObject);
-
-            LoaderOBJ mickyParser = new LoaderOBJ(context.getResources(),mTextureManager, R.raw.mickey_mouse);
+            /*LoaderOBJ mickyParser = new LoaderOBJ(context.getResources(),mTextureManager, R.raw.mickey_mouse);
             mickyParser.parse();
             mickyObject = mickyParser.getParsedObject();
             mickyObject.setPosition(-10, 32, 30);
+            mickyObject.setScale(3);
+            //mickyObject.rotate(Vector3.Axis.Y, 90);
+            getCurrentScene().addChild(mickyObject);*/
+
+            LoaderOBJ mickyParser = new LoaderOBJ(context.getResources(),mTextureManager, R.raw.spider_man_modern);
+            mickyParser.parse();
+            mickyObject = mickyParser.getParsedObject();
+            //mickyObject.setPosition(-10, 32, 30);
             mickyObject.setScale(3);
             //mickyObject.rotate(Vector3.Axis.Y, 90);
             getCurrentScene().addChild(mickyObject);
@@ -49,7 +50,7 @@ public class BasicRenderer extends Renderer {
         getCurrentCamera().setX(0);
         getCurrentCamera().setY(40);
         getCurrentCamera().setZ(50);
-        getCurrentCamera().setCameraPitch(10);
+        //getCurrentCamera().setCameraPitch(10);
         //getCurrentCamera().setLookAt(50, 30, -200);
         //getCurrentCamera().rotate(Vector3.Axis.Y, -20);
     }

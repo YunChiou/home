@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import org.rajawali3d.view.ISurface;
 import org.rajawali3d.view.SurfaceView;
@@ -13,6 +14,7 @@ import org.rajawali3d.view.SurfaceView;
 public class RestaurantModel extends ToolbarActivity {
 
     RestaurantModelRenderer renderer;
+    private TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,19 +25,20 @@ public class RestaurantModel extends ToolbarActivity {
         surface.setFrameRate(60.0);
         //surface.setTransparent(true);
         surface.setRenderMode(ISurface.RENDERMODE_WHEN_DIRTY);
-
         LinearLayout rajawali = (LinearLayout)findViewById(R.id.rajawali);
         rajawali.addView(surface);
-
         renderer = new RestaurantModelRenderer(this);
         surface.setSurfaceRenderer(renderer);
+
+        tv = (TextView) this.findViewById(R.id.textView);
+        tv.setSelected(true);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event){
         if (event.getAction() == MotionEvent.ACTION_DOWN) { //Called once at the start of the touch
             //renderer.getCurrentCamera().setZ(renderer.getCurrentCamera().getZ()-3);
-            //renderer.getCurrentCamera().setLookAt(0, renderer.getCurrentCamera().getLookAt().y + 5, 0);
+            tv.setText("曉青，21歲，喜歡CNBlue");
         }
         return true;
     }

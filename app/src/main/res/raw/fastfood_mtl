@@ -105,7 +105,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd map_8_raytrace.png
+map_Kd C:\Users\User\Desktop\Rajawali\app\src\main\res\drawable-nodpi\table.png
 
 newmtl wire_224086086
 Ns 29.411765
