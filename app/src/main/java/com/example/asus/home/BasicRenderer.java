@@ -41,8 +41,8 @@ public class BasicRenderer extends Renderer {
             LoaderOBJ mickyParser = new LoaderOBJ(context.getResources(),mTextureManager, R.raw.spider_man_modern);
             mickyParser.parse();
             mickyObject = mickyParser.getParsedObject();
-            //mickyObject.setPosition(-10, 32, 30);
-            mickyObject.setScale(3);
+            mickyObject.setPosition(0, 34, 30);
+            mickyObject.setScale(3.3);
             //mickyObject.rotate(Vector3.Axis.Y, 90);
             getCurrentScene().addChild(mickyObject);
         } catch (ParsingException e){
@@ -50,9 +50,6 @@ public class BasicRenderer extends Renderer {
         getCurrentCamera().setX(0);
         getCurrentCamera().setY(40);
         getCurrentCamera().setZ(50);
-        //getCurrentCamera().setCameraPitch(10);
-        //getCurrentCamera().setLookAt(50, 30, -200);
-        //getCurrentCamera().rotate(Vector3.Axis.Y, -20);
     }
 
     @Override

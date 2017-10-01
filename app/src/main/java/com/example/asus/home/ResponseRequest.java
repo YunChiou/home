@@ -5,7 +5,9 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import org.rajawali3d.renderer.Renderer;
@@ -13,10 +15,13 @@ import org.rajawali3d.view.ISurface;
 import org.rajawali3d.view.SurfaceView;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class ResponseRequest extends ToolbarActivity {
 
     Renderer renderer;
+    TextView textView;
+    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +36,15 @@ public class ResponseRequest extends ToolbarActivity {
 
         LinearLayout rajawali = (LinearLayout)findViewById(R.id.rajawali);
         rajawali.addView(surface);
-
-        //addContentView(surface, new ActionBar.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT));
         renderer = new BasicRenderer(this);
         surface.setSurfaceRenderer(renderer);
+
+        textView = (TextView)findViewById(R.id.textView2);
+        button = (Button)findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                textView.setText("已確認併桌");            }
+        });
     }
 
     @Override
