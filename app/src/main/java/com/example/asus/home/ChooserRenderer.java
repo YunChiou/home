@@ -2,25 +2,29 @@ package com.example.asus.home;
 
 import android.content.Context;
 import android.view.MotionEvent;
+
 import org.rajawali3d.Object3D;
 import org.rajawali3d.lights.DirectionalLight;
 import org.rajawali3d.loader.LoaderOBJ;
 import org.rajawali3d.loader.ParsingException;
-import org.rajawali3d.math.vector.Vector3;
 import org.rajawali3d.renderer.Renderer;
 
+/**
+ * Created by User on 2017/10/1.
+ */
 
-public class BasicRenderer extends Renderer {
+public class ChooserRenderer extends Renderer {
 
     private DirectionalLight mDirectionalLight;
     private Context context;
-    private Object3D mObject;
-    private Object3D mickyObject;;
+    private Object3D modelObject;
+    int obj;
 
-    public BasicRenderer(Context context) {
+    public ChooserRenderer(Context context, int obj) {
         super(context);
         this.context = context;
         setFrameRate(60);
+        this.obj = obj;
     }
 
     @Override
@@ -30,12 +34,12 @@ public class BasicRenderer extends Renderer {
         mDirectionalLight.setPower(8);
         getCurrentScene().addLight(mDirectionalLight);
         try{
-            LoaderOBJ mickyParser = new LoaderOBJ(context.getResources(),mTextureManager, R.raw.spider_man_modern);
-            mickyParser.parse();
-            mickyObject = mickyParser.getParsedObject();
-            mickyObject.setPosition(0, 34, 30);
-            mickyObject.setScale(3.3);
-            getCurrentScene().addChild(mickyObject);
+            LoaderOBJ objParser = new LoaderOBJ(context.getResources(),mTextureManager, this.obj);
+            objParser.parse();
+            modelObject = objParser.getParsedObject();
+            modelObject.setPosition(0, 34, 30);
+            modelObject.setScale(3.3);
+            getCurrentScene().addChild(modelObject);
         } catch (ParsingException e){
         }
         getCurrentCamera().setX(0);

@@ -47,6 +47,10 @@
             android:icon="@drawable/user"
             android:title="個人檔案" />
         <item
+            android:id="@+id/modelchoser"
+            android:icon="@drawable/user"
+            android:title="選擇圖形" />
+        <item
             android:id="@+id/profit"
             android:icon="@drawable/user"
             android:title="計算優惠" />

@@ -71,6 +71,7 @@ public class Nav_drawer extends AppCompatActivity
             nav_Menu.findItem(R.id.logout).setVisible(true);
             nav_Menu.findItem(R.id.profit).setVisible(true);
             nav_Menu.findItem(R.id.response).setVisible(true);
+            nav_Menu.findItem(R.id.modelchoser).setVisible(true);
     }
     }
     //用來extend的
@@ -164,6 +165,11 @@ public class Nav_drawer extends AppCompatActivity
         else if (id == R.id.response) {
             Intent intent = new Intent();
             intent.setClass(Nav_drawer.this, ResponseRequest.class);
+            startActivity(intent);
+        }
+        else if (id == R.id.modelchoser) {
+            Intent intent = new Intent();
+            intent.setClass(Nav_drawer.this, ModelChoser.class);
             startActivity(intent);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

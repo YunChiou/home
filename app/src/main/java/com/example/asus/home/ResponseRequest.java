@@ -30,8 +30,6 @@ public class ResponseRequest extends ToolbarActivity {
 
         final SurfaceView surface = new SurfaceView(this);
         surface.setFrameRate(60.0);
-        //surface.setTransparent(true);
-        //surface.setBackgroundColor(Color.argb(0, 255, 255, 153));
         surface.setRenderMode(ISurface.RENDERMODE_WHEN_DIRTY);
 
         LinearLayout rajawali = (LinearLayout)findViewById(R.id.rajawali);
