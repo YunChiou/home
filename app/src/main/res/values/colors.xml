@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorAccent">#000</color>
     <color name="yello">	#FFFF66</color>
-    <color name="red">	#FF9999</color>
-    <color name="green">	#33FF99</color>
+    <color name="red">	#FFECEC</color>
+    <color name="green">	#E8FFF5</color>
+    <color name="darkgreen">	#D7FFEE</color>
 </resources>

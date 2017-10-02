@@ -23,7 +23,7 @@ public class ChooserRenderer extends Renderer {
     public ChooserRenderer(Context context, int obj) {
         super(context);
         this.context = context;
-        setFrameRate(60);
+        //setFrameRate(30);
         this.obj = obj;
     }
 

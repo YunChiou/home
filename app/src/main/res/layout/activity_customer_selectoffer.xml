@@ -6,78 +6,154 @@
     android:layout_height="match_parent"
     tools:context="com.example.asus.home.customer_selectoffer">
 
-   <TextView
-    android:text="請選擇一種優惠"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textSize = "30sp"
-    android:layout_marginTop="40dp"
-    android:id="@+id/textView3"
-    android:layout_alignParentTop="true"
-    android:layout_centerHorizontal="true"
-    android:layout_centerVertical="true"
-    android:layout_marginLeft="41dp"
-    android:layout_marginStart="41dp" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
 
-    <RadioGroup
-        android:id="@+id/radioGroup1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="34dp">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2">
+            <TextView
+                android:text="請選擇優惠"
+                android:textSize="22sp"
+                android:layout_margin="5dp"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                >
+            </TextView>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/three"
+                android:layout_width="0dp"
+                android:padding="2dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/select_linear"
+                android:layout_height="fill_parent"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_gravity="left"
+                    android:src="@drawable/check"
+                    android:layout_height="40dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="50dp"
+                    android:text="提供部分金額資助"
+                    android:textSize="18sp"
+                    android:layout_height="40dp" />
 
-        <RadioButton
-            android:text="贈送小菜"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="77dp"
-            android:id="@+id/radioButton"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/four"
+                android:layout_width="0dp"
+                android:padding="2dp"
+                android:layout_margin="2dp"
+                android:layout_height="fill_parent"
+                android:background="@drawable/select_linear"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_gravity="left"
+                    android:src="@drawable/check"
+                    android:layout_height="40dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="50dp"
+                    android:text="提供任意小菜"
+                    android:textSize="18sp"
+                    android:layout_height="40dp" />
+            </LinearLayout>
 
-        <RadioButton
-            android:text="餐點免費加大"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="13dp"
-            android:id="@+id/radioButton3"
-            android:layout_below="@+id/radioButton2"
-            android:layout_alignLeft="@+id/radioButton2"
-            android:layout_alignStart="@+id/radioButton2" />
-        />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/five"
+                android:layout_width="0dp"
+                android:padding="2dp"
+                android:layout_height="fill_parent"
+                android:background="@drawable/select_linear"
+                android:layout_margin="2dp"
+               android:layout_weight="1">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_gravity="left"
+                    android:src="@drawable/check"
+                    android:layout_height="40dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="50dp"
+                    android:text="提供任意飲料"
+                    android:textSize="18sp"
+                    android:layout_height="40dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/six"
+                android:layout_width="0dp"
+                android:padding="2dp"
+                android:layout_height="fill_parent"
+                android:layout_margin="2dp"
+                android:background="@drawable/select_linear"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_gravity="left"
+                    android:src="@drawable/check"
+                    android:layout_height="40dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="50dp"
+                    android:text="自訂"
+                    android:textSize="18sp"
+                    android:layout_height="40dp" />
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:text=""
+                    android:textSize="18sp"
+                    android:layout_height="40dp" />
+            </LinearLayout>
+        </LinearLayout>
 
-        <RadioButton
-            android:text="餐點折10元"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="13dp"
-            android:id="@+id/radioButton2"
-            android:layout_below="@+id/radioButton"
-            android:layout_alignLeft="@+id/radioButton"
-            android:layout_alignStart="@+id/radioButton" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:padding="5dp">
 
-        <RadioButton
-            android:text="贈送飲料"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="13dp"
-            android:id="@+id/radioButton4"
-            android:layout_below="@+id/radioButton3"
-            android:layout_alignLeft="@+id/radioButton3"
-            android:layout_alignStart="@+id/radioButton3" />
-
-    </RadioGroup>
-
-    <Button
-        android:text="送出"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:id="@+id/button"
-        android:layout_below="@+id/radioGroup1"
-        android:layout_centerHorizontal="true" />
+            <Button
+                android:layout_margin="2dp"
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:textSize="18sp"
+                android:padding="5dp"
+                android:background="@drawable/home_login_button"
+                android:text="發送併桌邀請">
+            </Button>
+        </LinearLayout>
+    </LinearLayout>
 
 
 </RelativeLayout>
