@@ -25,11 +25,8 @@ import com.google.android.gms.maps.StreetViewPanoramaView;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-<<<<<<< HEAD
 import com.google.android.gms.maps.model.LatLngBounds;
-=======
 import com.google.android.gms.maps.model.Marker;
->>>>>>> b6885d0871e07552cfed3f009a15d50d0709b7ab
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.StreetViewPanoramaCamera;
 
@@ -53,13 +50,6 @@ public class HomePage extends Nav_drawer implements OnMapReadyCallback {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-<<<<<<< HEAD
-
-
-
-
-=======
->>>>>>> b6885d0871e07552cfed3f009a15d50d0709b7ab
     }
 
 
