@@ -1,55 +1,44 @@
 package com.example.asus.home;
 
-import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
-
-import org.rajawali3d.renderer.Renderer;
-import org.rajawali3d.view.ISurface;
-import org.rajawali3d.view.SurfaceView;
-import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class ResponseRequest extends ToolbarActivity {
+import org.rajawali3d.view.ISurface;
+import org.rajawali3d.view.SurfaceView;
 
-    Renderer renderer;
-    TextView textView;
-    Button button;
+public class RestaurantModel extends ToolbarActivity {
+
+    RestaurantModelRenderer renderer;
+    private TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_response_request);
+        setContentView(R.layout.activity_restaurant_model);
 
         final SurfaceView surface = new SurfaceView(this);
         surface.setFrameRate(60.0);
+        //surface.setTransparent(true);
         surface.setRenderMode(ISurface.RENDERMODE_WHEN_DIRTY);
-
         LinearLayout rajawali = (LinearLayout)findViewById(R.id.rajawali);
         rajawali.addView(surface);
-        renderer = new BasicRenderer(this);
+        renderer = new RestaurantModelRenderer(this);
         surface.setSurfaceRenderer(renderer);
 
-        textView = (TextView)findViewById(R.id.textView2);
-        button = (Button)findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                textView.setText("已確認併桌");            }
-        });
+        tv = (TextView) this.findViewById(R.id.textView);
+        tv.setSelected(true);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event){
         if (event.getAction() == MotionEvent.ACTION_DOWN) { //Called once at the start of the touch
             //renderer.getCurrentCamera().setZ(renderer.getCurrentCamera().getZ()-3);
-            //renderer.getCurrentCamera().setLookAt(0, renderer.getCurrentCamera().getLookAt().y + 5, 0);
+            tv.setText("曉青，21歲，喜歡CNBlue");
         }
         return true;
     }

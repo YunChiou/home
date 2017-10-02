@@ -1,106 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.asus.home.customer_selectoffer">
+    tools:context="com.example.asus.home.Boss_selectOffer">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="-26dp">
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.2">
+            android:layout_weight="0.2"
+            android:orientation="horizontal">
+
             <TextView
-                android:text="請選擇優惠"
-                android:textSize="22sp"
-                android:layout_margin="5dp"
-                android:layout_height="wrap_content"
                 android:layout_width="fill_parent"
-                >
-            </TextView>
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="請選擇優惠"
+                android:textSize="22sp"></TextView>
         </LinearLayout>
+
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
             <LinearLayout
-                android:orientation="vertical"
                 android:id="@+id/three"
-                android:layout_width="0dp"
-                android:padding="2dp"
-                android:layout_margin="2dp"
-                android:background="@drawable/select_linear"
-                android:layout_height="fill_parent"
-                android:layout_weight="1">
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_gravity="left"
-                    android:src="@drawable/check"
-                    android:layout_height="40dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="50dp"
-                    android:text="提供部分金額資助"
-                    android:textSize="18sp"
-                    android:layout_height="40dp" />
-
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/payment" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="vertical"
-                android:id="@+id/four"
-                android:layout_width="0dp"
-                android:padding="2dp"
-                android:layout_margin="2dp"
-                android:layout_height="fill_parent"
-                android:background="@drawable/select_linear"
-                android:layout_weight="1">
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_gravity="left"
-                    android:src="@drawable/check"
-                    android:layout_height="40dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="50dp"
-                    android:text="提供任意小菜"
-                    android:textSize="18sp"
-                    android:layout_height="40dp" />
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/spaghetti" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-
-            <LinearLayout
-                android:id="@+id/five"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_margin="2dp"
                 android:layout_weight="1"
-                android:background="@drawable/select_linear"
+                android:background="@drawable/boss_select_linear"
                 android:orientation="vertical"
                 android:padding="2dp">
 
@@ -115,65 +54,144 @@
                     android:layout_height="40dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="50dp"
-                    android:text="提供任意飲料"
+                    android:text="折價"
                     android:textSize="18sp" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:text=""
+                    android:textSize="18sp" />
+
                 <ImageView
+                    android:id="@+id/imageView7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/cocktail" />
+                    app:srcCompat="@drawable/payment" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="vertical"
-                android:id="@+id/six"
+                android:id="@+id/four"
                 android:layout_width="0dp"
-                android:padding="2dp"
                 android:layout_height="fill_parent"
                 android:layout_margin="2dp"
-                android:background="@drawable/select_linear"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:background="@drawable/boss_select_linear"
+                android:orientation="vertical"
+                android:padding="2dp">
+
                 <ImageView
                     android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_gravity="left"
-                    android:src="@drawable/check"
-                    android:layout_height="40dp" />
+                    android:src="@drawable/check" />
+
                 <TextView
                     android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="50dp"
+                    android:text="贈送任意小菜"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/spaghetti" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/five"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/boss_select_linear"
+                android:orientation="vertical"
+                android:padding="2dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="left"
+                    android:src="@drawable/check" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="50dp"
+                    android:text="贈送任意飲料"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/cocktail" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/six"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/boss_select_linear"
+                android:orientation="vertical"
+                android:padding="2dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="left"
+                    android:src="@drawable/check" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="50dp"
                     android:text="自訂"
-                    android:textSize="18sp"
-                    android:layout_height="40dp" />
+                    android:textSize="18sp" />
+
                 <EditText
                     android:layout_width="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:text=""
-                    android:textSize="18sp"
-                    android:layout_height="40dp" />
+                    android:textSize="18sp" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_weight="0.3"
+            android:orientation="horizontal"
             android:padding="5dp">
 
             <Button
-                android:layout_margin="2dp"
-                android:orientation="horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:textSize="18sp"
-                android:padding="5dp"
+                android:layout_margin="2dp"
                 android:background="@drawable/home_login_button"
-                android:text="發送併桌邀請">
-            </Button>
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:text="確認優惠"
+                android:textSize="18sp"></Button>
         </LinearLayout>
     </LinearLayout>
-
-
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

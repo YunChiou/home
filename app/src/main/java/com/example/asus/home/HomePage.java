@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
@@ -24,7 +25,11 @@ import com.google.android.gms.maps.StreetViewPanoramaView;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+<<<<<<< HEAD
 import com.google.android.gms.maps.model.LatLngBounds;
+=======
+import com.google.android.gms.maps.model.Marker;
+>>>>>>> b6885d0871e07552cfed3f009a15d50d0709b7ab
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.StreetViewPanoramaCamera;
 
@@ -48,39 +53,58 @@ public class HomePage extends Nav_drawer implements OnMapReadyCallback {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> b6885d0871e07552cfed3f009a15d50d0709b7ab
     }
 
+
+    MarkerOptions one;
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-
-        // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(25.038342, 121.509633);
-       // mMap.addMarker(new MarkerOptions().position(sydney).title("餐廳A"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
-        MarkerOptions one = new MarkerOptions();
-        one.position(new LatLng(25.034871, 121.507356));
-        one.title("餐廳B");
-        one.snippet("每周二公休");
-        one.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+        one = new MarkerOptions();
+        one.position(new LatLng(25.037762, 121.505837));
+        one.title("初曼咖啡");
+        one.snippet("目前有1為顧客與您使用相同圖形");
+        one.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
         one.draggable(false);
         one.visible(true);
         mMap.addMarker(one);
+        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(LatLng arg0) {
+                // TODO Auto-generated method stub
+                Intent intent = new Intent();
+                intent.setClass(HomePage.this, RestaurantModel.class);
+                startActivity(intent);
+            }
+        });
 
         MarkerOptions two = new MarkerOptions();
-        two.position(new LatLng(25.003396, 121.513303));
-        two.title("餐廳C");
-        two.snippet("假日營業時間為整天");
-        two.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+        two.position(new LatLng(25.038019, 121.506000));
+        two.title("品田牧場");
+        two.snippet("凡願意併桌則贈送招帶水果茶");
+        two.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
         two.draggable(false);
         two.visible(true);
         mMap.addMarker(two);
+
+        MarkerOptions three = new MarkerOptions();
+        three.position(new LatLng(25.037652, 121.506202));
+        three.title("古拉爵");
+        three.snippet("併桌滿四人即贈送奧勒崗烤餅");
+        three.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+        three.draggable(false);
+        three.visible(true);
+        mMap.addMarker(three);
 
         //mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
@@ -89,6 +113,7 @@ public class HomePage extends Nav_drawer implements OnMapReadyCallback {
         mMap.getUiSettings().setCompassEnabled(true); // 左上角的指南針，要兩指旋轉才會出現
         mMap.getUiSettings().setMapToolbarEnabled(true); // 右下角的導覽及開啟 Google Map功能
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(16));
     }
+
 }

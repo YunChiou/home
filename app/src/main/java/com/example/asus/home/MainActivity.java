@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
     private void sendTokenToServer() {
         final String token = SharedPrefManager.getInstance(this).getDeviceToken();
         if (token == null) {
-            Toast.makeText(this, "Token not generated", Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "Token not generated", Toast.LENGTH_LONG).show();
             return;
         }
         new UpdateDeviceToken(token).execute();
