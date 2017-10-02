@@ -19,22 +19,37 @@ import android.widget.*;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.StreetViewPanoramaOptions;
+import com.google.android.gms.maps.StreetViewPanoramaView;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.StreetViewPanoramaCamera;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class HomePage extends Nav_drawer implements OnMapReadyCallback {
 
     private GoogleMap mMap;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.addContentView(R.layout.activity_home_page);
+
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+
 
 
     }
