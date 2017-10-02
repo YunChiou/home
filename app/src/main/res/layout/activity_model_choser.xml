@@ -17,14 +17,6 @@
             android:layout_weight="1">
             <LinearLayout
                 android:orientation="vertical"
-                android:id="@+id/one"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:padding="2dp"
-                android:layout_weight="1">
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="vertical"
                 android:id="@+id/two"
                 android:layout_width="0dp"
                 android:padding="2dp"
@@ -45,28 +37,12 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1">
             </LinearLayout>
-            <LinearLayout
-                android:orientation="vertical"
-                android:id="@+id/four"
-                android:layout_width="0dp"
-                android:padding="2dp"
-                android:layout_height="fill_parent"
-                android:layout_weight="1">
-            </LinearLayout>
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_weight="1">
-            <LinearLayout
-                android:orientation="vertical"
-                android:id="@+id/five"
-                android:layout_width="0dp"
-                android:padding="2dp"
-                android:layout_height="fill_parent"
-                android:layout_weight="1">
-            </LinearLayout>
             <LinearLayout
                 android:orientation="vertical"
                 android:id="@+id/six"
