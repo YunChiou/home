@@ -52,6 +52,7 @@ public class Nav_drawer extends AppCompatActivity
             nav_Menu.findItem(R.id.store).setVisible(true);
             nav_Menu.findItem(R.id.all__restaurants).setVisible(true);
             nav_Menu.findItem(R.id.give_coupon).setVisible(true);
+            nav_Menu.findItem(R.id.boss_give_coupon).setVisible(true);
             nav_Menu.findItem(R.id.profile).setVisible(true);
             nav_Menu.findItem(R.id.logout).setVisible(true);
         }
@@ -130,6 +131,11 @@ public class Nav_drawer extends AppCompatActivity
         else if (id == R.id.give_coupon) {
             Intent intent = new Intent();
             intent.setClass(Nav_drawer.this, customer_selectoffer.class);
+            startActivity(intent);
+        }
+        else if (id == R.id.boss_give_coupon) {
+            Intent intent = new Intent();
+            intent.setClass(Nav_drawer.this, Boss_selectOffer.class);
             startActivity(intent);
         }
         else if (id == R.id.coupon) {

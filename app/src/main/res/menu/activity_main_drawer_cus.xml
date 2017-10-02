@@ -43,6 +43,10 @@
             android:icon="@drawable/ic_menu_manage"
             android:title="顧客提供優惠" />
         <item
+            android:id="@+id/boss_give_coupon"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="店家提供優惠" />
+        <item
             android:id="@+id/profile"
             android:icon="@drawable/user"
             android:title="個人檔案" />

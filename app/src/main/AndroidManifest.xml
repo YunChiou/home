@@ -34,7 +34,7 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".TableLayout"
             android:label=""
@@ -153,6 +153,10 @@
         </activity>
         <activity
             android:name=".ModelChoser"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Boss_selectOffer"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
     </application>

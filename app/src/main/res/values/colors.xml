@@ -7,4 +7,6 @@
     <color name="red">	#FFECEC</color>
     <color name="green">	#E8FFF5</color>
     <color name="darkgreen">	#D7FFEE</color>
+    <color name="blue">	#ECFFFF</color>
+    <color name="darkblue">	#D9FFFF</color>
 </resources>
