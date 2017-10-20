@@ -1,37 +1,17 @@
 package com.example.asus.home;
 
-import android.content.Context;
-import android.content.Intent;
-import android.support.annotation.Nullable;
-import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.*;
-import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.*;
 
+import android.content.Intent;
+import android.os.Bundle;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.StreetViewPanoramaOptions;
-import com.google.android.gms.maps.StreetViewPanoramaView;
+
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-<<<<<<< HEAD
-import com.google.android.gms.maps.model.LatLngBounds;
-=======
-import com.google.android.gms.maps.model.Marker;
->>>>>>> b6885d0871e07552cfed3f009a15d50d0709b7ab
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.StreetViewPanoramaCamera;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,17 +29,10 @@ public class HomePage extends Nav_drawer implements OnMapReadyCallback {
         super.onCreate(savedInstanceState);
         super.addContentView(R.layout.activity_home_page);
 
-
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-<<<<<<< HEAD
 
-
-
-
-=======
->>>>>>> b6885d0871e07552cfed3f009a15d50d0709b7ab
     }
 
 
